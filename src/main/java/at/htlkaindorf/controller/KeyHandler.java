@@ -6,6 +6,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 @Data
+
 public class KeyHandler implements KeyListener {
 
     private boolean spacePressed;
@@ -17,7 +18,7 @@ public class KeyHandler implements KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
         int keyCode = e.getKeyCode();
-        if(keyCode == KeyEvent.VK_SPACE){
+        if (keyCode == KeyEvent.VK_SPACE) {
             spacePressed = true;
         }
     }
@@ -25,7 +26,7 @@ public class KeyHandler implements KeyListener {
     @Override
     public void keyReleased(KeyEvent e) {
         int keyCode = e.getKeyCode();
-        if(keyCode == KeyEvent.VK_SPACE){
+        if (keyCode == KeyEvent.VK_SPACE) {
             spacePressed = false;
         }
     }

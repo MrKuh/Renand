@@ -15,7 +15,7 @@ public class Display {
         gamePanel.startGameThread();
     }
 
-    private void createDisplay(){
+    private void createDisplay() {
         window = new JFrame(title);
         window.add(gamePanel);
         window.pack();
