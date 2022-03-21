@@ -20,7 +20,7 @@ public class GamePanel extends JPanel implements Runnable{
     public static final int screenHeight = titleSize * maxScreenRow;
 
     //FPS
-    private static int FPS = 60;
+    public static int FPS = 60;
     //Key Handler
     private KeyHandler keyH = new KeyHandler();
     //gameThread
@@ -64,7 +64,7 @@ public class GamePanel extends JPanel implements Runnable{
             timer += (currentTime - lastTime);
             lastTime = currentTime;
             if(delta >= 1){
-                player.update();
+                update();
                 repaint();
                 delta--;
                 drawCount++;
@@ -78,21 +78,7 @@ public class GamePanel extends JPanel implements Runnable{
     }
 
     public void update(){
-        if(keyH.isSpacePressed()){
-            playerY -= playerSpeed;
-            playerGravity = 3;
-            playerSpeed *= 1.05;
-        }else{
-            playerY += playerGravity;
-            playerGravity *= 1.05;
-            playerSpeed = 5;
-        }
-        if(playerY < 0){
-            playerY = 0;
-        }
-        if(playerY > screenHeight - titleSize){
-            playerY = screenHeight - titleSize;
-        }
+        player.update();
     }
 
     public void paintComponent(Graphics g){
