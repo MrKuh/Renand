@@ -7,7 +7,7 @@ import java.awt.*;
 
 public class GamePanel extends JPanel implements Runnable{
 
-    final int originalTitleSize = 16;
+    private final int originalTitleSize = 16;
     final int scale = 4;
 
     final int titleSize = originalTitleSize *scale;
@@ -19,7 +19,7 @@ public class GamePanel extends JPanel implements Runnable{
     //FPS
     int FPS = 60;
 
-    KeyHandler keyH = new KeyHandler();
+    private KeyHandler keyH = new KeyHandler();
     Thread gameThread;
 
     //Player data
@@ -71,7 +71,7 @@ public class GamePanel extends JPanel implements Runnable{
     }
 
     public void update(){
-        if(keyH.spacePressed){
+        if(keyH.isSpacePressed()){
             playerY -= playerSpeed;
         }
         if(playerY < 0){

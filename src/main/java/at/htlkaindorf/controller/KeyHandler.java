@@ -1,11 +1,14 @@
 package at.htlkaindorf.controller;
 
+import lombok.Data;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+@Data
 public class KeyHandler implements KeyListener {
 
-    public boolean spacePressed;
+    private boolean spacePressed;
 
     @Override
     public void keyTyped(KeyEvent e) {

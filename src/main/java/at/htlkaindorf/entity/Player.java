@@ -4,8 +4,8 @@ import at.htlkaindorf.controller.KeyHandler;
 import at.htlkaindorf.display.GamePanel;
 
 public class Player extends Entity{
-    GamePanel gamePanel;
-    KeyHandler keyHandler;
+    private GamePanel gamePanel;
+    private KeyHandler keyHandler;
 
     public Player(GamePanel gamePanel, KeyHandler keyHandler) {
         this.gamePanel = gamePanel;
