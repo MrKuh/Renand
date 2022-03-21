@@ -7,26 +7,26 @@ import java.awt.*;
 
 public class GamePanel extends JPanel implements Runnable{
 
-    private final int originalTitleSize = 16;
-    final int scale = 4;
+    private static final int originalTitleSize = 16;
+    private static final int scale = 4;
 
-    final int titleSize = originalTitleSize *scale;
-    final int maxScreenCol= 16;
-    final int maxScreenRow = 12;
-    final int screenWidth = titleSize * maxScreenCol;
-    final int screenHeight = titleSize * maxScreenRow;
+    private static final int titleSize = originalTitleSize *scale;
+    private static final int maxScreenCol= 16;
+    private static final int maxScreenRow = 12;
+    private static final int screenWidth = titleSize * maxScreenCol;
+    private static final int screenHeight = titleSize * maxScreenRow;
 
     //FPS
-    int FPS = 60;
+    private static int FPS = 60;
 
     private KeyHandler keyH = new KeyHandler();
-    Thread gameThread;
+    private Thread gameThread;
 
     //Player data
-    int playerX = 100;
-    int playerY = 100;
-    int playerSpeed = 20;
-    int playerGravity = 8;
+    private int playerX = 100;
+    private int playerY = 100;
+    private int playerSpeed = 20;
+    private int playerGravity = 8;
 
     public void startGameThread() {
         gameThread = new Thread(this);
