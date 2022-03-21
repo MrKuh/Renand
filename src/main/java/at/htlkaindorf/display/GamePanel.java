@@ -1,25 +1,29 @@
 package at.htlkaindorf.display;
 
 import at.htlkaindorf.controller.KeyHandler;
+import at.htlkaindorf.entity.Player;
+import lombok.Data;
 
 import javax.swing.*;
 import java.awt.*;
 
+@Data
 public class GamePanel extends JPanel implements Runnable{
-
+    //window size
     private static final int originalTitleSize = 16;
     private static final int scale = 4;
 
-    private static final int titleSize = originalTitleSize *scale;
+    public static final int titleSize = originalTitleSize *scale;
     private static final int maxScreenCol= 16;
     private static final int maxScreenRow = 12;
     private static final int screenWidth = titleSize * maxScreenCol;
-    private static final int screenHeight = titleSize * maxScreenRow;
+    public static final int screenHeight = titleSize * maxScreenRow;
 
     //FPS
     private static int FPS = 60;
-
+    //Key Handler
     private KeyHandler keyH = new KeyHandler();
+    //gameThread
     private Thread gameThread;
 
     //Player data
@@ -27,6 +31,9 @@ public class GamePanel extends JPanel implements Runnable{
     private int playerY = 100;
     private double playerSpeed = 12.0;
     private double playerGravity = 8.0;
+
+    private Player player = new Player(this, keyH);
+
 
     public void startGameThread() {
         gameThread = new Thread(this);
@@ -57,7 +64,7 @@ public class GamePanel extends JPanel implements Runnable{
             timer += (currentTime - lastTime);
             lastTime = currentTime;
             if(delta >= 1){
-                update();
+                player.update();
                 repaint();
                 delta--;
                 drawCount++;
@@ -92,10 +99,14 @@ public class GamePanel extends JPanel implements Runnable{
         super.paintComponent(g);
 
         Graphics2D g2 = (Graphics2D)g;
-        g2.setColor(Color.white);
-        g2.fillRect(playerX, playerY, titleSize, titleSize);
+
+        player.draw(g2);
+
         g2.dispose();
     }
+
+
+
 
 
 }
