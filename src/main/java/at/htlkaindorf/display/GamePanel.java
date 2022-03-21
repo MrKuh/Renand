@@ -25,8 +25,8 @@ public class GamePanel extends JPanel implements Runnable{
     //Player data
     private int playerX = 100;
     private int playerY = 100;
-    private int playerSpeed = 20;
-    private int playerGravity = 8;
+    private double playerSpeed = 12.0;
+    private double playerGravity = 8.0;
 
     public void startGameThread() {
         gameThread = new Thread(this);
@@ -44,7 +44,7 @@ public class GamePanel extends JPanel implements Runnable{
 
     @Override
     public void run() {
-        double drawInterval = 1000000000/FPS;
+        double drawInterval = 1000000000.0/FPS;
         double delta = 0;
         long lastTime = System.nanoTime();
         long currentTime;
@@ -73,6 +73,12 @@ public class GamePanel extends JPanel implements Runnable{
     public void update(){
         if(keyH.isSpacePressed()){
             playerY -= playerSpeed;
+            playerGravity = 3;
+            playerSpeed *= 1.05;
+        }else{
+            playerY += playerGravity;
+            playerGravity *= 1.05;
+            playerSpeed = 5;
         }
         if(playerY < 0){
             playerY = 0;
@@ -80,9 +86,6 @@ public class GamePanel extends JPanel implements Runnable{
         if(playerY > screenHeight - titleSize){
             playerY = screenHeight - titleSize;
         }
-        playerY += playerGravity;
-
-
     }
 
     public void paintComponent(Graphics g){
