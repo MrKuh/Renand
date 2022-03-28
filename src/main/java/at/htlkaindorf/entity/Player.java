@@ -32,10 +32,10 @@ public class Player extends Entity {
     public void getPlayerImage() {
         try {
             obstacleImages = new BufferedImage[]{
-                    ImageIO.read(getClass().getResourceAsStream("/obstacle/Jetpack_Hindernis-1.png")),
-                    ImageIO.read(getClass().getResourceAsStream("/obstacle/Jetpack_Hindernis-2.png")),
-                    ImageIO.read(getClass().getResourceAsStream("/obstacle/Jetpack_Hindernis-3.png")),
-                    ImageIO.read(getClass().getResourceAsStream("/obstacle/Jetpack_Hindernis-4.png"))
+                    ImageIO.read(getClass().getResourceAsStream("/character/run/sprite_0.png")),
+                    ImageIO.read(getClass().getResourceAsStream("/character/run/sprite_1.png")),
+                    ImageIO.read(getClass().getResourceAsStream("/character/run/sprite_2.png")),
+                    ImageIO.read(getClass().getResourceAsStream("/character/run/sprite_3.png"))
             };
         } catch (IOException e) {
             e.printStackTrace();
@@ -61,7 +61,7 @@ public class Player extends Entity {
 
         //obstacle img set
         spriteCounter++;
-        if (spriteCounter > gamePanel.FPS / obstacleImages.length) {
+        if (spriteCounter > gamePanel.FPS / obstacleImages.length/4) {
             if (obstacleIMG < obstacleImages.length-1) {
                 obstacleIMG++;
             } else {
