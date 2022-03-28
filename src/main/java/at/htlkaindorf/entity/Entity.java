@@ -7,7 +7,8 @@ public class Entity {
     protected double speed;
     protected double gravity;
 
-    protected BufferedImage[] obstacleImages;
+    protected BufferedImage[] runImages;
+    protected BufferedImage[] flyImages;
     protected int obstacleIMG;
 
     protected int spriteCounter = 0;

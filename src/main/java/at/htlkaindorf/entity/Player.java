@@ -14,6 +14,8 @@ public class Player extends Entity {
     private GamePanel gamePanel;
     private KeyHandler keyHandler;
 
+
+
     public Player(GamePanel gamePanel, KeyHandler keyHandler) {
         this.gamePanel = gamePanel;
         this.keyHandler = keyHandler;
@@ -31,11 +33,25 @@ public class Player extends Entity {
 
     public void getPlayerImage() {
         try {
-            obstacleImages = new BufferedImage[]{
-                    ImageIO.read(getClass().getResourceAsStream("/obstacle/Jetpack_Hindernis-1.png")),
-                    ImageIO.read(getClass().getResourceAsStream("/obstacle/Jetpack_Hindernis-2.png")),
-                    ImageIO.read(getClass().getResourceAsStream("/obstacle/Jetpack_Hindernis-3.png")),
-                    ImageIO.read(getClass().getResourceAsStream("/obstacle/Jetpack_Hindernis-4.png"))
+            runImages = new BufferedImage[]{
+                    ImageIO.read(getClass().getResourceAsStream("/character/run/sprite_0.png")),
+                    ImageIO.read(getClass().getResourceAsStream("/character/run/sprite_1.png")),
+                    ImageIO.read(getClass().getResourceAsStream("/character/run/sprite_2.png")),
+                    ImageIO.read(getClass().getResourceAsStream("/character/run/sprite_3.png"))
+            };
+            flyImages = new BufferedImage[]{
+                    ImageIO.read(getClass().getResourceAsStream("/character/run/sprite_0.png")),
+                    ImageIO.read(getClass().getResourceAsStream("/character/run/sprite_1.png")),
+                    ImageIO.read(getClass().getResourceAsStream("/character/run/sprite_2.png")),
+                    ImageIO.read(getClass().getResourceAsStream("/character/run/sprite_3.png")),
+                    ImageIO.read(getClass().getResourceAsStream("/character/run/sprite_4.png")),
+                    ImageIO.read(getClass().getResourceAsStream("/character/run/sprite_5.png")),
+                    ImageIO.read(getClass().getResourceAsStream("/character/run/sprite_6.png")),
+                    ImageIO.read(getClass().getResourceAsStream("/character/run/sprite_7.png")),
+                    ImageIO.read(getClass().getResourceAsStream("/character/run/sprite_8.png")),
+                    ImageIO.read(getClass().getResourceAsStream("/character/run/sprite_9.png")),
+                    ImageIO.read(getClass().getResourceAsStream("/character/run/sprite_10.png")),
+                    ImageIO.read(getClass().getResourceAsStream("/character/run/sprite_11.png"))
             };
         } catch (IOException e) {
             e.printStackTrace();
@@ -60,14 +76,28 @@ public class Player extends Entity {
         }
 
         //obstacle img set
-        spriteCounter++;
-        if (spriteCounter > gamePanel.FPS / obstacleImages.length) {
-            if (obstacleIMG < obstacleImages.length-1) {
-                obstacleIMG++;
-            } else {
-                obstacleIMG = 0;
+        if (keyHandler.isSpacePressed()) {
+            //Fly
+            spriteCounter++;
+            if (spriteCounter > gamePanel.FPS / runImages.length) {
+                if (obstacleIMG < runImages.length - 1) {
+                    obstacleIMG++;
+                } else {
+                    obstacleIMG = 0;
+                }
+                spriteCounter = 0;
             }
-            spriteCounter = 0;
+        }else{
+            //Run
+            spriteCounter++;
+            if (spriteCounter > gamePanel.FPS / runImages.length) {
+                if (obstacleIMG < runImages.length - 1) {
+                    obstacleIMG++;
+                } else {
+                    obstacleIMG = 0;
+                }
+                spriteCounter = 0;
+            }
         }
     }
 
@@ -75,6 +105,6 @@ public class Player extends Entity {
         //g2.setColor(Color.white);
         //g2.fillRect(x, y, gamePanel.titleSize, gamePanel.titleSize);
 
-        g2.drawImage(obstacleImages[obstacleIMG], x, y, gamePanel.titleSize, gamePanel.titleSize, null);
+        g2.drawImage(runImages[obstacleIMG], x, y, gamePanel.titleSize, gamePanel.titleSize, null);
     }
 }
