@@ -62,7 +62,7 @@ public class Player extends Entity {
         //obstacle img set
         spriteCounter++;
         if (spriteCounter > gamePanel.FPS / obstacleImages.length) {
-            if (obstacleIMG < 3) {
+            if (obstacleIMG < obstacleImages.length-1) {
                 obstacleIMG++;
             } else {
                 obstacleIMG = 0;
