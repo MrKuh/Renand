@@ -28,7 +28,8 @@ public class Player extends Entity {
         y = 100;
         speed = 5.0;
         gravity = 3.0;
-        obstacleIMG = 0;
+        runIMG = 1;
+        flyIMG = 0;
     }
 
     public void getPlayerImage() {
@@ -37,7 +38,8 @@ public class Player extends Entity {
                     ImageIO.read(getClass().getResourceAsStream("/character/run/sprite_0.png")),
                     ImageIO.read(getClass().getResourceAsStream("/character/run/sprite_1.png")),
                     ImageIO.read(getClass().getResourceAsStream("/character/run/sprite_2.png")),
-                    ImageIO.read(getClass().getResourceAsStream("/character/run/sprite_3.png"))
+                    ImageIO.read(getClass().getResourceAsStream("/character/run/sprite_3.png")),
+                    ImageIO.read(getClass().getResourceAsStream("/character/fly/sprite_00.png"))
             };
             flyImages = new BufferedImage[]{
                     ImageIO.read(getClass().getResourceAsStream("/character/fly/sprite_00.png")),
@@ -75,26 +77,27 @@ public class Player extends Entity {
             y = gamePanel.screenHeight - gamePanel.titleSize;
         }
 
-        //obstacle img set
+        spriteCounter++;
+        //character img set
         if (keyHandler.isSpacePressed()) {
+            runIMG = runImages.length-1;
             //Fly
-            spriteCounter++;
-            if (spriteCounter > gamePanel.FPS / flyImages.length/4) {
-                if (obstacleIMG < flyImages.length - 1) {
-                    obstacleIMG++;
+            if (spriteCounter > gamePanel.FPS / flyImages.length/2) {
+                if (flyIMG < flyImages.length - 1) {
+                    flyIMG++;
                 } else {
-                    obstacleIMG = 6;
+                    flyIMG = 6;
                 }
                 spriteCounter = 0;
             }
-        }else{
+        }else if(y == gamePanel.screenHeight - gamePanel.titleSize){
+            flyIMG = 0;
             //Run
-            spriteCounter++;
             if (spriteCounter > gamePanel.FPS / runImages.length /4) {
-                if (obstacleIMG < runImages.length - 1) {
-                    obstacleIMG++;
+                if (runIMG < runImages.length - 2) {
+                    runIMG++;
                 } else {
-                    obstacleIMG = 0;
+                    runIMG = 0;
                 }
                 spriteCounter = 0;
             }
@@ -105,9 +108,9 @@ public class Player extends Entity {
         //g2.setColor(Color.white);
         //g2.fillRect(x, y, gamePanel.titleSize, gamePanel.titleSize);
         if (keyHandler.isSpacePressed()) {
-            g2.drawImage(flyImages[obstacleIMG], x, y, gamePanel.titleSize, gamePanel.titleSize, null);
+            g2.drawImage(flyImages[flyIMG], x, y, gamePanel.titleSize, gamePanel.titleSize, null);
         }else{
-            g2.drawImage(runImages[obstacleIMG], x, y, gamePanel.titleSize, gamePanel.titleSize, null);
+            g2.drawImage(runImages[runIMG], x, y, gamePanel.titleSize, gamePanel.titleSize, null);
         }
     }
 }

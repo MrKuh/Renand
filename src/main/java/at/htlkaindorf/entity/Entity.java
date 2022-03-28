@@ -9,7 +9,8 @@ public class Entity {
 
     protected BufferedImage[] runImages;
     protected BufferedImage[] flyImages;
-    protected int obstacleIMG;
+    protected int runIMG;
+    protected int flyIMG;
 
     protected int spriteCounter = 0;
 }
