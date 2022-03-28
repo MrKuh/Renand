@@ -26,8 +26,7 @@ public class GamePanel extends JPanel implements Runnable {
     private KeyHandler keyH = new KeyHandler();
     //gameThread
     private Thread gameThread;
-    //Tile
-    private TileManager tileManager = new TileManager(this);
+
     //Player data
     private int playerX = 100;
     private int playerY = 100;
@@ -35,6 +34,12 @@ public class GamePanel extends JPanel implements Runnable {
     private double playerGravity = 8.0;
 
     private Player player = new Player(this, keyH);
+
+    //World Speed
+    public static double xspeed = 6.0;
+
+    //Tile
+    private TileManager tileManager = new TileManager(this);
 
 
     public void startGameThread() {
@@ -44,7 +49,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     public GamePanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
-        this.setBackground(Color.BLACK);
+        this.setBackground(Color.decode("#0088ff"));
         this.setDoubleBuffered(true);
         this.setVisible(true);
         this.addKeyListener(keyH);

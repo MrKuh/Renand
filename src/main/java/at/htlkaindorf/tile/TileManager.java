@@ -31,7 +31,6 @@ public class TileManager {
 
     public void draw(Graphics2D g2){
         //ground
-
         if(x < -gp.tileSize){
             x += gp.tileSize;
         }
@@ -40,6 +39,6 @@ public class TileManager {
             g2.drawImage(tiles[0].getImage(),i,y, gp.tileSize, gp.tileSize, null);
             i += gp.tileSize;
         }
-        x -= 5;
+        x -= gp.xspeed;
     }
 }

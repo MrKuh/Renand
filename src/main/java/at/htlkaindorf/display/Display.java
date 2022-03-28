@@ -21,7 +21,7 @@ public class Display {
         window.pack();
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setLocationRelativeTo(null);
-        window.setResizable(false);
+        //window.setResizable(false);
         window.setVisible(true);
     }
 }
