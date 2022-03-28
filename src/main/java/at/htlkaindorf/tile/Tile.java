@@ -5,7 +5,7 @@ import lombok.Data;
 import java.awt.image.BufferedImage;
 
 @Data
-public class Obstacle {
+public class Tile {
     private BufferedImage image;
     private boolean collision = true;
 

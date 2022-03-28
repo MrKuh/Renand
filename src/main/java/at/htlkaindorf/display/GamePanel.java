@@ -2,6 +2,7 @@ package at.htlkaindorf.display;
 
 import at.htlkaindorf.controller.KeyHandler;
 import at.htlkaindorf.entity.Player;
+import at.htlkaindorf.tile.TileManager;
 import lombok.Data;
 
 import javax.swing.*;
@@ -25,7 +26,8 @@ public class GamePanel extends JPanel implements Runnable {
     private KeyHandler keyH = new KeyHandler();
     //gameThread
     private Thread gameThread;
-
+    //Tile
+    private TileManager tileManager = new TileManager(this);
     //Player data
     private int playerX = 100;
     private int playerY = 100;
@@ -85,6 +87,8 @@ public class GamePanel extends JPanel implements Runnable {
         super.paintComponent(g);
 
         Graphics2D g2 = (Graphics2D) g;
+
+        tileManager.draw(g2);
 
         player.draw(g2);
 
