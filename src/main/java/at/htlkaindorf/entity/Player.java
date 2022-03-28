@@ -40,18 +40,18 @@ public class Player extends Entity {
                     ImageIO.read(getClass().getResourceAsStream("/character/run/sprite_3.png"))
             };
             flyImages = new BufferedImage[]{
-                    ImageIO.read(getClass().getResourceAsStream("/character/run/sprite_0.png")),
-                    ImageIO.read(getClass().getResourceAsStream("/character/run/sprite_1.png")),
-                    ImageIO.read(getClass().getResourceAsStream("/character/run/sprite_2.png")),
-                    ImageIO.read(getClass().getResourceAsStream("/character/run/sprite_3.png")),
-                    ImageIO.read(getClass().getResourceAsStream("/character/run/sprite_4.png")),
-                    ImageIO.read(getClass().getResourceAsStream("/character/run/sprite_5.png")),
-                    ImageIO.read(getClass().getResourceAsStream("/character/run/sprite_6.png")),
-                    ImageIO.read(getClass().getResourceAsStream("/character/run/sprite_7.png")),
-                    ImageIO.read(getClass().getResourceAsStream("/character/run/sprite_8.png")),
-                    ImageIO.read(getClass().getResourceAsStream("/character/run/sprite_9.png")),
-                    ImageIO.read(getClass().getResourceAsStream("/character/run/sprite_10.png")),
-                    ImageIO.read(getClass().getResourceAsStream("/character/run/sprite_11.png"))
+                    ImageIO.read(getClass().getResourceAsStream("/character/fly/sprite_00.png")),
+                    ImageIO.read(getClass().getResourceAsStream("/character/fly/sprite_01.png")),
+                    ImageIO.read(getClass().getResourceAsStream("/character/fly/sprite_02.png")),
+                    ImageIO.read(getClass().getResourceAsStream("/character/fly/sprite_03.png")),
+                    ImageIO.read(getClass().getResourceAsStream("/character/fly/sprite_04.png")),
+                    ImageIO.read(getClass().getResourceAsStream("/character/fly/sprite_05.png")),
+                    ImageIO.read(getClass().getResourceAsStream("/character/fly/sprite_06.png")),
+                    ImageIO.read(getClass().getResourceAsStream("/character/fly/sprite_07.png")),
+                    ImageIO.read(getClass().getResourceAsStream("/character/fly/sprite_08.png")),
+                    ImageIO.read(getClass().getResourceAsStream("/character/fly/sprite_09.png")),
+                    ImageIO.read(getClass().getResourceAsStream("/character/fly/sprite_10.png")),
+                    ImageIO.read(getClass().getResourceAsStream("/character/fly/sprite_11.png"))
             };
         } catch (IOException e) {
             e.printStackTrace();
@@ -80,7 +80,7 @@ public class Player extends Entity {
             //Fly
             spriteCounter++;
             if (spriteCounter > gamePanel.FPS / flyImages.length) {
-                if (obstacleIMG < runImages.length - 1) {
+                if (obstacleIMG < flyImages.length - 1) {
                     obstacleIMG++;
                 } else {
                     obstacleIMG = 6;
