@@ -12,11 +12,11 @@ import java.awt.*;
 public class GamePanel extends JPanel implements Runnable {
     //window size
     public static final int originalTitleSize = 16;
-    public static final int scale = 4;
+    public static final int scale = 6;
 
     public static final int tileSize = originalTitleSize * scale;
     public static final int maxScreenCol = 16;
-    public static final int maxScreenRow = 12;
+    public static final int maxScreenRow = 9;
     public static final int screenWidth = tileSize * maxScreenCol;
     public static final int screenHeight = tileSize * maxScreenRow;
 
