@@ -79,11 +79,11 @@ public class Player extends Entity {
         if (keyHandler.isSpacePressed()) {
             //Fly
             spriteCounter++;
-            if (spriteCounter > gamePanel.FPS / runImages.length) {
+            if (spriteCounter > gamePanel.FPS / flyImages.length) {
                 if (obstacleIMG < runImages.length - 1) {
                     obstacleIMG++;
                 } else {
-                    obstacleIMG = 0;
+                    obstacleIMG = 6;
                 }
                 spriteCounter = 0;
             }
