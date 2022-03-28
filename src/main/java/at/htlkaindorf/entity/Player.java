@@ -28,6 +28,7 @@ public class Player extends Entity {
         y = 100;
         speed = 5.0;
         gravity = 3.0;
+
         runIMG = 1;
         flyIMG = 0;
     }
