@@ -73,8 +73,8 @@ public class Player extends Entity {
         if (y < 0) {
             y = 0;
         }
-        if (y > gamePanel.screenHeight - gamePanel.titleSize) {
-            y = gamePanel.screenHeight - gamePanel.titleSize;
+        if (y > gamePanel.screenHeight - gamePanel.tileSize * 1.8) {
+            y = (int) (gamePanel.screenHeight - gamePanel.tileSize * 1.8);
         }
 
         spriteCounter++;
@@ -90,7 +90,7 @@ public class Player extends Entity {
                 }
                 spriteCounter = 0;
             }
-        }else if(y == gamePanel.screenHeight - gamePanel.titleSize){
+        }else if(y == (int) (gamePanel.screenHeight - gamePanel.tileSize * 1.8)){
             flyIMG = 0;
             //Run
             if (spriteCounter > gamePanel.FPS / runImages.length /4) {
@@ -108,9 +108,9 @@ public class Player extends Entity {
         //g2.setColor(Color.white);
         //g2.fillRect(x, y, gamePanel.titleSize, gamePanel.titleSize);
         if (keyHandler.isSpacePressed()) {
-            g2.drawImage(flyImages[flyIMG], x, y, gamePanel.titleSize, gamePanel.titleSize, null);
+            g2.drawImage(flyImages[flyIMG], x, y, gamePanel.tileSize, gamePanel.tileSize, null);
         }else{
-            g2.drawImage(runImages[runIMG], x, y, gamePanel.titleSize, gamePanel.titleSize, null);
+            g2.drawImage(runImages[runIMG], x, y, gamePanel.tileSize, gamePanel.tileSize, null);
         }
     }
 }
