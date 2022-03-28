@@ -29,10 +29,11 @@ public class TileManager {
 
     public void draw(Graphics2D g2){
         //ground
-        int x = gp. gp.titleSize;
-        int y = 0;
-
-
-        g2.drawImage(tiles[0].getImage(),0,0, gp.titleSize, gp.titleSize, null);
+        int y = gp.screenHeight - gp.tileSize;
+        int x = 0;
+        while(x <= gp.screenWidth){
+            g2.drawImage(tiles[0].getImage(),x,y, gp.tileSize, gp.tileSize, null);
+            x += gp.tileSize;
+        }
     }
 }
