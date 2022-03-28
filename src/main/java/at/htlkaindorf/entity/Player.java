@@ -79,7 +79,7 @@ public class Player extends Entity {
         if (keyHandler.isSpacePressed()) {
             //Fly
             spriteCounter++;
-            if (spriteCounter > gamePanel.FPS / flyImages.length) {
+            if (spriteCounter > gamePanel.FPS / flyImages.length/4) {
                 if (obstacleIMG < flyImages.length - 1) {
                     obstacleIMG++;
                 } else {
@@ -90,7 +90,7 @@ public class Player extends Entity {
         }else{
             //Run
             spriteCounter++;
-            if (spriteCounter > gamePanel.FPS / runImages.length) {
+            if (spriteCounter > gamePanel.FPS / runImages.length /4) {
                 if (obstacleIMG < runImages.length - 1) {
                     obstacleIMG++;
                 } else {
@@ -104,7 +104,10 @@ public class Player extends Entity {
     public void draw(Graphics2D g2) {
         //g2.setColor(Color.white);
         //g2.fillRect(x, y, gamePanel.titleSize, gamePanel.titleSize);
-
-        g2.drawImage(runImages[obstacleIMG], x, y, gamePanel.titleSize, gamePanel.titleSize, null);
+        if (keyHandler.isSpacePressed()) {
+            g2.drawImage(flyImages[obstacleIMG], x, y, gamePanel.titleSize, gamePanel.titleSize, null);
+        }else{
+            g2.drawImage(runImages[obstacleIMG], x, y, gamePanel.titleSize, gamePanel.titleSize, null);
+        }
     }
 }
