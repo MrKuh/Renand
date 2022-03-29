@@ -27,7 +27,6 @@ public class Player extends Entity {
         x = 100;
         y = 100;
         speed = 5.0;
-        gravity = 3.0;
 
         runIMG = 1;
         flyIMG = 0;
@@ -62,7 +61,7 @@ public class Player extends Entity {
     }
 
     public void update() {
-        if (keyHandler.isSpacePressed()) {
+        /*if (keyHandler.isSpacePressed()) {
             y -= speed;
             gravity = 3;
             speed *= 1.05;
@@ -70,7 +69,25 @@ public class Player extends Entity {
             y += gravity;
             gravity *= 1.05;
             speed = 5;
+        }*/
+
+        if(keyHandler.isSpacePressed()){
+            //speed = 15;
+            speed -= 1.5;
+            if(speed < -20){
+                speed = -20;
+            }
+        }else{
+            //speed = -10;
+            speed += 1;
+            if(speed > 15){
+                speed = 15;
+            }
         }
+        y += speed;
+
+        System.out.println(speed);
+
         if (y < 0) {
             y = 0;
         }
