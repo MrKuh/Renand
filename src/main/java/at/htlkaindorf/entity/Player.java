@@ -74,19 +74,17 @@ public class Player extends Entity {
         if(keyHandler.isSpacePressed()){
             //speed = 15;
             speed -= 1.5;
-            if(speed < -20){
+            if(speed < -20.0) {
                 speed = -20;
             }
         }else{
             //speed = -10;
-            speed += 1;
-            if(speed > 15){
-                speed = 15;
+            speed += 0.8;
+            if(speed > 17.0){
+                speed = 17;
             }
         }
         y += speed;
-
-        System.out.println(speed);
 
         if (y < 0) {
             y = 0;
