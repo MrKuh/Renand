@@ -3,9 +3,6 @@ package at.htlkaindorf.display;
 import lombok.Data;
 
 import javax.swing.*;
-import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
 @Data
 public class Display {
@@ -14,27 +11,27 @@ public class Display {
 
     private JFrame window;
     private String title;
-    private GamePanel gamePanel;
+    private GamePanel gp;
 
     public Display(String title, GamePanel gamePanel) {
         this.title = title;
-        this.gamePanel = gamePanel;
-        this.gamePanel.setDisplay(this);
+        this.gp = gamePanel;
+        this.gp.setDisplay(this);
         createDisplay();
-        this.gamePanel.startGameThread();
+        this.gp.startGameThread();
     }
 
     private void createDisplay() {
-        //fullScreen = true;
         window = new JFrame(title);
-        window.add(gamePanel);
+        window.add(gp);
         //window.pack();
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         //window.setLocationRelativeTo(null);
         //window.setResizable(false);
-        window.setSize(Toolkit.getDefaultToolkit().getScreenSize());
-        window.setUndecorated(true);
+        window.setSize(gp.screenWidth, gp.screenHeight);
+        window.setUndecorated(false);
+        window.pack();
         window.setVisible(true);
-        window.setAlwaysOnTop(true);
+        //window.setAlwaysOnTop(true);
     }
 }
