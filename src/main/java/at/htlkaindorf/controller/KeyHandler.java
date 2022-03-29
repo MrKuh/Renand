@@ -49,6 +49,7 @@ public class KeyHandler implements KeyListener {
                     gp.screenHeight = gp.tileSize * gp.maxScreenRow;
 
                     gp.getDisplay().getWindow().setSize(gp.screenWidth, gp.screenHeight);
+                    gp.getDisplay().getWindow().pack();
                 }
 
                 gp.getDisplay().getWindow().setVisible(true);

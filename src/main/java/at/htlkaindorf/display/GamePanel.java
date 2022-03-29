@@ -17,8 +17,8 @@ public class GamePanel extends JPanel implements Runnable {
     public static final int tileSize = originalTitleSize * scale;
     public static final int maxScreenCol = 16;
     public static final int maxScreenRow = 9;
-    public static int screenWidth = (int)Toolkit.getDefaultToolkit().getScreenSize().getWidth();//tileSize * maxScreenCol;
-    public static int screenHeight = (int)Toolkit.getDefaultToolkit().getScreenSize().getHeight();//tileSize * maxScreenRow;
+    public static int screenWidth = tileSize * maxScreenCol;//(int)Toolkit.getDefaultToolkit().getScreenSize().getWidth();
+    public static int screenHeight = tileSize * maxScreenRow;//(int)Toolkit.getDefaultToolkit().getScreenSize().getHeight();
 
     private boolean fullScreen;
     private Display display;
@@ -57,7 +57,7 @@ public class GamePanel extends JPanel implements Runnable {
         this.setVisible(true);
         this.addKeyListener(keyH);
         this.setFocusable(true);
-        fullScreen = true;
+        fullScreen = false;
     }
 
     @Override
