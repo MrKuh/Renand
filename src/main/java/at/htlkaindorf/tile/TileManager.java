@@ -9,7 +9,6 @@ import java.io.IOException;
 public class TileManager {
     private GamePanel gp;
     private Tile[] tiles;
-    private int y = gp.screenHeight - gp.tileSize;
     private int x = 0;
 
     public TileManager(GamePanel gp) {
@@ -36,7 +35,7 @@ public class TileManager {
         }
         int i = x;
         while(i <= gp.screenWidth+gp.tileSize){
-            g2.drawImage(tiles[0].getImage(),i,y, gp.tileSize, gp.tileSize, null);
+            g2.drawImage(tiles[0].getImage(),i,gp.screenHeight - gp.tileSize, gp.tileSize, gp.tileSize, null);
             i += gp.tileSize;
         }
         x -= gp.xspeed;
