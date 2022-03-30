@@ -15,7 +15,6 @@ public class Player extends Entity {
     private KeyHandler keyHandler;
 
 
-
     public Player(GamePanel gamePanel, KeyHandler keyHandler) {
         this.gamePanel = gamePanel;
         this.keyHandler = keyHandler;
@@ -61,6 +60,7 @@ public class Player extends Entity {
     }
 
     public void update() {
+        //old function
         /*if (keyHandler.isSpacePressed()) {
             y -= speed;
             gravity = 3;
@@ -71,16 +71,16 @@ public class Player extends Entity {
             speed = 5;
         }*/
 
-        if(keyHandler.isSpacePressed()){
+        if (keyHandler.isSpacePressed()) {
             //speed = 15;
             speed -= 1.5;
-            if(speed < -20.0) {
+            if (speed < -20.0) {
                 speed = -20;
             }
-        }else{
+        } else {
             //speed = -10;
             speed += 0.8;
-            if(speed > 17.0){
+            if (speed > 17.0) {
                 speed = 17;
             }
         }
@@ -88,6 +88,8 @@ public class Player extends Entity {
 
         if (y < 0) {
             y = 0;
+            //scuffed wiggle animation
+            speed = 5;
         }
         if (y > gamePanel.screenHeight - gamePanel.tileSize * 1.8) {
             y = (int) (gamePanel.screenHeight - gamePanel.tileSize * 1.8);
@@ -96,9 +98,9 @@ public class Player extends Entity {
         spriteCounter++;
         //character img set
         if (keyHandler.isSpacePressed()) {
-            runIMG = runImages.length-1;
+            runIMG = runImages.length - 1;
             //Fly
-            if (spriteCounter > gamePanel.FPS / flyImages.length/2) {
+            if (spriteCounter > gamePanel.FPS / flyImages.length / 2) {
                 if (flyIMG < flyImages.length - 1) {
                     flyIMG++;
                 } else {
@@ -106,10 +108,10 @@ public class Player extends Entity {
                 }
                 spriteCounter = 0;
             }
-        }else if(y == (int) (gamePanel.screenHeight - gamePanel.tileSize * 1.8)){
+        } else if (y == (int) (gamePanel.screenHeight - gamePanel.tileSize * 1.8)) {
             flyIMG = 0;
             //Run
-            if (spriteCounter > gamePanel.FPS / runImages.length /4) {
+            if (spriteCounter > gamePanel.FPS / runImages.length / 4) {
                 if (runIMG < runImages.length - 2) {
                     runIMG++;
                 } else {
@@ -125,7 +127,7 @@ public class Player extends Entity {
         //g2.fillRect(x, y, gamePanel.titleSize, gamePanel.titleSize);
         if (keyHandler.isSpacePressed()) {
             g2.drawImage(flyImages[flyIMG], x, y, gamePanel.tileSize, gamePanel.tileSize, null);
-        }else{
+        } else {
             g2.drawImage(runImages[runIMG], x, y, gamePanel.tileSize, gamePanel.tileSize, null);
         }
     }

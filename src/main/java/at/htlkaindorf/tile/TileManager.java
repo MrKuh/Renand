@@ -30,18 +30,18 @@ public class TileManager {
         getObstacleImage();
     }
 
-    public void setCloudContent(){
+    public void setCloudContent() {
         int amount = (gp.screenWidth + gp.tileSize) / widthClouds;
         double xCord = 0.0;
 
         try {
             for (int i = 0; i < amount; i++) {
-                if(i != 0){
-                    xCord = (clouds.get(i-1).getXPosition() * gp.screenWidth + widthClouds)/gp.screenWidth;
+                if (i != 0) {
+                    xCord = (clouds.get(i - 1).getXPosition() * gp.screenWidth + widthClouds) / gp.screenWidth;
                 }
                 clouds.add(new Cloud(
                         ImageIO.read(getClass().getResourceAsStream("/cloud/schiarchWolke.png")),
-                        rand.nextDouble((gp.screenHeight - gp.tileSize) / 3.0)/(gp.screenHeight - gp.tileSize),
+                        rand.nextDouble((gp.screenHeight - gp.tileSize) / 3.0) / (gp.screenHeight - gp.tileSize),
                         xCord,
                         false)
                 );
@@ -73,28 +73,19 @@ public class TileManager {
         }
         x -= gp.xspeed;
 
-        /*i = x;
-        int counter = 0;
-        while (i <= gp.screenWidth + gp.tileSize && counter < clouds.size()) {
-            //if(clouds)
-            g2.drawImage(clouds.get(counter).getImage(), i, (int)(clouds.get(counter).getHeight() * (gp.screenHeight - gp.tileSize)), gp.tileSize * 4, gp.tileSize * 4, null);
-            i += widthClouds;
-            counter++;
-        }*/
 
-        //System.out.println(clouds.size());
-        for(int k = 0;k<clouds.size();k++){
-            if((clouds.get(k).getXPosition()*gp.screenWidth)<(gp.tileSize*(-1))){
-                System.out.println("Hallo");
+        //clouds
+        for (int k = 0; k < clouds.size(); k++) {
+            if ((clouds.get(k).getXPosition() * gp.screenWidth) < (gp.tileSize * (-1))) {
                 clouds.add(clouds.remove(0));
-                clouds.get(clouds.size()-1).setXPosition((gp.screenWidth + gp.tileSize)/gp.screenWidth);
+                clouds.get(clouds.size() - 1).setXPosition((gp.screenWidth + gp.tileSize) / gp.screenWidth);
             }
-            g2.drawImage(clouds.get(k).getImage(), (int)(clouds.get(k).getXPosition()*gp.screenWidth), (int)(clouds.get(k).getHeight() * (gp.screenHeight - gp.tileSize)), gp.tileSize, gp.tileSize, null);
-            clouds.get(k).setXPosition((clouds.get(k).getXPosition()*gp.screenWidth - gp.xspeed)/gp.screenWidth);
+            g2.drawImage(clouds.get(k).getImage(), (int) (clouds.get(k).getXPosition() * gp.screenWidth), (int) (clouds.get(k).getHeight() * (gp.screenHeight - gp.tileSize)), gp.tileSize, gp.tileSize, null);
+            clouds.get(k).setXPosition((clouds.get(k).getXPosition() * gp.screenWidth - gp.xspeed) / gp.screenWidth);
         }
     }
 
-    public void setCloudsAfterResize(){
+    public void setCloudsAfterResize() {
         int amount = (this.gp.screenWidth + this.gp.tileSize) / 200;
 
         ArrayList<Cloud> newClouds = new ArrayList<>();
@@ -102,15 +93,15 @@ public class TileManager {
 
         try {
             for (int i = 0; i < amount; i++) {
-                if(i<clouds.size()){
+                if (i < clouds.size()) {
                     newClouds.add(clouds.get(i));
-                }else {
-                    if(i != 0){
-                        xCord = (clouds.get(i-1).getXPosition() * gp.screenWidth + widthClouds)/gp.screenWidth;
+                } else {
+                    if (i != 0) {
+                        xCord = (clouds.get(i - 1).getXPosition() * gp.screenWidth + widthClouds) / gp.screenWidth;
                     }
                     newClouds.add(new Cloud(
                             ImageIO.read(getClass().getResourceAsStream("/cloud/schiarchWolke.png")),
-                            rand.nextDouble((gp.screenHeight - gp.tileSize) / 3.0)/(gp.screenHeight - gp.tileSize),
+                            rand.nextDouble((gp.screenHeight - gp.tileSize) / 3.0) / (gp.screenHeight - gp.tileSize),
                             xCord,
                             false)
                     );
