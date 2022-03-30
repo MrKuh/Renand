@@ -7,6 +7,6 @@ import java.awt.image.BufferedImage;
 @Data
 public class Tile {
     private BufferedImage image;
-    private boolean collision = true;
+    private boolean collision = false;
 
 }
