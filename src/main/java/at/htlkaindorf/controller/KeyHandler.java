@@ -53,6 +53,9 @@ public class KeyHandler implements KeyListener {
                 }
 
                 gp.getDisplay().getWindow().setVisible(true);
+
+                gp.getTileManager().setCloudsAfterResize();
+
                 break;
         }
     }
