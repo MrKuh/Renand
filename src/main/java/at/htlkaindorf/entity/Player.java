@@ -13,6 +13,8 @@ import java.io.IOException;
 public class Player extends Entity {
     private GamePanel gamePanel;
     private KeyHandler keyHandler;
+    private int wiggle = 0;
+    private int  wiggleCounter = 0;
 
 
 
@@ -86,11 +88,19 @@ public class Player extends Entity {
         }
         y += speed;
 
-        if (y < 0) {
-            y = 0;
+
+
+        wiggleCounter++;
+
+        if (y < wiggle) {
+            y = wiggle;
+            if(wiggleCounter > gamePanel.FPS / 20 ){
+                wiggle = (1 + (int)(Math.random() * 10)*(-1)) + (1 + (int)(Math.random() * 10));
+                wiggleCounter = 0;
+            }
         }
-        if (y > gamePanel.screenHeight - gamePanel.tileSize * 1.8) {
-            y = (int) (gamePanel.screenHeight - gamePanel.tileSize * 1.8);
+        if (y > (gamePanel.screenHeight - gamePanel.tileSize * 1.8)) {
+            y = (int) ((gamePanel.screenHeight - gamePanel.tileSize * 1.8));
         }
 
         spriteCounter++;
