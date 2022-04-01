@@ -15,6 +15,7 @@ public class Player extends Entity {
     private KeyHandler keyHandler;
     private int wiggle = 0;
     private int  wiggleCounter = 0;
+    private int maxHeight = 100;
 
 
 
@@ -92,8 +93,8 @@ public class Player extends Entity {
 
         wiggleCounter++;
 
-        if (y < wiggle) {
-            y = wiggle;
+        if (y < wiggle+ maxHeight) {
+            y = wiggle + maxHeight;
             if(wiggleCounter > gamePanel.FPS / 20 ){
                 wiggle = (1 + (int)(Math.random() * 10)*(-1)) + (1 + (int)(Math.random() * 10));
                 wiggleCounter = 0;
