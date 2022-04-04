@@ -90,15 +90,6 @@ public class TileManager {
         }
         x -= gp.xspeed;
 
-        /*i = x;
-        int counter = 0;
-        while (i <= gp.getScreenWidth( + gp.tileSize && counter < clouds.size()) {
-            //if(clouds)
-            g2.drawImage(clouds.get(counter).getImage(), i, (int)(clouds.get(counter).getHeight() * (gp.getScreenHeight( - gp.tileSize)), gp.tileSize * 4, gp.tileSize * 4, null);
-            i += widthClouds;
-            counter++;
-        }*/
-
         //System.out.println(clouds.size());
         for (int k = 0; k < clouds.size(); k++) {
             if ((clouds.get(k).getXPosition() * gp.getScreenWidth()) < (gp.tileSize * (-1))) {
@@ -119,7 +110,7 @@ public class TileManager {
         double xCord = 0.0;
 
         for (int i = 0; i < amount; i++) {
-            if (i < clouds.size() - 1) {
+            if (i < clouds.size()) {
                 newClouds.add(clouds.get(i));
             } else {
                 if (i != 0) {
