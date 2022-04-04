@@ -20,6 +20,7 @@ public class GamePanel extends JPanel implements Runnable {
     private int screenWidth = tileSize * maxScreenCol;//(int)Toolkit.getDefaultToolkit().getScreenSize().getWidth();
     private int screenHeight = tileSize * maxScreenRow;//(int)Toolkit.getDefaultToolkit().getScreenSize().getHeight();
 
+    //fullscreen trigger needed
     private boolean fullScreen;
     private Display display;
 

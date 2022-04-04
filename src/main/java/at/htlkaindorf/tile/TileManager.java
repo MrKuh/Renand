@@ -102,7 +102,7 @@ public class TileManager {
 
         try {
             for (int i = 0; i < amount; i++) {
-                if(i<clouds.size()){
+                if (i < clouds.size()) {
                     newClouds.add(clouds.get(i));
                 }else {
                     if(i != 0){
