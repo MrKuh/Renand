@@ -31,17 +31,17 @@ public class TileManager {
     }
 
     public void setCloudContent(){
-        int amount = (gp.screenWidth + gp.tileSize) / widthClouds;
+        int amount = (gp.getScreenWidth() + gp.tileSize) / widthClouds;
         double xCord = 0.0;
 
         try {
             for (int i = 0; i < amount; i++) {
                 if(i != 0){
-                    xCord = (clouds.get(i-1).getXPosition() * gp.screenWidth + widthClouds)/gp.screenWidth;
+                    xCord = (clouds.get(i-1).getXPosition() * gp.getScreenWidth() + widthClouds)/gp.getScreenWidth();
                 }
                 clouds.add(new Cloud(
                         ImageIO.read(getClass().getResourceAsStream("/cloud/schiarchWolke.png")),
-                        rand.nextDouble((gp.screenHeight - gp.tileSize) / 3.0)/(gp.screenHeight - gp.tileSize),
+                        rand.nextDouble((gp.getScreenHeight() - gp.tileSize) / 3.0)/(gp.getScreenHeight() - gp.tileSize),
                         xCord,
                         false)
                 );
@@ -67,35 +67,35 @@ public class TileManager {
             x += gp.tileSize;
         }
         int i = x;
-        while (i <= gp.screenWidth + gp.tileSize) {
-            g2.drawImage(tiles[0].getImage(), i, gp.screenHeight - gp.tileSize, gp.tileSize, gp.tileSize, null);
+        while (i <= gp.getScreenWidth() + gp.tileSize) {
+            g2.drawImage(tiles[0].getImage(), i, gp.getScreenHeight() - gp.tileSize, gp.tileSize, gp.tileSize, null);
             i += gp.tileSize;
         }
         x -= gp.xspeed;
 
         /*i = x;
         int counter = 0;
-        while (i <= gp.screenWidth + gp.tileSize && counter < clouds.size()) {
+        while (i <= gp.getScreenWidth( + gp.tileSize && counter < clouds.size()) {
             //if(clouds)
-            g2.drawImage(clouds.get(counter).getImage(), i, (int)(clouds.get(counter).getHeight() * (gp.screenHeight - gp.tileSize)), gp.tileSize * 4, gp.tileSize * 4, null);
+            g2.drawImage(clouds.get(counter).getImage(), i, (int)(clouds.get(counter).getHeight() * (gp.getScreenHeight( - gp.tileSize)), gp.tileSize * 4, gp.tileSize * 4, null);
             i += widthClouds;
             counter++;
         }*/
 
         //System.out.println(clouds.size());
         for(int k = 0;k<clouds.size();k++){
-            if((clouds.get(k).getXPosition()*gp.screenWidth)<(gp.tileSize*(-1))){
+            if((clouds.get(k).getXPosition()*gp.getScreenWidth())<(gp.tileSize*(-1))){
                 System.out.println("Hallo");
                 clouds.add(clouds.remove(0));
-                clouds.get(clouds.size()-1).setXPosition((gp.screenWidth + gp.tileSize)/gp.screenWidth);
+                clouds.get(clouds.size()-1).setXPosition((gp.getScreenWidth() + gp.tileSize)/gp.getScreenWidth());
             }
-            g2.drawImage(clouds.get(k).getImage(), (int)(clouds.get(k).getXPosition()*gp.screenWidth), (int)(clouds.get(k).getHeight() * (gp.screenHeight - gp.tileSize)), gp.tileSize, gp.tileSize, null);
-            clouds.get(k).setXPosition((clouds.get(k).getXPosition()*gp.screenWidth - gp.xspeed)/gp.screenWidth);
+            g2.drawImage(clouds.get(k).getImage(), (int)(clouds.get(k).getXPosition()*gp.getScreenWidth()), (int)(clouds.get(k).getHeight() * (gp.getScreenHeight() - gp.tileSize)), gp.tileSize, gp.tileSize, null);
+            clouds.get(k).setXPosition((clouds.get(k).getXPosition()*gp.getScreenWidth() - gp.xspeed)/gp.getScreenWidth());
         }
     }
 
     public void setCloudsAfterResize(){
-        int amount = (this.gp.screenWidth + this.gp.tileSize) / 200;
+        int amount = (this.gp.getScreenWidth() + this.gp.tileSize) / 200;
 
         ArrayList<Cloud> newClouds = new ArrayList<>();
         double xCord = 0.0;
@@ -106,11 +106,11 @@ public class TileManager {
                     newClouds.add(clouds.get(i));
                 }else {
                     if(i != 0){
-                        xCord = (clouds.get(i-1).getXPosition() * gp.screenWidth + widthClouds)/gp.screenWidth;
+                        xCord = (clouds.get(i-1).getXPosition() * gp.getScreenWidth() + widthClouds)/gp.getScreenWidth();
                     }
                     newClouds.add(new Cloud(
                             ImageIO.read(getClass().getResourceAsStream("/cloud/schiarchWolke.png")),
-                            rand.nextDouble((gp.screenHeight - gp.tileSize) / 3.0)/(gp.screenHeight - gp.tileSize),
+                            rand.nextDouble((gp.getScreenHeight() - gp.tileSize) / 3.0)/(gp.getScreenHeight() - gp.tileSize),
                             xCord,
                             false)
                     );

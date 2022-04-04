@@ -28,7 +28,7 @@ public class Display {
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         //window.setLocationRelativeTo(null);
         //window.setResizable(false);
-        window.setSize(gp.screenWidth, gp.screenHeight);
+        window.setSize(gp.getScreenWidth(), gp.getScreenHeight());
         window.setUndecorated(false);
         window.pack();
         window.setVisible(true);

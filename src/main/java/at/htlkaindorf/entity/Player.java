@@ -89,8 +89,8 @@ public class Player extends Entity {
         if (y < 0) {
             y = 0;
         }
-        if (y > gamePanel.screenHeight - gamePanel.tileSize * 1.8) {
-            y = (int) (gamePanel.screenHeight - gamePanel.tileSize * 1.8);
+        if (y > gamePanel.getScreenHeight() - gamePanel.tileSize * 1.8) {
+            y = (int) (gamePanel.getScreenHeight() - gamePanel.tileSize * 1.8);
         }
 
         spriteCounter++;
@@ -106,7 +106,7 @@ public class Player extends Entity {
                 }
                 spriteCounter = 0;
             }
-        }else if(y == (int) (gamePanel.screenHeight - gamePanel.tileSize * 1.8)){
+        }else if(y == (int) (gamePanel.getScreenHeight() - gamePanel.tileSize * 1.8)){
             flyIMG = 0;
             //Run
             if (spriteCounter > gamePanel.FPS / runImages.length /4) {
