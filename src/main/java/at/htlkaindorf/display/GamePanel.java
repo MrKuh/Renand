@@ -17,8 +17,8 @@ public class GamePanel extends JPanel implements Runnable {
     public static final int tileSize = originalTitleSize * scale;
     public static final int maxScreenCol = 16;
     public static final int maxScreenRow = 9;
-    public static int screenWidth = tileSize * maxScreenCol;//(int)Toolkit.getDefaultToolkit().getScreenSize().getWidth();
-    public static int screenHeight = tileSize * maxScreenRow;//(int)Toolkit.getDefaultToolkit().getScreenSize().getHeight();
+    private int screenWidth = tileSize * maxScreenCol;//(int)Toolkit.getDefaultToolkit().getScreenSize().getWidth();
+    private int screenHeight = tileSize * maxScreenRow;//(int)Toolkit.getDefaultToolkit().getScreenSize().getHeight();
 
     //fullscreen trigger needed
     private boolean fullScreen;
