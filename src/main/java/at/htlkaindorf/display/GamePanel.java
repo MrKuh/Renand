@@ -40,7 +40,7 @@ public class GamePanel extends JPanel implements Runnable {
     private Player player = new Player(this, keyH);
 
     //World Speed
-    public static double xspeed = 6.0;
+    public static double xspeed = 5.0;
 
     //Tile
     private TileManager tileManager = new TileManager(this);
