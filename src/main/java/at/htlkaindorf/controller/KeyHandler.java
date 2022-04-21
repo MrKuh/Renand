@@ -34,6 +34,7 @@ public class KeyHandler implements KeyListener {
                 spacePressed = true;
                 break;
             case KeyEvent.VK_F11:
+                gp.getDisplay().getWindow().setLocation(0,0);
                 gp.setFullScreen(!gp.isFullScreen());
                 gp.getDisplay().getWindow().setVisible(false);
                 gp.getDisplay().getWindow().dispose();
