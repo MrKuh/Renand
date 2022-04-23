@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Renand" />
+        <module name="git" />
       </profile>
     </annotationProcessing>
   </component>
