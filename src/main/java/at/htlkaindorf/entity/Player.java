@@ -19,6 +19,9 @@ public class Player extends Entity {
     public Player(GamePanel gamePanel, KeyHandler keyHandler) {
         this.gamePanel = gamePanel;
         this.keyHandler = keyHandler;
+
+        hitBox = new Rectangle(12, 4, 40, 60);
+
         setDefaultValues();
         getPlayerImage();
     }
