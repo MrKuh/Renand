@@ -34,21 +34,22 @@ public class KeyHandler implements KeyListener {
                 spacePressed = true;
                 break;
             case KeyEvent.VK_F11:
+                gp.getDisplay().getWindow().setLocation(0,0);
                 gp.setFullScreen(!gp.isFullScreen());
                 gp.getDisplay().getWindow().setVisible(false);
                 gp.getDisplay().getWindow().dispose();
                 gp.getDisplay().getWindow().setUndecorated(gp.isFullScreen());
                 if (gp.isFullScreen()) {
-                    gp.screenWidth = (int) Toolkit.getDefaultToolkit().getScreenSize().getWidth();
-                    gp.screenHeight = (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight();
+                    gp.setScreenWidth((int) Toolkit.getDefaultToolkit().getScreenSize().getWidth());
+                    gp.setScreenHeight((int) Toolkit.getDefaultToolkit().getScreenSize().getHeight());
 
-                    gp.getDisplay().getWindow().setSize(gp.screenWidth, gp.screenHeight);
+                    gp.getDisplay().getWindow().setSize(gp.getScreenWidth(), gp.getScreenHeight());
                     gp.getDisplay().getWindow().validate();
                 } else {
-                    gp.screenWidth = gp.tileSize * gp.maxScreenCol;
-                    gp.screenHeight = gp.tileSize * gp.maxScreenRow;
+                    gp.setScreenWidth(gp.tileSize * gp.maxScreenCol);
+                    gp.setScreenHeight(gp.tileSize * gp.maxScreenRow);
 
-                    gp.getDisplay().getWindow().setSize(gp.screenWidth, gp.screenHeight);
+                    gp.getDisplay().getWindow().setSize(gp.getScreenWidth(), gp.getScreenHeight());
                     gp.getDisplay().getWindow().pack();
                 }
 

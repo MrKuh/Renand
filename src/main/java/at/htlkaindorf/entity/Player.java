@@ -15,6 +15,7 @@ public class Player extends Entity {
     private KeyHandler keyHandler;
 
 
+
     public Player(GamePanel gamePanel, KeyHandler keyHandler) {
         this.gamePanel = gamePanel;
         this.keyHandler = keyHandler;
@@ -91,8 +92,8 @@ public class Player extends Entity {
             //scuffed wiggle animation
             speed = 5;
         }
-        if (y > gamePanel.screenHeight - gamePanel.tileSize * 1.8) {
-            y = (int) (gamePanel.screenHeight - gamePanel.tileSize * 1.8);
+        if (y > gamePanel.getScreenHeight() - gamePanel.tileSize * 1.8) {
+            y = (int) (gamePanel.getScreenHeight() - gamePanel.tileSize * 1.8);
         }
 
         spriteCounter++;
@@ -108,7 +109,7 @@ public class Player extends Entity {
                 }
                 spriteCounter = 0;
             }
-        } else if (y == (int) (gamePanel.screenHeight - gamePanel.tileSize * 1.8)) {
+        }else if(y == (int) (gamePanel.getScreenHeight() - gamePanel.tileSize * 1.8)){
             flyIMG = 0;
             //Run
             if (spriteCounter > gamePanel.FPS / runImages.length / 4) {

@@ -6,6 +6,7 @@ public class Entity {
     protected int x, y;
     protected double speed;
 
+
     protected BufferedImage[] runImages;
     protected BufferedImage[] flyImages;
     protected int runIMG;
