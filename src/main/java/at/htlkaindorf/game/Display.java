@@ -25,6 +25,7 @@ public class Display {
         window = new JFrame(title);
         window.add(gp);
         //window.pack();
+        window.setResizable(false);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         //window.setLocationRelativeTo(null);
         //window.setResizable(false);

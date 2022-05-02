@@ -84,6 +84,9 @@ public class Player extends Entity {
         }*/
 
         if (keyHandler.isSpacePressed()) {
+            if(speed > 5){
+                speed = 5;
+            }
             //speed = 15;
             speed -= 1.5;
             if (speed < -20.0) {
