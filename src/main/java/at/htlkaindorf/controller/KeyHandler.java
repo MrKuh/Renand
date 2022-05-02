@@ -24,6 +24,7 @@ public class KeyHandler implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
+        gp.setRunning(true);
         int keyCode = e.getKeyCode();
         if (keyCode == KeyEvent.VK_SPACE) {
             spacePressed = true;

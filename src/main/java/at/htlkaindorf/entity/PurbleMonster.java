@@ -9,7 +9,6 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 public class PurbleMonster extends Entity {
-
     private int flyIMG;
     private BufferedImage[] flyImages;
 
