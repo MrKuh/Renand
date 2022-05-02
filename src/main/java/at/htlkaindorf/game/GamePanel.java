@@ -1,19 +1,22 @@
-package at.htlkaindorf.display;
+package at.htlkaindorf.game;
 
 import at.htlkaindorf.controller.KeyHandler;
+import at.htlkaindorf.entity.EnemieManager;
+import at.htlkaindorf.entity.Entity;
 import at.htlkaindorf.entity.Player;
 import at.htlkaindorf.tile.TileManager;
 import lombok.Data;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 public class GamePanel extends JPanel implements Runnable {
     //window size
     public static final int originalTitleSize = 16;
     public static final int scale = 6;
-
     public static final int tileSize = originalTitleSize * scale;
     public static final int maxScreenCol = 16;
     public static final int maxScreenRow = 9;
@@ -36,6 +39,13 @@ public class GamePanel extends JPanel implements Runnable {
     private int playerY = 100;
     private double playerSpeed = 12.0;
     private double playerGravity = 8.0;
+
+    //Enemies
+    //private EnemieManager enemieManager = new EnemieManager();
+
+
+    //Collision
+    private CollisionChecker cChecker = new CollisionChecker(this);
 
     private Player player = new Player(this, keyH);
 

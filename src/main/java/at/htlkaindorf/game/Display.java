@@ -1,4 +1,4 @@
-package at.htlkaindorf.display;
+package at.htlkaindorf.game;
 
 import lombok.Data;
 

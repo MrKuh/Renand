@@ -1,7 +1,7 @@
 package at.htlkaindorf.renand;
 
-import at.htlkaindorf.display.Display;
-import at.htlkaindorf.display.GamePanel;
+import at.htlkaindorf.game.Display;
+import at.htlkaindorf.game.GamePanel;
 
 public class Launcher {
 
