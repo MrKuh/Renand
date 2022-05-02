@@ -47,16 +47,16 @@ public class GamePanel extends JPanel implements Runnable {
     private boolean running = false;
 
     public void resetTheGame() {
+        /*
         keyH = new KeyHandler(this);
         obstacleManager = new ObstacleManager(this);
         player = new Player(this, keyH);
         tileManager = new TileManager(this);
 
-        running = false;
-        gameThread.stop();
+         */
 
-        gameThread = new Thread(this);
-        gameThread.start();
+        running = false;
+
     }
 
 
@@ -89,22 +89,25 @@ public class GamePanel extends JPanel implements Runnable {
         int drawCount = 0;
 
 
-        while (gameThread != null & running) {
-            currentTime = System.nanoTime();
-            delta += (currentTime - lastTime) / drawInterval;
-            timer += (currentTime - lastTime);
-            lastTime = currentTime;
-            if (delta >= 1) {
-                update();
-                repaint();
-                delta--;
-                drawCount++;
+        while (gameThread != null) {
+            if(running){
+                currentTime = System.nanoTime();
+                delta += (currentTime - lastTime) / drawInterval;
+                timer += (currentTime - lastTime);
+                lastTime = currentTime;
+                if (delta >= 1) {
+                    update();
+                    repaint();
+                    delta--;
+                    drawCount++;
+                }
+                if (timer >= 1000000000) {
+                    System.out.println("FPS " + drawCount);
+                    drawCount = 0;
+                    timer = 0;
+                }
             }
-            if (timer >= 1000000000) {
-                System.out.println("FPS " + drawCount);
-                drawCount = 0;
-                timer = 0;
-            }
+
         }
     }
 
