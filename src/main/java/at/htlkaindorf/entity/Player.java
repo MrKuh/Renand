@@ -148,15 +148,18 @@ public class Player extends Entity {
 
 
         //Collision
-        gamePanel.getObstacleManager().checkCollision(this, g2);
-
-
-        if (keyHandler.isSpacePressed()) {
-            g2.drawImage(flyImages[flyIMG], x, y, gamePanel.tileSize, gamePanel.tileSize, null);
-        } else {
-            g2.drawImage(runImages[runIMG], x, y, gamePanel.tileSize, gamePanel.tileSize, null);
+        if(!gamePanel.getObstacleManager().checkCollision(this, g2)){
+            if (keyHandler.isSpacePressed()) {
+                g2.drawImage(flyImages[flyIMG], x, y, gamePanel.tileSize, gamePanel.tileSize, null);
+            } else {
+                g2.drawImage(runImages[runIMG], x, y, gamePanel.tileSize, gamePanel.tileSize, null);
+            }
+            //g2.draw(hitBox);
         }
-        g2.draw(hitBox);
+
+
+
+
 
 
 
