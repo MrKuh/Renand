@@ -1,9 +1,10 @@
 package at.htlkaindorf.game;
 
 import at.htlkaindorf.controller.KeyHandler;
-import at.htlkaindorf.entity.EnemieManager;
 import at.htlkaindorf.entity.Entity;
+import at.htlkaindorf.entity.ObstacleManager;
 import at.htlkaindorf.entity.Player;
+import at.htlkaindorf.entity.PurbleMonster;
 import at.htlkaindorf.tile.TileManager;
 import lombok.Data;
 
@@ -34,18 +35,8 @@ public class GamePanel extends JPanel implements Runnable {
     //gameThread
     private Thread gameThread;
 
-    //Player data
-    private int playerX = 100;
-    private int playerY = 100;
-    private double playerSpeed = 12.0;
-    private double playerGravity = 8.0;
-
-    //Enemies
-    //private EnemieManager enemieManager = new EnemieManager();
-
-
     //Collision
-    private CollisionChecker cChecker = new CollisionChecker(this);
+    private ObstacleManager obstacleManager = new ObstacleManager(this);
 
     private Player player = new Player(this, keyH);
 
@@ -55,8 +46,25 @@ public class GamePanel extends JPanel implements Runnable {
     //Tile
     private TileManager tileManager = new TileManager(this);
 
+    private boolean running = false;
+
+    public void resetTheGame() {
+        keyH = new KeyHandler(this);
+        obstacleManager = new ObstacleManager(this);
+        player = new Player(this, keyH);
+        tileManager = new TileManager(this);
+
+        running = false;
+        gameThread.stop();
+
+        gameThread = new Thread(this);
+        gameThread.start();
+    }
+
+
 
     public void startGameThread() {
+        running = true;
         gameThread = new Thread(this);
         gameThread.start();
     }
@@ -71,6 +79,8 @@ public class GamePanel extends JPanel implements Runnable {
         fullScreen = false;
     }
 
+
+
     @Override
     public void run() {
         double drawInterval = 1000000000.0 / FPS;
@@ -80,7 +90,8 @@ public class GamePanel extends JPanel implements Runnable {
         long timer = 0;
         int drawCount = 0;
 
-        while (gameThread != null) {
+
+        while (gameThread != null & running) {
             currentTime = System.nanoTime();
             delta += (currentTime - lastTime) / drawInterval;
             timer += (currentTime - lastTime);
@@ -105,12 +116,13 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-
         Graphics2D g2 = (Graphics2D) g;
 
         tileManager.draw(g2);
 
         player.draw(g2);
+
+        obstacleManager.draw(g2);
 
         g2.dispose();
     }
