@@ -36,8 +36,8 @@ public class Player extends Entity {
         flyIMG = 0;
 
         hitBox = new Rectangle();
-        hitBox.x = (int) Math.round(gamePanel.tileSize * 0.31);
-        hitBox.y = (int) Math.round(gamePanel.tileSize * 0.19);
+        hitBox.x = (int) Math.round(gamePanel.tileSize * 0.31) + x;
+        hitBox.y = (int) Math.round(gamePanel.tileSize * 0.19) + y;
         hitBox.width = (int) Math.round(gamePanel.tileSize * 0.44);
         hitBox.height = (int) Math.round(gamePanel.tileSize * 0.81);
 
@@ -135,20 +135,29 @@ public class Player extends Entity {
                 spriteCounter = 0;
             }
         }
+        hitBox.x = (int) Math.round(gamePanel.tileSize * 0.31) + x;
+        hitBox.y = (int) Math.round(gamePanel.tileSize * 0.19) + y;
 
 
-        //Collision
-        gamePanel.getCChecker().checkCollision(this);
+
     }
 
     public void draw(Graphics2D g2) {
         //g2.setColor(Color.white);
         //
+
+
+
         if (keyHandler.isSpacePressed()) {
             g2.drawImage(flyImages[flyIMG], x, y, gamePanel.tileSize, gamePanel.tileSize, null);
         } else {
             g2.drawImage(runImages[runIMG], x, y, gamePanel.tileSize, gamePanel.tileSize, null);
         }
+        g2.draw(hitBox);
+        //Collision
+        gamePanel.getObstacleManager().checkCollision(this, g2);
+
+
         //g2.drawRect(x+hitBox.x, y+hitBox.y, hitBox.width, hitBox.height);
         /*
         Rectangle enemie = new Rectangle();
