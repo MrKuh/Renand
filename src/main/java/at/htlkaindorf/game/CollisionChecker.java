@@ -1,6 +1,6 @@
-package at.htlkaindorf.entity;
+package at.htlkaindorf.game;
 
-import at.htlkaindorf.display.GamePanel;
+import at.htlkaindorf.entity.Entity;
 
 public class CollisionChecker {
 
@@ -11,10 +11,17 @@ public class CollisionChecker {
     }
 
     public void checkCollision(Entity entity){
+        /*
         int entityLeftX = entity.getX() + entity.getHitBox().x;
         int entityRightX = entity.getX() + entity.getHitBox().x + entity.getHitBox().width;
         int entityTopY = entity.getY() + entity.getHitBox().y;
-        int entityBottomY = entity.getY() + entity.getHitBox().y + entity.getHitBox().height;
+        int entityBottomY = entity.getY() + entity.getHitBox().y + entity.getHitBox().height;#
+
+         */
+
+
+
+
 
         
     }

@@ -1,6 +1,6 @@
 package at.htlkaindorf.controller;
 
-import at.htlkaindorf.display.GamePanel;
+import at.htlkaindorf.game.GamePanel;
 import lombok.Data;
 
 import java.awt.*;
