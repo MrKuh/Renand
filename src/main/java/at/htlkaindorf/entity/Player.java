@@ -29,7 +29,7 @@ public class Player extends Entity {
 
     public void setDefaultValues() {
         x = 100;
-        y = 100;
+        y = gamePanel.getScreenHeight() - 150;
         speed = 5.0;
 
         runIMG = 1;
@@ -147,6 +147,9 @@ public class Player extends Entity {
         //
 
 
+        //Collision
+        gamePanel.getObstacleManager().checkCollision(this, g2);
+
 
         if (keyHandler.isSpacePressed()) {
             g2.drawImage(flyImages[flyIMG], x, y, gamePanel.tileSize, gamePanel.tileSize, null);
@@ -154,8 +157,7 @@ public class Player extends Entity {
             g2.drawImage(runImages[runIMG], x, y, gamePanel.tileSize, gamePanel.tileSize, null);
         }
         g2.draw(hitBox);
-        //Collision
-        gamePanel.getObstacleManager().checkCollision(this, g2);
+
 
 
         //g2.drawRect(x+hitBox.x, y+hitBox.y, hitBox.width, hitBox.height);
