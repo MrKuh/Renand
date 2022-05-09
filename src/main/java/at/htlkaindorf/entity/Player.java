@@ -137,15 +137,11 @@ public class Player extends Entity {
         }
         hitBox.x = (int) Math.round(gamePanel.tileSize * 0.31) + x;
         hitBox.y = (int) Math.round(gamePanel.tileSize * 0.19) + y;
-
-
-
     }
 
     public void draw(Graphics2D g2) {
         //g2.setColor(Color.white);
         //
-
 
         //Collision
         if(!gamePanel.getObstacleManager().checkCollision(this, g2)){
@@ -156,11 +152,6 @@ public class Player extends Entity {
             }
             //g2.draw(hitBox);
         }
-
-
-
-
-
 
 
         //g2.drawRect(x+hitBox.x, y+hitBox.y, hitBox.width, hitBox.height);

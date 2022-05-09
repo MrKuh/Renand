@@ -13,12 +13,14 @@ public class ObstacleManager {
 
     private PurbleMonster purbleMonster;
 
+    private int purbleMonsterAmount = 10;
+
     public ObstacleManager(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
         this.obstacles = new ArrayList<PurbleMonster>();
 
         for (int i = 0; i < 10 ; i++) {
-            obstacles.add(new PurbleMonster(gamePanel));//obstacles bekommt ein ba
+            obstacles.add(new PurbleMonster(gamePanel)); //obstacles bekommt ein ba
         }
 
     }
@@ -41,18 +43,26 @@ public class ObstacleManager {
             obstacle.draw(g2);
         }
 
-
     }
 
-    public void update() {
+    public void UpdatePurbleMonster(){
+        List<PurbleMonster> delete = new ArrayList<>();
+
         for (PurbleMonster obstacle : obstacles){
             obstacle.update();
             if(obstacle.getX() <= -100){
-                obstacles.remove(obstacle);
-                obstacles.add(new PurbleMonster(gamePanel));
+                delete.add(obstacle);
             }
-
-
         }
+
+        obstacles.removeAll(delete);
+
+        for (int i = 0; i < delete.size(); i++) {
+            obstacles.add(new PurbleMonster(gamePanel));
+        }
+    }
+
+    public void update() {
+        UpdatePurbleMonster();
     }
 }
