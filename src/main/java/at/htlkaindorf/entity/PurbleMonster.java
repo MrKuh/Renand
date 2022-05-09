@@ -10,7 +10,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Random;
 
-import static at.htlkaindorf.game.GamePanel.tileSize;
+
 
 @Data
 public class PurbleMonster extends Entity {
@@ -55,8 +55,8 @@ public class PurbleMonster extends Entity {
             }
         }
 
-        hitBox.x = (int) Math.round(tileSize * 0.05) + x;
-        hitBox.y = (int) Math.round(tileSize * 0.05) + y;
+        hitBox.x = (int) Math.round(gamePanel.tileSize  * 0.05) + x;
+        hitBox.y = (int) Math.round(gamePanel.tileSize  * 0.05) + y;
 
     }
     public void random(){
@@ -81,17 +81,17 @@ public class PurbleMonster extends Entity {
         //Random
         x = gamePanel.getScreenWidth() + rand.nextInt(gamePanel.getScreenWidth());
 
-        int high = (int) (gamePanel.getScreenHeight() - tileSize * 1.8);
+        int high = (int) (gamePanel.getScreenHeight() - gamePanel.tileSize  * 1.8);
         int low = 100;
         y = rand.nextInt(high - low + 1) + low;
 
         speed = 10.0;
 
         hitBox = new Rectangle();
-        hitBox.x = (int) Math.round(tileSize * 0.05) + x;
-        hitBox.y = (int) Math.round(tileSize * 0.05) + y;
-        hitBox.width = (int) Math.round(tileSize * 0.9);
-        hitBox.height = (int) Math.round(tileSize * 0.9);
+        hitBox.x = (int) Math.round(gamePanel.tileSize * 0.05) + x;
+        hitBox.y = (int) Math.round(gamePanel.tileSize  * 0.05) + y;
+        hitBox.width = (int) Math.round(gamePanel.tileSize  * 0.9);
+        hitBox.height = (int) Math.round(gamePanel.tileSize  * 0.9);
 
         flyIMG = 0;
         up = rand.nextBoolean();
@@ -101,22 +101,22 @@ public class PurbleMonster extends Entity {
         Random rand = new Random();
 
         x -= speed;
-        if(y < gamePanel.tileSize){
+        if(y < 0){
             up = true;
         }
-        if(y > gamePanel.getScreenHeight()){
+        if(y > gamePanel.getScreenHeight()- gamePanel.tileSize * 1.8 ){
             up = false;
         }
 
-        if(y >= gamePanel.tileSize && !up){
+        if(y >= 0 && !up){
             y -= 2;
         }
-        if(y <= gamePanel.getScreenHeight() && up){
+        if(y <= gamePanel.getScreenHeight()- gamePanel.tileSize * 1.8  && up){
             y += 2;
         }
 
-        hitBox.x = (int) Math.round(tileSize * 0.05) + x;
-        hitBox.y = (int) Math.round(tileSize * 0.05) + y;
+        hitBox.x = (int) Math.round(gamePanel.tileSize  * 0.05) + x;
+        hitBox.y = (int) Math.round(gamePanel.tileSize  * 0.05) + y;
 
         //animation
         spriteCounter++;
@@ -132,7 +132,7 @@ public class PurbleMonster extends Entity {
     }
 
     public void draw(Graphics2D g2) {
-            g2.drawImage(flyImages[flyIMG], x, y, tileSize, tileSize, null);
+            g2.drawImage(flyImages[flyIMG], x, y, gamePanel.tileSize , gamePanel.tileSize , null);
             //g2.draw(hitBox);
     }
 }
