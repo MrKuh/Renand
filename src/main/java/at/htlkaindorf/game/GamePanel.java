@@ -1,10 +1,8 @@
 package at.htlkaindorf.game;
 
 import at.htlkaindorf.controller.KeyHandler;
-import at.htlkaindorf.entity.Entity;
 import at.htlkaindorf.entity.ObstacleManager;
 import at.htlkaindorf.entity.Player;
-import at.htlkaindorf.entity.PurbleMonster;
 import at.htlkaindorf.tile.TileManager;
 import lombok.Data;
 
