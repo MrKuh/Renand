@@ -1,6 +1,5 @@
 package at.htlkaindorf.entity;
 
-import at.htlkaindorf.controller.KeyHandler;
 import at.htlkaindorf.game.GamePanel;
 import lombok.Data;
 
@@ -13,12 +12,12 @@ import java.util.Random;
 
 
 @Data
-public class PurbleMonster extends Entity {
+public class PurpleMonster extends Entity {
     private int flyIMG;
     private BufferedImage[] flyImages;
     private boolean up = false;
 
-    public PurbleMonster(GamePanel gamePanel) {
+    public PurpleMonster(GamePanel gamePanel) {
         super(gamePanel);
         setDefaultValues();
         getImage();

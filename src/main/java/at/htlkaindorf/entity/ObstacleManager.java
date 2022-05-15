@@ -9,18 +9,18 @@ import java.util.List;
 public class ObstacleManager {
 
     private GamePanel gamePanel;
-    private List<PurbleMonster> obstacles;
+    private List<PurpleMonster> obstacles;
 
-    private PurbleMonster purbleMonster;
+    private PurpleMonster purpleMonster;
 
-    private int purbleMonsterAmount = 10;
+    private int purpleMonsterAmount = 30;
 
     public ObstacleManager(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
-        this.obstacles = new ArrayList<PurbleMonster>();
+        this.obstacles = new ArrayList<PurpleMonster>();
 
-        for (int i = 0; i < 10 ; i++) {
-            obstacles.add(new PurbleMonster(gamePanel)); //obstacles bekommt ein ba
+        for (int i = 0; i < purpleMonsterAmount ; i++) {
+            obstacles.add(new PurpleMonster(gamePanel)); //obstacles bekommt ein ba
         }
 
     }
@@ -39,16 +39,16 @@ public class ObstacleManager {
 
 
     public void draw(Graphics2D g2) {
-        for (PurbleMonster obstacle : obstacles){
+        for (PurpleMonster obstacle : obstacles){
             obstacle.draw(g2);
         }
 
     }
 
     public void UpdatePurbleMonster(){
-        List<PurbleMonster> delete = new ArrayList<>();
+        List<PurpleMonster> delete = new ArrayList<>();
 
-        for (PurbleMonster obstacle : obstacles){
+        for (PurpleMonster obstacle : obstacles){
             obstacle.update();
             if(obstacle.getX() <= -100){
                 delete.add(obstacle);
@@ -58,7 +58,7 @@ public class ObstacleManager {
         obstacles.removeAll(delete);
 
         for (int i = 0; i < delete.size(); i++) {
-            obstacles.add(new PurbleMonster(gamePanel));
+            obstacles.add(new PurpleMonster(gamePanel));
         }
     }
 

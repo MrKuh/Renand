@@ -89,15 +89,15 @@ public class Player extends Entity {
                 speed = 5;
             }
             //speed = 15;
-            speed -= 1.5;
+            speed -= 1.6;
             if (speed < -20.0) {
                 speed = -20;
             }
         } else {
             //speed = -10;
             speed += 0.8;
-            if (speed > 17.0) {
-                speed = 17;
+            if (speed > 15.0) {
+                speed = 15;
             }
         }
         y += speed;
