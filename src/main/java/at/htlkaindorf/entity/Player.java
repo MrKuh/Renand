@@ -1,7 +1,7 @@
 package at.htlkaindorf.entity;
 
 import at.htlkaindorf.controller.KeyHandler;
-import at.htlkaindorf.display.GamePanel;
+import at.htlkaindorf.game.GamePanel;
 import lombok.Data;
 
 import javax.imageio.ImageIO;
@@ -11,25 +11,36 @@ import java.io.IOException;
 
 @Data
 public class Player extends Entity {
-    private GamePanel gamePanel;
     private KeyHandler keyHandler;
 
+    private int runIMG;
+    private int flyIMG;
+    private BufferedImage[] runImages;
+    private BufferedImage[] flyImages;
 
 
     public Player(GamePanel gamePanel, KeyHandler keyHandler) {
-        this.gamePanel = gamePanel;
+        super(gamePanel);
         this.keyHandler = keyHandler;
+
         setDefaultValues();
         getPlayerImage();
     }
 
     public void setDefaultValues() {
         x = 100;
-        y = 100;
+        y = gamePanel.getScreenHeight() - 150;
         speed = 5.0;
 
         runIMG = 1;
         flyIMG = 0;
+
+        hitBox = new Rectangle();
+        hitBox.x = (int) Math.round(gamePanel.tileSize * 0.31) + x;
+        hitBox.y = (int) Math.round(gamePanel.tileSize * 0.19) + y;
+        hitBox.width = (int) Math.round(gamePanel.tileSize * 0.44);
+        hitBox.height = (int) Math.round(gamePanel.tileSize * 0.81);
+
     }
 
     public void getPlayerImage() {
@@ -55,6 +66,7 @@ public class Player extends Entity {
                     ImageIO.read(getClass().getResourceAsStream("/character/fly/sprite_10.png")),
                     ImageIO.read(getClass().getResourceAsStream("/character/fly/sprite_11.png"))
             };
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -73,6 +85,9 @@ public class Player extends Entity {
         }*/
 
         if (keyHandler.isSpacePressed()) {
+            if(speed > 5){
+                speed = 5;
+            }
             //speed = 15;
             speed -= 1.5;
             if (speed < -20.0) {
@@ -121,15 +136,49 @@ public class Player extends Entity {
                 spriteCounter = 0;
             }
         }
+        hitBox.x = (int) Math.round(gamePanel.tileSize * 0.31) + x;
+        hitBox.y = (int) Math.round(gamePanel.tileSize * 0.19) + y;
     }
 
     public void draw(Graphics2D g2) {
         //g2.setColor(Color.white);
-        //g2.fillRect(x, y, gamePanel.titleSize, gamePanel.titleSize);
-        if (keyHandler.isSpacePressed()) {
-            g2.drawImage(flyImages[flyIMG], x, y, gamePanel.tileSize, gamePanel.tileSize, null);
-        } else {
-            g2.drawImage(runImages[runIMG], x, y, gamePanel.tileSize, gamePanel.tileSize, null);
+        //
+
+        //Collision
+        if(!gamePanel.getObstacleManager().checkCollision(this, g2)){
+            if (keyHandler.isSpacePressed()) {
+                g2.drawImage(flyImages[flyIMG], x, y, gamePanel.tileSize, gamePanel.tileSize, null);
+            } else {
+                g2.drawImage(runImages[runIMG], x, y, gamePanel.tileSize, gamePanel.tileSize, null);
+            }
+            //g2.draw(hitBox);
         }
+
+
+        //g2.drawRect(x+hitBox.x, y+hitBox.y, hitBox.width, hitBox.height);
+        /*
+        Rectangle enemie = new Rectangle();
+        enemie.x = (int) Math.round(gamePanel.tileSize * 0.31);
+        enemie.y = (int) Math.round(gamePanel.tileSize * 0.19);
+        enemie.width = (int) Math.round(gamePanel.tileSize * 0.44);
+        enemie.height = (int) Math.round(gamePanel.tileSize * 0.81);
+
+        enemie.x = enemie.x + x;
+        enemie.y = enemie.y + y;
+
+        Rectangle box = new Rectangle();
+        box.x = (int) Math.round(gamePanel.tileSize * 0.31);
+        box.y = (int) Math.round(gamePanel.tileSize * 0.19);
+        box.width = (int) Math.round(gamePanel.tileSize * 0.44);
+        box.height = (int) Math.round(gamePanel.tileSize * 0.81);
+
+        box.x = box.x + enemie.width + x;
+        box.y = box.y + y;
+
+        g2.draw(enemie);
+        g2.draw(box);
+        System.out.println(g2.hit(box,enemie,true));
+
+         */
     }
 }

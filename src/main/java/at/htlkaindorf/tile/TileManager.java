@@ -1,6 +1,6 @@
 package at.htlkaindorf.tile;
 
-import at.htlkaindorf.display.GamePanel;
+import at.htlkaindorf.game.GamePanel;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -98,6 +98,7 @@ public class TileManager {
     }
 
     public void draw(Graphics2D g2) {
+
         //ground
         if (x < -gp.tileSize) {
             x += gp.tileSize;

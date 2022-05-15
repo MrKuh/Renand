@@ -1,6 +1,6 @@
 package at.htlkaindorf.controller;
 
-import at.htlkaindorf.display.GamePanel;
+import at.htlkaindorf.game.GamePanel;
 import lombok.Data;
 
 import java.awt.*;
@@ -24,12 +24,17 @@ public class KeyHandler implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
+
         int keyCode = e.getKeyCode();
         if (keyCode == KeyEvent.VK_SPACE) {
             spacePressed = true;
         }
 
         switch (keyCode) {
+            case KeyEvent.VK_ENTER:
+                gp.setScore(0);
+                gp.setRunning(true);
+                break;
             case KeyEvent.VK_SPACE:
                 spacePressed = true;
                 break;
