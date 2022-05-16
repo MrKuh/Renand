@@ -103,7 +103,7 @@ public class GamePanel extends JPanel implements Runnable {
                     if(running){
                     update();
                     repaint();
-                    score += 1;
+                    score++;
                     }
 
                     delta--;
@@ -130,6 +130,10 @@ public class GamePanel extends JPanel implements Runnable {
         g2.setFont(myFont);
         String formatted = String.format("%07d", score);
         g2.drawString(formatted, screenWidth - 2 * tileSize, scoreY);
+        formatted = String.format("HighScore: %-7d", (scores.size()==0)?0:scores.get(0));
+        myFont = new Font ("Courier New", 1, 20);
+        g2.setFont(myFont);
+        g2.drawString(formatted, screenWidth - 2 * tileSize, scoreY + scoreY/2);
     }
     public void drawDeathScreen(Graphics2D g2) {
         if(!running){
@@ -146,9 +150,13 @@ public class GamePanel extends JPanel implements Runnable {
                 int space = 0;
                 Collections.sort(scores);
                 Collections.reverse(scores);
-                for (int i = 0; i < scores.size(); i++) {
+                int scoreAmount = 5;
+                if(scores.size() < scoreAmount){
+                    scoreAmount = scores.size();
+                }
+                for (int i = 0; i < scoreAmount; i++) {
                     String formatted = String.format("%07d", scores.get(i));
-                    g2.drawString("Score "+ (i+1) + ": " + formatted, (screenWidth/2) - (deathScreen[0].getWidth()) , ((deathScreen[0].getHeight())*4) + space);
+                    g2.drawString("HighScore "+ (i+1) + ": " + formatted, (screenWidth/2) - (deathScreen[0].getWidth()) , ((deathScreen[0].getHeight())*4) + space);
                     space += 30;
                 }
 

@@ -13,7 +13,7 @@ public class ObstacleManager {
 
     private PurpleMonster purpleMonster;
 
-    private int purpleMonsterAmount = 30;
+    private int purpleMonsterAmount = 7;
 
     public ObstacleManager(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
@@ -45,7 +45,7 @@ public class ObstacleManager {
 
     }
 
-    public void UpdatePurbleMonster(){
+    public void UpdatePurpleMonster(){
         List<PurpleMonster> delete = new ArrayList<>();
 
         for (PurpleMonster obstacle : obstacles){
@@ -63,6 +63,6 @@ public class ObstacleManager {
     }
 
     public void update() {
-        UpdatePurbleMonster();
+        UpdatePurpleMonster();
     }
 }
