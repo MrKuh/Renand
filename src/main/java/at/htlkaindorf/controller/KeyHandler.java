@@ -32,6 +32,7 @@ public class KeyHandler implements KeyListener {
 
         switch (keyCode) {
             case KeyEvent.VK_ENTER:
+                gp.setScore(0);
                 gp.setRunning(true);
                 break;
             case KeyEvent.VK_SPACE:

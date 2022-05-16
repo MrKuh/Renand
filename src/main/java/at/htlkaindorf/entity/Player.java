@@ -66,6 +66,7 @@ public class Player extends Entity {
                     ImageIO.read(getClass().getResourceAsStream("/character/fly/sprite_10.png")),
                     ImageIO.read(getClass().getResourceAsStream("/character/fly/sprite_11.png"))
             };
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -87,16 +88,17 @@ public class Player extends Entity {
             if(speed > 5){
                 speed = 5;
             }
+
             //speed = 15;
-            speed -= 1.5;
+            speed -= 1.6;
             if (speed < -20.0) {
                 speed = -20;
             }
         } else {
             //speed = -10;
             speed += 0.8;
-            if (speed > 17.0) {
-                speed = 17;
+            if (speed > 15.0) {
+                speed = 15;
             }
         }
         y += speed;
@@ -137,27 +139,21 @@ public class Player extends Entity {
         }
         hitBox.x = (int) Math.round(gamePanel.tileSize * 0.31) + x;
         hitBox.y = (int) Math.round(gamePanel.tileSize * 0.19) + y;
-
-
-
     }
 
     public void draw(Graphics2D g2) {
         //g2.setColor(Color.white);
         //
 
-
         //Collision
-        gamePanel.getObstacleManager().checkCollision(this, g2);
-
-
-        if (keyHandler.isSpacePressed()) {
-            g2.drawImage(flyImages[flyIMG], x, y, gamePanel.tileSize, gamePanel.tileSize, null);
-        } else {
-            g2.drawImage(runImages[runIMG], x, y, gamePanel.tileSize, gamePanel.tileSize, null);
+        if(!gamePanel.getObstacleManager().checkCollision(this, g2)){
+            if (keyHandler.isSpacePressed()) {
+                g2.drawImage(flyImages[flyIMG], x, y, gamePanel.tileSize, gamePanel.tileSize, null);
+            } else {
+                g2.drawImage(runImages[runIMG], x, y, gamePanel.tileSize, gamePanel.tileSize, null);
+            }
+            //g2.draw(hitBox);
         }
-        g2.draw(hitBox);
-
 
 
         //g2.drawRect(x+hitBox.x, y+hitBox.y, hitBox.width, hitBox.height);
