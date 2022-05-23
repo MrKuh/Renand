@@ -31,9 +31,13 @@ public class KeyHandler implements KeyListener {
         }
 
         switch (keyCode) {
+            case KeyEvent.VK_A:
+                gp.setRunWithEnemies(true);
+                break;
             case KeyEvent.VK_ENTER:
                 gp.setScore(0);
                 gp.setRunning(true);
+                gp.setRunWithEnemies(false);
                 break;
             case KeyEvent.VK_SPACE:
                 spacePressed = true;
