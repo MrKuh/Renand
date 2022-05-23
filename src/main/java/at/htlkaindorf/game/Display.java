@@ -34,7 +34,7 @@ public class Display {
         //window.setResizable(false);
         window.setSize(gp.getScreenWidth(), gp.getScreenHeight());
         window.setUndecorated(false);
-        window.add(startScreen);
+        //window.add(startScreen);
         window.pack();
         window.setVisible(true);
 

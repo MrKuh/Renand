@@ -37,7 +37,7 @@ public class KeyHandler implements KeyListener {
                 break;
             case KeyEvent.VK_ENTER:
                 gp.setScore(0);
-                if (gp.isRunning()) {
+                if (!gp.isRunning()) {
                     gp.setRunWithEnemies(false);
                 }
                 gp.setRunning(true);
