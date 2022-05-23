@@ -24,6 +24,8 @@ public class Display {
 
     private void createDisplay() {
         window = new JFrame(title);
+        window.setPreferredSize(new Dimension(gp.getScreenWidth(), gp.getScreenHeight()));
+        window.setLayout(null);
         window.add(gp);
         StartScreen startScreen = new StartScreen(gp.getScreenWidth(), gp.getScreenHeight());
 
@@ -34,8 +36,8 @@ public class Display {
         //window.setResizable(false);
         window.setSize(gp.getScreenWidth(), gp.getScreenHeight());
         window.setUndecorated(false);
-        window.add(startScreen);
-        window.pack();
+        //window.add(startScreen);
+
         window.setVisible(true);
 
         //window.setAlwaysOnTop(true);

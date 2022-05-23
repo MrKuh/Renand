@@ -74,12 +74,29 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public GamePanel() {
-        this.setPreferredSize(new Dimension(screenWidth, screenHeight));
+        this.setSize(screenWidth, screenHeight);
         this.setBackground(Color.decode("#0f0f0f0f"));
         this.setDoubleBuffered(true);
         this.setVisible(true);
         this.addKeyListener(keyH);
         this.setFocusable(true);
+
+        this.setLayout(null);
+        JLabel label = new JLabel("Username");
+        label.setBounds(100, 8, 70, 20);
+        this.add(label);
+        JTextField username = new JTextField();
+        username.setBounds(100, 27, 193, 28);
+        this.add(username);
+        this.setVisible(true);
+
+        JLabel password1 = new JLabel("Password");
+        password1.setBounds(100, 55, 70, 20);
+        this.add(password1);
+
+        JTextField password = new JPasswordField();
+        password.setBounds(100, 75, 193, 28);
+        this.add(password);
         fullScreen = false;
     }
 
