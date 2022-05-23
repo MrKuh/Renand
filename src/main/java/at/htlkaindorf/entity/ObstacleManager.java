@@ -13,7 +13,8 @@ public class ObstacleManager {
 
     private PurpleMonster purpleMonster;
 
-    private int purpleMonsterAmount = 7;
+    private int purpleMonsterAmount = 10;
+
 
     public ObstacleManager(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
@@ -39,7 +40,7 @@ public class ObstacleManager {
 
 
     public void draw(Graphics2D g2) {
-        for (PurpleMonster obstacle : obstacles){
+         for (PurpleMonster obstacle : obstacles){
             obstacle.draw(g2);
         }
 
@@ -52,6 +53,7 @@ public class ObstacleManager {
             obstacle.update();
             if(obstacle.getX() <= -100){
                 delete.add(obstacle);
+                gamePanel.setScore(gamePanel.getScore()+1);
             }
         }
 
