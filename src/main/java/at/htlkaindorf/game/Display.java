@@ -3,6 +3,7 @@ package at.htlkaindorf.game;
 import lombok.Data;
 
 import javax.swing.*;
+import java.awt.*;
 
 @Data
 public class Display {
@@ -24,6 +25,8 @@ public class Display {
     private void createDisplay() {
         window = new JFrame(title);
         window.add(gp);
+        StartScreen startScreen = new StartScreen(gp.getScreenWidth(), gp.getScreenHeight());
+
         //window.pack();
         window.setResizable(false);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -31,8 +34,25 @@ public class Display {
         //window.setResizable(false);
         window.setSize(gp.getScreenWidth(), gp.getScreenHeight());
         window.setUndecorated(false);
+        window.add(startScreen);
         window.pack();
         window.setVisible(true);
+
         //window.setAlwaysOnTop(true);
+    }
+    public void changeDisplay(int screenWidth, int screenHeight) {
+        JPanel panel = new JPanel();
+        panel.setBounds(0, 0, gp.getScreenWidth(), gp.getScreenHeight());
+        panel.setBackground(Color.white);
+        panel.setVisible(true);
+        //window.add(panel);
+
+        StartScreen startScreen = new StartScreen(screenWidth, screenHeight);
+
+        window.getContentPane().removeAll();
+        window.getContentPane().invalidate();
+
+        window.setContentPane(startScreen);
+        window.getContentPane().revalidate();
     }
 }

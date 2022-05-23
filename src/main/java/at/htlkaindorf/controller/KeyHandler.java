@@ -1,6 +1,7 @@
 package at.htlkaindorf.controller;
 
 import at.htlkaindorf.game.GamePanel;
+import at.htlkaindorf.renand.Launcher;
 import lombok.Data;
 
 import java.awt.*;
@@ -38,6 +39,9 @@ public class KeyHandler implements KeyListener {
                 gp.setScore(0);
                 gp.setRunning(true);
                 gp.setRunWithEnemies(false);
+                break;
+            case KeyEvent.VK_ESCAPE:
+                Launcher.changeScreen(gp.getScreenWidth(), gp.getScreenHeight());
                 break;
             case KeyEvent.VK_SPACE:
                 spacePressed = true;

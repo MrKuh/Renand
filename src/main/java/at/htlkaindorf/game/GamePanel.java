@@ -4,6 +4,9 @@ import at.htlkaindorf.controller.KeyHandler;
 import at.htlkaindorf.entity.ObstacleManager;
 import at.htlkaindorf.entity.Player;
 import at.htlkaindorf.tile.TileManager;
+import com.google.auth.oauth2.GoogleCredentials;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.FirebaseOptions;
 import lombok.Data;
 
 
@@ -67,7 +70,6 @@ public class GamePanel extends JPanel implements Runnable {
 
 
     public void startGameThread() {
-
         running = true;
         gameThread = new Thread(this);
         gameThread.start();
@@ -105,7 +107,7 @@ public class GamePanel extends JPanel implements Runnable {
                     if(running){
                     update();
                     repaint();
-                    score++;
+                    //score++;
                     }
 
                     delta--;
