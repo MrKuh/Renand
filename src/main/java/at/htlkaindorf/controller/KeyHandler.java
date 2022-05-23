@@ -37,8 +37,10 @@ public class KeyHandler implements KeyListener {
                 break;
             case KeyEvent.VK_ENTER:
                 gp.setScore(0);
+                if (gp.isRunning()) {
+                    gp.setRunWithEnemies(false);
+                }
                 gp.setRunning(true);
-                gp.setRunWithEnemies(false);
                 break;
             case KeyEvent.VK_ESCAPE:
                 Launcher.changeScreen(gp.getScreenWidth(), gp.getScreenHeight());
@@ -47,7 +49,7 @@ public class KeyHandler implements KeyListener {
                 spacePressed = true;
                 break;
             case KeyEvent.VK_F11:
-                gp.getDisplay().getWindow().setLocation(0,0);
+                gp.getDisplay().getWindow().setLocation(0, 0);
                 gp.setFullScreen(!gp.isFullScreen());
                 gp.getDisplay().getWindow().setVisible(false);
                 gp.getDisplay().getWindow().dispose();
