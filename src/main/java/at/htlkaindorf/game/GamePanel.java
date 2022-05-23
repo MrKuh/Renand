@@ -57,6 +57,8 @@ public class GamePanel extends JPanel implements Runnable {
 
     private boolean running = false;
 
+    private boolean runWithEnemies = false;
+
     public void resetTheGame() {
         running = false;
         scores.add(score);
@@ -139,7 +141,9 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void update() {
         player.update();
-        obstacleManager.update();
+        if(runWithEnemies) {
+            obstacleManager.update();
+        }
     }
 
 
