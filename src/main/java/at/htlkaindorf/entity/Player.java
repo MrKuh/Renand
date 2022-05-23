@@ -2,6 +2,7 @@ package at.htlkaindorf.entity;
 
 import at.htlkaindorf.controller.KeyHandler;
 import at.htlkaindorf.game.GamePanel;
+import at.htlkaindorf.user.UserList;
 import lombok.Data;
 
 import javax.imageio.ImageIO;
@@ -17,6 +18,11 @@ public class Player extends Entity {
     private int flyIMG;
     private BufferedImage[] runImages;
     private BufferedImage[] flyImages;
+
+    //for xml
+    private String xmlFile;
+    //for xml
+    private UserList userList;
 
 
     public Player(GamePanel gamePanel, KeyHandler keyHandler) {
