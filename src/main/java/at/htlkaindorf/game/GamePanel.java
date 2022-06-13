@@ -62,6 +62,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void resetTheGame() {
         running = false;
+
         scores.add(score);
         obstacleManager = new ObstacleManager(this);
         player = new Player(this, keyH);
@@ -77,12 +78,29 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public GamePanel() {
-        this.setPreferredSize(new Dimension(screenWidth, screenHeight));
+        this.setSize(screenWidth, screenHeight);
         this.setBackground(Color.decode("#0f0f0f0f"));
         this.setDoubleBuffered(true);
         this.setVisible(true);
         this.addKeyListener(keyH);
         this.setFocusable(true);
+
+        this.setLayout(null);
+        JLabel label = new JLabel("Username");
+        label.setBounds(100, 8, 70, 20);
+        this.add(label);
+        JTextField username = new JTextField();
+        username.setBounds(100, 27, 193, 28);
+        this.add(username);
+        this.setVisible(true);
+
+        JLabel password1 = new JLabel("Password");
+        password1.setBounds(100, 55, 70, 20);
+        this.add(password1);
+
+        JTextField password = new JPasswordField();
+        password.setBounds(100, 75, 193, 28);
+        this.add(password);
         fullScreen = false;
     }
 
@@ -178,6 +196,34 @@ public class GamePanel extends JPanel implements Runnable {
         }
     }
 
+    public void drawMenu(Graphics2D g2){
+
+        try {
+            BufferedImage[] startScreen = new BufferedImage[]{
+                    ImageIO.read(getClass().getResourceAsStream("/gameover/start.png"))
+            };
+            int width = startScreen[0].getWidth() /4;
+            int height = startScreen[0].getHeight() /4;
+            g2.drawImage(startScreen[0], screenWidth/2- width/2 , height, width , height, null);
+
+            int buttonWidth = 250;
+            int buttonHeight = 50;
+            g2.drawRect(screenWidth/2-buttonWidth/2, screenHeight/2 - buttonHeight/2, buttonWidth, buttonHeight);
+            FontMetrics metrics = g2.getFontMetrics(g2.getFont());
+            String text = "Start Game";
+            g2.drawString( text ,screenWidth/2 - metrics.stringWidth(text) / 2, screenHeight/2 -metrics.getHeight()/2);
+
+
+
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+
+
+    }
+
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -194,6 +240,9 @@ public class GamePanel extends JPanel implements Runnable {
 
         drawDeathScreen(g2);
         drawScore(g2);
+        drawMenu(g2);
+
+
 
         g2.dispose();
     }
