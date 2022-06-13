@@ -24,12 +24,17 @@ public class Display {
 
     private void createDisplay() {
         window = new JFrame(title);
-        window.setPreferredSize(new Dimension(gp.getScreenWidth(), gp.getScreenHeight()));
         window.add(gp);
+        StartScreen startScreen = new StartScreen(gp.getScreenWidth(), gp.getScreenHeight());
+
+        //window.pack();
+        window.setResizable(false);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         //window.setLocationRelativeTo(null);
-        window.setResizable(false);
+        //window.setResizable(false);
+        window.setSize(gp.getScreenWidth(), gp.getScreenHeight());
         window.setUndecorated(false);
+        //window.add(startScreen);
         window.pack();
         window.setVisible(true);
 
