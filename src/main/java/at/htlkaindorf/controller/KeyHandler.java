@@ -27,9 +27,9 @@ public class KeyHandler implements KeyListener {
     public void keyPressed(KeyEvent e) {
 
         int keyCode = e.getKeyCode();
-        if (keyCode == KeyEvent.VK_SPACE) {
+        /*if (keyCode == KeyEvent.VK_SPACE) {
             spacePressed = true;
-        }
+        }*/
 
         switch (keyCode) {
             case KeyEvent.VK_A:
@@ -37,17 +37,20 @@ public class KeyHandler implements KeyListener {
                 break;
             case KeyEvent.VK_ENTER:
                 gp.setScore(0);
+                if (!gp.isRunning()) {
+                    gp.setRunWithEnemies(false);
+                }
                 gp.setRunning(true);
-                gp.setRunWithEnemies(false);
                 break;
             case KeyEvent.VK_ESCAPE:
                 Launcher.changeScreen(gp.getScreenWidth(), gp.getScreenHeight());
                 break;
             case KeyEvent.VK_SPACE:
                 spacePressed = true;
+                gp.setRunWithEnemies(true);
                 break;
             case KeyEvent.VK_F11:
-                gp.getDisplay().getWindow().setLocation(0,0);
+                gp.getDisplay().getWindow().setLocation(0, 0);
                 gp.setFullScreen(!gp.isFullScreen());
                 gp.getDisplay().getWindow().setVisible(false);
                 gp.getDisplay().getWindow().dispose();

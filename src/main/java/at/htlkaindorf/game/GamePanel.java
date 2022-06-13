@@ -17,6 +17,7 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.stream.Collectors;
 
 @Data
 public class GamePanel extends JPanel implements Runnable {
@@ -173,6 +174,7 @@ public class GamePanel extends JPanel implements Runnable {
                 g2.setFont(myFont);
                 int space = 0;
                 Collections.sort(scores);
+                scores = (ArrayList<Integer>) scores.stream().distinct().collect(Collectors.toList());
                 Collections.reverse(scores);
                 int scoreAmount = 5;
                 if(scores.size() < scoreAmount){
@@ -183,6 +185,9 @@ public class GamePanel extends JPanel implements Runnable {
                     g2.drawString("HighScore "+ (i+1) + ": " + formatted, (screenWidth/2) - (deathScreen[0].getWidth()) , ((deathScreen[0].getHeight())*4) + space);
                     space += 30;
                 }
+                String pressText = "Press ENTER to restart the game.";
+                space += 30;
+                g2.drawString(pressText,((int) (screenWidth/2.5)) - (deathScreen[0].getWidth()), screenHeight/5*4);
 
 
             } catch (IOException e) {
