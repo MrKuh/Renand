@@ -26,20 +26,43 @@ public class KeyHandler implements KeyListener {
     public void keyPressed(KeyEvent e) {
 
         int keyCode = e.getKeyCode();
-        if (keyCode == KeyEvent.VK_SPACE) {
-            spacePressed = true;
-        }
 
         switch (keyCode) {
+            case KeyEvent.VK_A:
+                gp.setRunWithEnemies(true);
+                break;
             case KeyEvent.VK_ENTER:
-                gp.setScore(0);
+                if (!gp.isRunning() && !gp.isPaused()) {
+                    gp.setScore(0);
+                    gp.resetTheGame();
+                    gp.setRunWithEnemies(false);
+                    gp.setShowStartScreen(true);
+                }
                 gp.setRunning(true);
+                gp.setPaused(false);
+                break;
+            case KeyEvent.VK_ESCAPE:
+                //Launcher.changeScreen(gp.getScreenWidth(), gp.getScreenHeight());
+                if(gp.isRunWithEnemies()){
+                    if(gp.isPaused() && !gp.isRunning()){
+                        gp.setPaused(false);
+                        gp.setRunning(true);
+                    }else if(!gp.isPaused() && gp.isRunning()){
+                        gp.setPaused(true);
+                        gp.setRunning(false);
+                    }
+                }
+
+
                 break;
             case KeyEvent.VK_SPACE:
+
                 spacePressed = true;
+                gp.setRunWithEnemies(true);
+                gp.setShowStartScreen(false);
                 break;
             case KeyEvent.VK_F11:
-                gp.getDisplay().getWindow().setLocation(0,0);
+                gp.getDisplay().getWindow().setLocation(0, 0);
                 gp.setFullScreen(!gp.isFullScreen());
                 gp.getDisplay().getWindow().setVisible(false);
                 gp.getDisplay().getWindow().dispose();
