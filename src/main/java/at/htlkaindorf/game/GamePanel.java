@@ -78,9 +78,16 @@ public class GamePanel extends JPanel implements Runnable {
         obstacleManager = new ObstacleManager(this);
         player = new Player(this, keyH);
         tileManager = new TileManager(this);
+        collisionSound.stop();
+        collisionSound.setFramePosition(0);
+        mainSound.loop(Clip.LOOP_CONTINUOUSLY);
+
     }
 
     public void collision() {
+        mainSound.stop();
+        mainSound.setFramePosition(0);
+        collisionSound.loop(Clip.LOOP_CONTINUOUSLY);
         paused = false;
         running = false;
         scores.add(score);
@@ -93,22 +100,17 @@ public class GamePanel extends JPanel implements Runnable {
             mainSound = AudioSystem.getClip();
             mainSound.open(audioInputStream);
             mainSound.loop(Clip.LOOP_CONTINUOUSLY);
-            mainSound.start();
 
             file = new File("res/audio/AUUGHHH!.wav");
             AudioInputStream audioInputStream2 = AudioSystem.getAudioInputStream(file);
             flySound = AudioSystem.getClip();
             flySound.open(audioInputStream2);
-            flySound.loop(0);
-            flySound.stop();
 
 
-            file = new File("res/audio/Masked Wolf - Astronaut in the Ocean.wav");
+            file = new File("res/audio/Saul goodman 3d.wav");
             AudioInputStream audioInputStream3 = AudioSystem.getAudioInputStream(file);
             collisionSound = AudioSystem.getClip();
             collisionSound.open(audioInputStream3);
-            collisionSound.loop(Clip.LOOP_CONTINUOUSLY);
-            collisionSound.stop();
 
         } catch (UnsupportedAudioFileException e) {
             throw new RuntimeException(e);

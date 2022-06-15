@@ -38,6 +38,7 @@ public class KeyHandler implements KeyListener {
                     gp.resetTheGame();
                     gp.setRunWithEnemies(false);
                     gp.setShowStartScreen(true);
+                    gp.getCollisionSound().stop();
                 }
                 gp.setRunning(true);
                 gp.setPaused(false);
