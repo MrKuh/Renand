@@ -32,6 +32,12 @@ public class GamePanel extends JPanel implements Runnable {
     //fullscreen trigger needed
     private boolean fullScreen;
     private Display display;
+
+    //Audio
+
+    private Clip mainSound;
+    private Clip flySound;
+    private Clip collisionSound;
     //Fonts
     Font myFont40 = new Font("Courier New", 1, 40);
     Font myFont20 = new Font("Courier New", 1, 20);
@@ -80,18 +86,30 @@ public class GamePanel extends JPanel implements Runnable {
         scores.add(score);
     }
 
-
-    public void startGameThread() {
-
-
+    public void initSounds(){
         try {
-            String bip = "res/audio/Masked Wolf - Astronaut in the Ocean.wav";
-            File file = new File(bip);
+            File file = new File("res/audio/Masked Wolf - Astronaut in the Ocean.wav");
             AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(file);
-            Clip clip = AudioSystem.getClip();
-            clip.open(audioInputStream);
-            clip.loop(Clip.LOOP_CONTINUOUSLY);
-            clip.start();
+            mainSound = AudioSystem.getClip();
+            mainSound.open(audioInputStream);
+            mainSound.loop(Clip.LOOP_CONTINUOUSLY);
+            mainSound.start();
+
+            file = new File("res/audio/AUUGHHH!.wav");
+            AudioInputStream audioInputStream2 = AudioSystem.getAudioInputStream(file);
+            flySound = AudioSystem.getClip();
+            flySound.open(audioInputStream2);
+            flySound.loop(0);
+            flySound.stop();
+
+
+            file = new File("res/audio/Masked Wolf - Astronaut in the Ocean.wav");
+            AudioInputStream audioInputStream3 = AudioSystem.getAudioInputStream(file);
+            collisionSound = AudioSystem.getClip();
+            collisionSound.open(audioInputStream3);
+            collisionSound.loop(Clip.LOOP_CONTINUOUSLY);
+            collisionSound.stop();
+
         } catch (UnsupportedAudioFileException e) {
             throw new RuntimeException(e);
         } catch (IOException e) {
@@ -99,12 +117,10 @@ public class GamePanel extends JPanel implements Runnable {
         } catch (LineUnavailableException e) {
             throw new RuntimeException(e);
         }
+    }
 
 
-        // Create an AudioStream object from the input stream.
-
-
-
+    public void startGameThread() {
         running = true;
         paused = false;
         gameThread = new Thread(this);
@@ -119,6 +135,8 @@ public class GamePanel extends JPanel implements Runnable {
         this.addKeyListener(keyH);
         this.setFocusable(true);
         fullScreen = false;
+
+        initSounds();
     }
 
 
