@@ -14,6 +14,8 @@ import java.util.Random;
 @Data
 public class PurpleMonster extends Entity {
     private int flyIMG;
+
+    private Random rand = new Random();
     private BufferedImage[] flyImages;
     private boolean up = false;
 
@@ -66,20 +68,23 @@ public class PurpleMonster extends Entity {
         }
         x = gamePanel.getScreenWidth() + rand.nextInt(gamePanel.getScreenWidth());
     }
-    public void intiRandom(Random rand){
+    public void intiRandom(){
         x = gamePanel.getScreenWidth() + rand.nextInt(gamePanel.getScreenWidth());
 
         int high = (int) (gamePanel.getScreenHeight() - gamePanel.tileSize  * 1.8);
         int low = 100;
         y = rand.nextInt(high - low + 1) + low;
 
+        hitBox.x = (int) Math.round(gamePanel.tileSize  * 0.05) + x;
+        hitBox.y = (int) Math.round(gamePanel.tileSize  * 0.05) + y;
+
     }
     public void random(){
-        Random rand = new Random();
+
         x -= speed;
         y -= rand.nextInt(5 - (-5) + 1) + (-5);
     }
-    public void randomUpDown(Random rand){
+    public void randomUpDown(){
         x -= speed;
         if(y < 0){
             up = true;
@@ -100,29 +105,26 @@ public class PurpleMonster extends Entity {
 
 
     public void setDefaultValues() {
-        Random rand = new Random();
         //Tunnel
         //intiTunnel(rand);
 
-        //Random
-        intiRandom(rand);
-
-
-        speed = 10.0;
-
         hitBox = new Rectangle();
-        hitBox.x = (int) Math.round(gamePanel.tileSize * 0.05) + x;
-        hitBox.y = (int) Math.round(gamePanel.tileSize  * 0.05) + y;
         hitBox.width = (int) Math.round(gamePanel.tileSize  * 0.9);
         hitBox.height = (int) Math.round(gamePanel.tileSize  * 0.9);
+        hitBox.x = (int) Math.round(gamePanel.tileSize * 0.05) + x;
+        hitBox.y = (int) Math.round(gamePanel.tileSize  * 0.05) + y;
+        //Random
+        intiRandom();
+
+        speed = 10.0;
 
         flyIMG = 0;
         up = rand.nextBoolean();
     }
     public void update() {
-        Random rand = new Random();
+
         //tunnel(rand);
-        randomUpDown(rand);
+        randomUpDown();
         //Movement
         /*
 
@@ -161,7 +163,16 @@ public class PurpleMonster extends Entity {
     }
 
     public void draw(Graphics2D g2) {
+            gamePanel.getObstacleManager().checkPurpleMonsterCollision(this, g2);
             g2.drawImage(flyImages[flyIMG], x, y, gamePanel.tileSize , gamePanel.tileSize , null);
             //g2.draw(hitBox);
+    }
+
+    public void changeDirection(Rectangle hit) {
+        if(hit.y < hitBox.y){
+            up = true;
+        }else{
+            up = false;
+        }
     }
 }
