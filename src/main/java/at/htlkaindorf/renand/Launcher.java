@@ -10,12 +10,6 @@ public class Launcher {
         this.window = new Display("Renand", new GamePanel());
     }
 
-    public static void changeScreen(int screenWidth, int screenHeight){
-        window.changeDisplay(screenWidth, screenHeight);
-
-    }
-
-
     public static void main(String[] args) {
 
         Launcher launcher = new Launcher();

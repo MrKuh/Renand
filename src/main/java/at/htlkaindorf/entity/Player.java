@@ -46,7 +46,6 @@ public class Player extends Entity {
         hitBox.y = (int) Math.round(gamePanel.tileSize * 0.19) + y;
         hitBox.width = (int) Math.round(gamePanel.tileSize * 0.44);
         hitBox.height = (int) Math.round(gamePanel.tileSize * 0.81);
-
     }
 
     public void getPlayerImage() {
@@ -148,10 +147,15 @@ public class Player extends Entity {
     }
 
     public void draw(Graphics2D g2) {
-        //g2.setColor(Color.white);
-        //
-
+        gamePanel.getObstacleManager().checkCollision(this, g2);
+        if (keyHandler.isSpacePressed()) {
+            g2.drawImage(flyImages[flyIMG], x, y, gamePanel.tileSize, gamePanel.tileSize, null);
+        } else {
+            g2.drawImage(runImages[runIMG], x, y, gamePanel.tileSize, gamePanel.tileSize, null);
+        }
+        //g2.draw(hitBox);
         //Collision
+        /*
         if(!gamePanel.getObstacleManager().checkCollision(this, g2)){
             if (keyHandler.isSpacePressed()) {
                 g2.drawImage(flyImages[flyIMG], x, y, gamePanel.tileSize, gamePanel.tileSize, null);
@@ -160,31 +164,6 @@ public class Player extends Entity {
             }
             //g2.draw(hitBox);
         }
-
-
-        //g2.drawRect(x+hitBox.x, y+hitBox.y, hitBox.width, hitBox.height);
-        /*
-        Rectangle enemie = new Rectangle();
-        enemie.x = (int) Math.round(gamePanel.tileSize * 0.31);
-        enemie.y = (int) Math.round(gamePanel.tileSize * 0.19);
-        enemie.width = (int) Math.round(gamePanel.tileSize * 0.44);
-        enemie.height = (int) Math.round(gamePanel.tileSize * 0.81);
-
-        enemie.x = enemie.x + x;
-        enemie.y = enemie.y + y;
-
-        Rectangle box = new Rectangle();
-        box.x = (int) Math.round(gamePanel.tileSize * 0.31);
-        box.y = (int) Math.round(gamePanel.tileSize * 0.19);
-        box.width = (int) Math.round(gamePanel.tileSize * 0.44);
-        box.height = (int) Math.round(gamePanel.tileSize * 0.81);
-
-        box.x = box.x + enemie.width + x;
-        box.y = box.y + y;
-
-        g2.draw(enemie);
-        g2.draw(box);
-        System.out.println(g2.hit(box,enemie,true));
 
          */
     }

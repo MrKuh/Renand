@@ -9,62 +9,86 @@ import java.util.List;
 public class ObstacleManager {
 
     private GamePanel gamePanel;
-    private List<PurpleMonster> obstacles;
+    private List<PurpleMonster> purpleMonsters;
 
     private PurpleMonster purpleMonster;
 
-    private int purpleMonsterAmount = 10;
-
+    private int purpleMonsterAmount = 4;
+    private int added = 0;
 
     public ObstacleManager(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
-        this.obstacles = new ArrayList<PurpleMonster>();
+        this.purpleMonsters = new ArrayList<PurpleMonster>();
 
         for (int i = 0; i < purpleMonsterAmount ; i++) {
-            obstacles.add(new PurpleMonster(gamePanel)); //obstacles bekommt ein ba
+            purpleMonsters.add(new PurpleMonster(gamePanel));
         }
 
     }
 
-    public boolean checkCollision(Player player, Graphics2D collisionChecker){
+    public boolean checkCollision(Player player, Graphics2D g2){
         boolean hit = false;
-        for (Entity obstacle : obstacles){
-            if(collisionChecker.hit(player.getHitBox(), obstacle.getHitBox(), true)){
+        for (Entity obstacle : purpleMonsters){
+            if(g2.hit(player.getHitBox(), obstacle.getHitBox(), true)){
                 hit = true;
-                gamePanel.resetTheGame();
+                gamePanel.collision();
                 break;
             }
         }
         return hit;
     }
-
+    public boolean checkPurpleMonsterCollision(PurpleMonster purpleMonster, Graphics2D g2){
+        boolean hit = false;
+        for (Entity obstacle : purpleMonsters){
+            if(obstacle != purpleMonster){
+                if(g2.hit(purpleMonster.getHitBox(), obstacle.getHitBox(), true)){
+                    hit = true;
+                    purpleMonster.changeDirection(obstacle.getHitBox());
+                    break;
+                }
+            }
+        }
+        return hit;
+    }
 
     public void draw(Graphics2D g2) {
-         for (PurpleMonster obstacle : obstacles){
+         for (PurpleMonster obstacle : purpleMonsters){
             obstacle.draw(g2);
         }
 
     }
 
     public void UpdatePurpleMonster(){
-        List<PurpleMonster> delete = new ArrayList<>();
-
-        for (PurpleMonster obstacle : obstacles){
-            obstacle.update();
-            if(obstacle.getX() <= -100){
-                delete.add(obstacle);
+        for (PurpleMonster purpleMonster : purpleMonsters){
+            purpleMonster.update();
+            if(purpleMonster.getX() <= -100){
+                purpleMonster.intiRandom();
                 gamePanel.setScore(gamePanel.getScore()+1);
             }
         }
 
-        obstacles.removeAll(delete);
-
+        //Replace
+        /*
+        List<PurpleMonster> delete = new ArrayList<>();
+        purpleMonsters.removeAll(delete);
         for (int i = 0; i < delete.size(); i++) {
-            obstacles.add(new PurpleMonster(gamePanel));
+            purpleMonsters.add(new PurpleMonster(gamePanel));
+        }
+         */
+
+    }
+    private void updatePurpleMonsterAmount() {
+        if(gamePanel.getScore() / 10 - added > 1 && purpleMonsters.size() < 15){
+            System.out.println("ADD");
+            added++;
+            purpleMonsters.add(new PurpleMonster(gamePanel));
         }
     }
 
     public void update() {
+        updatePurpleMonsterAmount();
         UpdatePurpleMonster();
     }
+
+
 }
