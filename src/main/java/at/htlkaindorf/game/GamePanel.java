@@ -85,12 +85,12 @@ public class GamePanel extends JPanel implements Runnable {
 
 
         try {
-            String bip = "res/audio/indianSong.wav";
+            String bip = "res/audio/AUUGHHH!.wav";
             File file = new File(bip);
             AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(file);
             Clip clip = AudioSystem.getClip();
             clip.open(audioInputStream);
-
+            clip.loop(Clip.LOOP_CONTINUOUSLY);
             clip.start();
         } catch (UnsupportedAudioFileException e) {
             throw new RuntimeException(e);
