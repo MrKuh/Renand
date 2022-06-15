@@ -15,7 +15,6 @@ public class ObstacleManager {
 
     private int purpleMonsterAmount = 10;
 
-
     public ObstacleManager(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
         this.obstacles = new ArrayList<PurpleMonster>();
@@ -37,7 +36,6 @@ public class ObstacleManager {
         }
         return hit;
     }
-
 
     public void draw(Graphics2D g2) {
          for (PurpleMonster obstacle : obstacles){

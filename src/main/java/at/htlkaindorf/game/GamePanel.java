@@ -4,12 +4,7 @@ import at.htlkaindorf.controller.KeyHandler;
 import at.htlkaindorf.entity.ObstacleManager;
 import at.htlkaindorf.entity.Player;
 import at.htlkaindorf.tile.TileManager;
-import com.google.auth.oauth2.GoogleCredentials;
-import com.google.firebase.FirebaseApp;
-import com.google.firebase.FirebaseOptions;
 import lombok.Data;
-
-
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
@@ -36,6 +31,7 @@ public class GamePanel extends JPanel implements Runnable {
     //Font
     Font myFont40 = new Font ("Courier New", 1, 40);
     Font myFont20 = new Font ("Courier New", 1, 20);
+
 
     Color fontColor = Color.WHITE;
 
@@ -227,7 +223,7 @@ public class GamePanel extends JPanel implements Runnable {
         g2.setColor(Color.decode("#198dde"));
         g2.fillRect(0, 0, screenWidth, screenHeight);
 
-
+        //set main font
         g2.setFont(myFont40);
         g2.setColor(fontColor);
 

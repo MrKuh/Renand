@@ -46,7 +46,6 @@ public class Player extends Entity {
         hitBox.y = (int) Math.round(gamePanel.tileSize * 0.19) + y;
         hitBox.width = (int) Math.round(gamePanel.tileSize * 0.44);
         hitBox.height = (int) Math.round(gamePanel.tileSize * 0.81);
-
     }
 
     public void getPlayerImage() {
