@@ -85,7 +85,7 @@ public class GamePanel extends JPanel implements Runnable {
 
 
         try {
-            String bip = "res/audio/AUUGHHH!.wav";
+            String bip = "res/audio/Masked Wolf - Astronaut in the Ocean.wav";
             File file = new File(bip);
             AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(file);
             Clip clip = AudioSystem.getClip();
