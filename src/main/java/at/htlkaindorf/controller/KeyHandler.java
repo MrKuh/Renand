@@ -27,6 +27,7 @@ public class KeyHandler implements KeyListener {
 
         int keyCode = e.getKeyCode();
 
+
         switch (keyCode) {
             case KeyEvent.VK_A:
                 gp.setRunWithEnemies(true);
@@ -56,7 +57,7 @@ public class KeyHandler implements KeyListener {
 
                 break;
             case KeyEvent.VK_SPACE:
-
+                if(!spacePressed) gp.getFlySound().start();
                 spacePressed = true;
                 gp.setRunWithEnemies(true);
                 gp.setShowStartScreen(false);
@@ -94,6 +95,8 @@ public class KeyHandler implements KeyListener {
         int keyCode = e.getKeyCode();
         if (keyCode == KeyEvent.VK_SPACE) {
             spacePressed = false;
+            gp.getFlySound().stop();
+            gp.getFlySound().setFramePosition(0);
         }
     }
 }
