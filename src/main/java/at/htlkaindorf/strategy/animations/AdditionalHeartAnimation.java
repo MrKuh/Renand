@@ -10,10 +10,15 @@ public class AdditionalHeartAnimation implements Animation {
 
     public AdditionalHeartAnimation() {
             try {
-                images.add(ImageIO.read(getClass().getResourceAsStream("/obstacle/purbleMonster1.png")));
-                images.add(ImageIO.read(getClass().getResourceAsStream("/obstacle/purbleMonster2.png")));
-                images.add(ImageIO.read(getClass().getResourceAsStream("/obstacle/purbleMonster3.png")));
-                images.add(ImageIO.read(getClass().getResourceAsStream("/obstacle/purbleMonster4.png")));
+                images.add(ImageIO.read(getClass().getResourceAsStream("/additional_heart/additional_heart0.png")));
+                images.add(ImageIO.read(getClass().getResourceAsStream("/additional_heart/additional_heart1.png")));
+                images.add(ImageIO.read(getClass().getResourceAsStream("/additional_heart/additional_heart2.png")));
+                images.add(ImageIO.read(getClass().getResourceAsStream("/additional_heart/additional_heart3.png")));
+                images.add(ImageIO.read(getClass().getResourceAsStream("/additional_heart/additional_heart4.png")));
+                images.add(ImageIO.read(getClass().getResourceAsStream("/additional_heart/additional_heart5.png")));
+                images.add(ImageIO.read(getClass().getResourceAsStream("/additional_heart/additional_heart6.png")));
+                images.add(ImageIO.read(getClass().getResourceAsStream("/additional_heart/additional_heart7.png")));
+                images.add(ImageIO.read(getClass().getResourceAsStream("/additional_heart/additional_heart8.png")));
             } catch (IOException e) {
                 e.printStackTrace();
             }

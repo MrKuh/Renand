@@ -6,6 +6,7 @@ import at.htlkaindorf.strategy.Gift;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Random;
 
 public class GiftManager {
     private GamePanel gamePanel;
@@ -16,24 +17,23 @@ public class GiftManager {
 
     private PurpleMonster purpleMonster;
 
+    private Random rand = new Random();
+
     public GiftManager(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
 
         this.common = new Common(gamePanel);
         this.rare = new Common(gamePanel);
 
-    }
-
-
-
-    /*public void draw(Graphics2D g2) {
-        for (PurpleMonster obstacle : common){
-            obstacle.draw(g2);
-        }
+        //beRare = rand.nextBoolean();
 
     }
 
-    public void UpdatePurpleMonster(){
+
+
+
+
+    /*public void UpdatePurpleMonster(){
 
         for (PurpleMonster purpleMonster : common){
             purpleMonster.update();
@@ -48,7 +48,9 @@ public class GiftManager {
     public void update() {
         UpdatePurpleMonster();
 
-        if(gamePanel.getScore())
+        if(gamePanel.getScore()){
+
+        }
     }*/
 
 

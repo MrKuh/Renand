@@ -1,6 +1,7 @@
 package at.htlkaindorf.game;
 
 import at.htlkaindorf.controller.KeyHandler;
+import at.htlkaindorf.entity.GiftManager;
 import at.htlkaindorf.entity.ObstacleManager;
 import at.htlkaindorf.entity.Player;
 import at.htlkaindorf.tile.TileManager;
@@ -55,6 +56,9 @@ public class GamePanel extends JPanel implements Runnable {
 
     //Collision
     private ObstacleManager obstacleManager = new ObstacleManager(this);
+
+    //GiftManager
+    private GiftManager giftManager = new GiftManager(this);
 
     //score
     private int score = 0;
