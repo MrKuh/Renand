@@ -55,13 +55,18 @@ public class KeyHandler implements KeyListener {
                     }
                 }
 
-
                 break;
             case KeyEvent.VK_SPACE:
-                if(!spacePressed) gp.getFlySound().start();
+                if(!spacePressed) {
+                    gp.getFlySound().setFramePosition(0);
+                    gp.getFlySound().start();
+                }
+
                 spacePressed = true;
+
                 gp.setRunWithEnemies(true);
                 gp.setShowStartScreen(false);
+
                 break;
             case KeyEvent.VK_F11:
                 gp.getDisplay().getWindow().setLocation(0, 0);
@@ -96,6 +101,7 @@ public class KeyHandler implements KeyListener {
         int keyCode = e.getKeyCode();
         if (keyCode == KeyEvent.VK_SPACE) {
             spacePressed = false;
+
             gp.getFlySound().stop();
             gp.getFlySound().setFramePosition(0);
         }

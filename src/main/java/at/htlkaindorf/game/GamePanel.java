@@ -35,10 +35,14 @@ public class GamePanel extends JPanel implements Runnable {
     private Display display;
 
     //Audio
-
     private Clip mainSound;
     private Clip flySound;
+    private Clip flyLoopSound;
+
+    private Clip walkSound;
     private Clip collisionSound;
+
+
     //Fonts
     Font myFont40 = new Font("Courier New", 1, 40);
     Font myFont20 = new Font("Courier New", 1, 20);
@@ -50,7 +54,7 @@ public class GamePanel extends JPanel implements Runnable {
     //FPS
     public static int FPS = 60;
     //Key Handler
-    private KeyHandler keyH = new KeyHandler(this);
+    private KeyHandler keyHandler = new KeyHandler(this);
     //gameThread
     private Thread gameThread;
 
@@ -64,7 +68,7 @@ public class GamePanel extends JPanel implements Runnable {
     private int score = 0;
     private ArrayList<Integer> scores = new ArrayList<Integer>();
     private int scoreY = 50;
-    private Player player = new Player(this, keyH);
+    private Player player = new Player(this, keyHandler);
 
     //World Speed
     public static double xspeed = 5.0;
@@ -80,7 +84,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void resetTheGame() {
         obstacleManager = new ObstacleManager(this);
-        player = new Player(this, keyH);
+        player = new Player(this, keyHandler);
         tileManager = new TileManager(this);
         collisionSound.stop();
         collisionSound.setFramePosition(0);
@@ -90,6 +94,9 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void collision() {
         mainSound.stop();
+        walkSound.stop();
+        flySound.stop();
+        flyLoopSound.stop();
         mainSound.setFramePosition(0);
         collisionSound.loop(Clip.LOOP_CONTINUOUSLY);
         paused = false;
@@ -99,16 +106,41 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void initSounds(){
         try {
-            File file = new File("res/audio/Masked Wolf - Astronaut in the Ocean.wav");
+            File file = new File("res/audio/Clash of Clans - Main Theme.wav");
             AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(file);
             mainSound = AudioSystem.getClip();
             mainSound.open(audioInputStream);
             mainSound.loop(Clip.LOOP_CONTINUOUSLY);
 
-            file = new File("res/audio/AUUGHHH!.wav");
+            file = new File("res/audio/JetpackCut4.wav");
             AudioInputStream audioInputStream2 = AudioSystem.getAudioInputStream(file);
             flySound = AudioSystem.getClip();
             flySound.open(audioInputStream2);
+
+            flySound.addLineListener(new LineListener() {
+                @Override
+                public void update(LineEvent event) {
+                    if(keyHandler.isSpacePressed() && event.getFramePosition() > 140000){
+                        System.out.println(event.getFramePosition());
+                        flyLoopSound.loop(Clip.LOOP_CONTINUOUSLY);
+                    }else{
+                        flyLoopSound.stop();
+                    }
+                }
+            });
+
+            file = new File("res/audio/JetpackLoopFade.wav");
+            AudioInputStream audioInputStream4 = AudioSystem.getAudioInputStream(file);
+            flyLoopSound = AudioSystem.getClip();
+            flyLoopSound.open(audioInputStream4);
+
+
+
+
+            file = new File("res/audio/Walking and Running on Grass Sound Effect [Minecraft].wav");
+            AudioInputStream audioInputStream5 = AudioSystem.getAudioInputStream(file);
+            walkSound = AudioSystem.getClip();
+            walkSound.open(audioInputStream5);
 
 
             file = new File("res/audio/Saul goodman 3d.wav");
@@ -138,7 +170,7 @@ public class GamePanel extends JPanel implements Runnable {
         this.setBackground(Color.decode("#0f0f0f0f"));
         this.setDoubleBuffered(true);
         this.setVisible(true);
-        this.addKeyListener(keyH);
+        this.addKeyListener(keyHandler);
         this.setFocusable(true);
         fullScreen = false;
 
@@ -173,9 +205,9 @@ public class GamePanel extends JPanel implements Runnable {
                 drawCount++;
             }
             if (timer >= 1000000000) {
-                System.out.println("FPS " + drawCount);
-                System.out.println(paused);
-                System.out.println(running);
+                //System.out.println("FPS " + drawCount);
+                //System.out.println(paused);
+                //System.out.println(running);
 
                 drawCount = 0;
                 timer = 0;
