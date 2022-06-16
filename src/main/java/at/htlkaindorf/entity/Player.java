@@ -6,6 +6,7 @@ import at.htlkaindorf.user.UserList;
 import lombok.Data;
 
 import javax.imageio.ImageIO;
+import javax.sound.sampled.Clip;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -24,10 +25,13 @@ public class Player extends Entity {
     //for xml
     private UserList userList;
 
+    private boolean additionalHeart;
+
 
     public Player(GamePanel gamePanel, KeyHandler keyHandler) {
         super(gamePanel);
         this.keyHandler = keyHandler;
+        this.additionalHeart = false;
 
         setDefaultValues();
         getPlayerImage();
@@ -151,8 +155,19 @@ public class Player extends Entity {
         if (keyHandler.isSpacePressed()) {
             g2.drawImage(flyImages[flyIMG], x, y, gamePanel.tileSize, gamePanel.tileSize, null);
         } else {
+
             g2.drawImage(runImages[runIMG], x, y, gamePanel.tileSize, gamePanel.tileSize, null);
         }
+
+        if(y == (int) (gamePanel.getScreenHeight() - gamePanel.tileSize * 1.8)
+                && !gamePanel.getWalkSound().isActive()
+                && gamePanel.isRunning()) {
+            gamePanel.getWalkSound().loop(Clip.LOOP_CONTINUOUSLY);
+        }
+        if(y != (int) (gamePanel.getScreenHeight() - gamePanel.tileSize * 1.8) && gamePanel.getWalkSound().isActive()){
+            gamePanel.getWalkSound().stop();
+        }
+
         //g2.draw(hitBox);
         //Collision
         /*
