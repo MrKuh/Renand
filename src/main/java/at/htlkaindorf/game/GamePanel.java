@@ -1,7 +1,7 @@
 package at.htlkaindorf.game;
 
 import at.htlkaindorf.controller.KeyHandler;
-import at.htlkaindorf.entity.GiftManager;
+import at.htlkaindorf.strategy.GiftManager;
 import at.htlkaindorf.entity.ObstacleManager;
 import at.htlkaindorf.entity.Player;
 import at.htlkaindorf.tile.TileManager;
@@ -220,6 +220,7 @@ public class GamePanel extends JPanel implements Runnable {
         player.update();
         if (runWithEnemies) {
             obstacleManager.update();
+            giftManager.update();
         }
     }
 
@@ -317,6 +318,8 @@ public class GamePanel extends JPanel implements Runnable {
         tileManager.draw(g2);
         player.draw(g2);
         obstacleManager.draw(g2);
+
+        giftManager.draw(g2);
 
         drawScore(g2);
         if (!running && !paused) drawDeathScreen(g2);

@@ -7,7 +7,7 @@ public class ScorePlus25 implements Action {
     }
 
     @Override
-    public void activate() {
+    public void use() {
 
     }
 }
