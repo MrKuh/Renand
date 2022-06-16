@@ -115,6 +115,8 @@ public class KeyHandler implements KeyListener {
 
             gp.getFlySound().stop();
             gp.getFlySound().setFramePosition(0);
+            gp.getFlyLoopSound().stop();
+            gp.getFlyLoopSound().setFramePosition(0);
         }
     }
 }
