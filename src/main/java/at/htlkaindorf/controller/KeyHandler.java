@@ -7,11 +7,22 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+/**
+ * This class is needed for recognising the key inputs.<br>
+ * If a key has been hit, it calls a function of {@code GamePanel}.
+ * @author MrKuh
+ * @author Bensi
+ * @version 1.17
+ */
 @Data
-
 public class KeyHandler implements KeyListener {
-
+    /**
+     * This value is used to know if the space button is being pressed or not.
+     */
     private boolean spacePressed;
+    /**
+     * This value is used to call functions and get/set values of {@code GamePanel}.
+     */
     private GamePanel gp;
 
     public KeyHandler(GamePanel gp) {
