@@ -92,6 +92,7 @@ public class GamePanel extends JPanel implements Runnable {
         mainSound.stop();
         walkSound.stop();
         flySound.stop();
+        flyLoopSound.stop();
         mainSound.setFramePosition(0);
         collisionSound.loop(Clip.LOOP_CONTINUOUSLY);
         paused = false;
@@ -107,7 +108,7 @@ public class GamePanel extends JPanel implements Runnable {
             mainSound.open(audioInputStream);
             mainSound.loop(Clip.LOOP_CONTINUOUSLY);
 
-            file = new File("res/audio/JetpackLoop.wav");
+            file = new File("res/audio/JetpackCut4.wav");
             AudioInputStream audioInputStream2 = AudioSystem.getAudioInputStream(file);
             flySound = AudioSystem.getClip();
             flySound.open(audioInputStream2);
@@ -115,7 +116,7 @@ public class GamePanel extends JPanel implements Runnable {
             flySound.addLineListener(new LineListener() {
                 @Override
                 public void update(LineEvent event) {
-                    if(keyHandler.isSpacePressed() && event.getFramePosition() > 150000){
+                    if(keyHandler.isSpacePressed() && event.getFramePosition() > 140000){
                         System.out.println(event.getFramePosition());
                         flyLoopSound.loop(Clip.LOOP_CONTINUOUSLY);
                     }else{
@@ -124,7 +125,7 @@ public class GamePanel extends JPanel implements Runnable {
                 }
             });
 
-            file = new File("res/audio/JetpackLoop.wav");
+            file = new File("res/audio/JetpackLoopFade.wav");
             AudioInputStream audioInputStream4 = AudioSystem.getAudioInputStream(file);
             flyLoopSound = AudioSystem.getClip();
             flyLoopSound.open(audioInputStream4);
