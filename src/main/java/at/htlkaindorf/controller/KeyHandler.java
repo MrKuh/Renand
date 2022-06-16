@@ -29,10 +29,19 @@ public class KeyHandler implements KeyListener {
         this.gp = gp;
     }
 
+    /**
+     * It is needed for the implemented {@code KeyListener} but it is not needed for our program.
+     * @param e the event to be processed
+     */
     @Override
     public void keyTyped(KeyEvent e) {
     }
 
+    /**
+     * This function does recognise the currently pressed keys.<br>
+     * For every key a different action will be triggered and executed.
+     * @param e the event to be processed
+     */
     @Override
     public void keyPressed(KeyEvent e) {
 
@@ -107,6 +116,11 @@ public class KeyHandler implements KeyListener {
         }
     }
 
+    /**
+     * This function does recognise the currently released keys.<br>
+     * It is used to set the {@code spacePressed} Boolean to false if the Space Bar is not being pressed anymore.
+     * @param e the event to be processed
+     */
     @Override
     public void keyReleased(KeyEvent e) {
         int keyCode = e.getKeyCode();
