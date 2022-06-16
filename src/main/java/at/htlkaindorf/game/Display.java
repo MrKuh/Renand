@@ -23,7 +23,7 @@ public class Display {
     private void createDisplay() {
         window = new JFrame(title);
         window.add(gp);
-        //window.setResizable(false);
+        window.setResizable(false);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setSize(gp.getScreenWidth(), gp.getScreenHeight());
         window.setUndecorated(false);
