@@ -24,10 +24,13 @@ public class Player extends Entity {
     //for xml
     private UserList userList;
 
+    private boolean additionalHeart;
+
 
     public Player(GamePanel gamePanel, KeyHandler keyHandler) {
         super(gamePanel);
         this.keyHandler = keyHandler;
+        this.additionalHeart = false;
 
         setDefaultValues();
         getPlayerImage();
