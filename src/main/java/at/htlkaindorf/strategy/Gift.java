@@ -19,9 +19,8 @@ public abstract class Gift {
 
     protected double speed = 5;
 
-    protected int spriteCounter = 0;
+    protected Rectangle hitBox = new Rectangle();
 
-    protected Rectangle hitBox;
 
 
     public void spawn() {
@@ -30,21 +29,35 @@ public abstract class Gift {
         x = gamePanel.getScreenWidth() + rand.nextInt(gamePanel.getScreenWidth());
 
         int high = (int) (gamePanel.getScreenHeight() - gamePanel.tileSize  * 1.8);
+        System.out.println("HEight " +gamePanel.getScreenHeight());
         int low = 100;
         y = rand.nextInt(high - low + 1) + low;
+
+        hitBox.width = (int) Math.round(gamePanel.tileSize  * 0.9);
+        hitBox.height = (int) Math.round(gamePanel.tileSize  * 0.9);
 
         hitBox.x = (int) Math.round(gamePanel.tileSize  * 0.05) + x;
         hitBox.y = (int) Math.round(gamePanel.tileSize  * 0.05) + y;
 
     }
     public void update() {
+        System.out.println(spawned);
         if(spawned){
             x -= speed;
+            System.out.println(x);
+            System.out.println(y);
+
+
+        hitBox.x = (int) Math.round(gamePanel.tileSize  * 0.05) + x;
+        hitBox.y = (int) Math.round(gamePanel.tileSize  * 0.05) + y;
         }
     }
 
     public void draw(Graphics2D g2){
-        //animation.draw(g2);
+        if(spawned) {
+            System.out.println("draw");
+            animation.draw(g2, x, y);
+        }
     }
 
 
@@ -61,10 +74,7 @@ public abstract class Gift {
     }
 
     public void activate(){
-        action.activate();
+        action.use();
     }
 
-    public void animate(){
-        animation.use();
-    }
 }

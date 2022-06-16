@@ -1,10 +1,7 @@
 package at.htlkaindorf.strategy;
 
-import java.awt.image.BufferedImage;
-import java.util.ArrayList;
-import java.util.List;
+import java.awt.*;
 
 public interface Animation {
-    public List<BufferedImage> images = new ArrayList<BufferedImage>();
-    public void use();
+    public void draw(Graphics2D g2, int x, int y);
 }

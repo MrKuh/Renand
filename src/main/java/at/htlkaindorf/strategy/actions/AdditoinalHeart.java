@@ -7,7 +7,7 @@ public class AdditoinalHeart implements Action {
     }
 
     @Override
-    public void activate() {
+    public void use() {
 
     }
 }
