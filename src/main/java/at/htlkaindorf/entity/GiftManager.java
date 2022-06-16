@@ -4,9 +4,6 @@ import at.htlkaindorf.game.GamePanel;
 import at.htlkaindorf.strategy.Common;
 import at.htlkaindorf.strategy.Gift;
 
-import java.awt.*;
-import java.util.ArrayList;
-
 public class GiftManager {
     private GamePanel gamePanel;
     private Gift common;
@@ -21,6 +18,7 @@ public class GiftManager {
 
         this.common = new Common(gamePanel);
         this.rare = new Common(gamePanel);
+
 
     }
 
