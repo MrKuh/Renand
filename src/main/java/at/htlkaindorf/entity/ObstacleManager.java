@@ -67,6 +67,7 @@ public class ObstacleManager {
             }
         }
 
+
         //Replace
         /*
         List<PurpleMonster> delete = new ArrayList<>();
