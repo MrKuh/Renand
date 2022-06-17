@@ -10,12 +10,26 @@ import java.io.IOException;
 import java.util.Random;
 
 
-
+/**
+ * This class {@code PurpleMonster} contains every feature of an enemy (purple Monster). <br>
+ * It contains the animation and the movement behavior of a monster.
+ * @author MrKuh
+ * @author Bensi
+ * @version 1.11
+ */
 @Data
 public class PurpleMonster extends Entity {
+    /**
+     * This variable defines the current image of the {@code PurpleMonster}.
+     */
     private int flyIMG;
-
+    /**
+     * This variable is used to get random values (Integers).
+     */
     private Random rand = new Random();
+    /**
+     * This variable contains all
+     */
     private BufferedImage[] flyImages;
     private boolean up = false;
 

@@ -1,7 +1,7 @@
 package at.htlkaindorf.strategy;
 
 import at.htlkaindorf.game.GamePanel;
-import at.htlkaindorf.strategy.actions.AdditoinalHeart;
+import at.htlkaindorf.strategy.actions.AdditionalHeart;
 import at.htlkaindorf.strategy.actions.ScorePlus100;
 import at.htlkaindorf.strategy.actions.ScorePlus50;
 
@@ -30,7 +30,7 @@ public class Rare extends Gift {
                 setAction(new ScorePlus100(gamePanel));
                 break;
             case 3:
-                setAction(new AdditoinalHeart(gamePanel));
+                setAction(new AdditionalHeart(gamePanel));
                 break;
         }
         super.spawn();

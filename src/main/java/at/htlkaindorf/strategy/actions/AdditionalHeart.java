@@ -5,9 +5,9 @@ import at.htlkaindorf.strategy.Action;
 import at.htlkaindorf.strategy.Animation;
 import at.htlkaindorf.strategy.animations.collected.AdditionalHeartAnimation;
 
-public class AdditoinalHeart implements Action {
+public class AdditionalHeart implements Action {
     private GamePanel gamePanel;
-    public AdditoinalHeart(GamePanel gamePanel) {
+    public AdditionalHeart(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
     }
 
