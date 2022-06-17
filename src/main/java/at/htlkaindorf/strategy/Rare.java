@@ -20,7 +20,7 @@ public class Rare extends Gift {
     @Override
     public void spawn(){
         Random rand = new Random();
-        int random = rand.nextInt(1,3);
+        int random = rand.nextInt(3,4);
         System.out.println(random);
         switch (random) {
             case 1:

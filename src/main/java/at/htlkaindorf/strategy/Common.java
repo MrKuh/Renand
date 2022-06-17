@@ -18,7 +18,7 @@ public class Common extends Gift {
     @Override
     public void spawn(){
         Random rand = new Random();
-        int random = rand.nextInt(1,2);
+        int random = rand.nextInt(1,3);
         System.out.println(random);
         switch (random) {
             case 1:

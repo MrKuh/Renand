@@ -5,6 +5,8 @@ import at.htlkaindorf.strategy.Action;
 import at.htlkaindorf.strategy.Animation;
 import at.htlkaindorf.strategy.animations.collected.AdditionalScoreAnimation;
 
+import java.util.Random;
+
 public class ScorePlus100 implements Action {
     private GamePanel gamePanel;
     private int scoreAmount = 100;
@@ -17,7 +19,12 @@ public class ScorePlus100 implements Action {
         gamePanel.setScore(gamePanel.getScore() + scoreAmount);
 
         int nextSpawn = gamePanel.getGiftManager().getNextSpawn();
-        gamePanel.getGiftManager().setNextSpawn(nextSpawn + scoreAmount);
+        if(nextSpawn <= gamePanel.getScore()){
+            Random rand = new Random();
+            nextSpawn = gamePanel.getScore() + rand.nextInt(25,30);
+            gamePanel.getGiftManager().setNextSpawn(nextSpawn);
+        }
+        System.out.println(nextSpawn);
 
         return new AdditionalScoreAnimation(gamePanel, scoreAmount);
 

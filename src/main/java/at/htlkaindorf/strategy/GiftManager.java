@@ -26,7 +26,7 @@ public class GiftManager {
     private Random rand = new Random();
 
     public GiftManager(GamePanel gamePanel) {
-        nextSpawn = rand.nextInt(10,20);
+        nextSpawn = rand.nextInt(5,15);
 
         this.gamePanel = gamePanel;
 
@@ -40,9 +40,14 @@ public class GiftManager {
     public void update() {
         //System.out.println(nextSpawn);
         if(gamePanel.getScore() >= nextSpawn){
-            nextSpawn += rand.nextInt(20,60);
+            //System.out.println(nextSpawn);
+            nextSpawn += rand.nextInt(20,51);
+            //System.out.println(nextSpawn);
 
-            if(rand.nextInt(20) > 15){
+            int random = rand.nextInt(20);
+            //System.out.println(random);
+
+            if(random> 15){
                 rare.setAnimation(new QuestionAnimationRare(gamePanel));
                 rare.spawn();
             }else{
