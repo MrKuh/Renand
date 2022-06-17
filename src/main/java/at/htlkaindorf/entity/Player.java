@@ -2,7 +2,6 @@ package at.htlkaindorf.entity;
 
 import at.htlkaindorf.controller.KeyHandler;
 import at.htlkaindorf.game.GamePanel;
-import at.htlkaindorf.user.UserList;
 import lombok.Data;
 
 import javax.imageio.ImageIO;
@@ -11,20 +10,60 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
+/**
+ * This class includes everything for the {@code Player} object.<br>
+ * It contains the animation, handles the key inputs and moves the player up and down.
+ * @author Mrkuh
+ * @author Bensi
+ * @version 1.53
+ */
 @Data
 public class Player extends Entity {
+    /**
+     * This variable is used to get information of the {@code KeyHandler}, which Button has been clicked.
+     */
     private KeyHandler keyHandler;
-
+    /**
+     * This variable defines which the current running Picture is.
+     */
     private int runIMG;
+    /**
+     * This variable defines which the current flying Picture is.
+     */
     private int flyIMG;
+    /**
+     * This variable contains all running images.
+     */
     private BufferedImage[] runImages;
+    /**
+     * This variable contains all flying images
+     */
     private BufferedImage[] flyImages;
 
-    //for xml
-    private String xmlFile;
-    //for xml
-    private UserList userList;
-
+    //player speed related variables
+    /**
+     * This variable defines the maximum speed that a {@code Player} can fly up.
+     */
+    private double maxUpSpeed;
+    /**
+     * This variable defines the maximum speed that a {@code Player} can fly down.
+     */
+    private double maxDownSpeed;
+    /**
+     * This variable defines the speed that will be added to the {@code Player}-speed every frame the space bar is pressed.
+     */
+    private double flyUpSpeed;
+    /**
+     * This variable defines the speed that will be added to the {@code Player}-speed every frame the space bar is not pressed.
+     */
+    private double flyDownSpeed;
+    /**
+     * This variable lets the {@code Player} fly up faster.
+     */
+    private double maxDownWhenUpSpeed;
+    /**
+     * This {@link Boolean} tells the {@code GamePanel} if an additional heart is present.
+     */
     private boolean additionalHeart;
 
 
@@ -37,10 +76,21 @@ public class Player extends Entity {
         getPlayerImage();
     }
 
+    /**
+     * This function sets the values to its default.<br>
+     * Only needed by constructor.
+     */
     public void setDefaultValues() {
         x = 100;
         y = gamePanel.getScreenHeight() - 150;
         speed = 5.0;
+
+        maxUpSpeed = -20.0;
+        maxDownSpeed = 12.0;
+        flyUpSpeed = -1.3;
+        flyDownSpeed = 0.6;
+        maxDownWhenUpSpeed = 5.0;
+
 
         runIMG = 1;
         flyIMG = 0;
@@ -52,6 +102,9 @@ public class Player extends Entity {
         hitBox.height = (int) Math.round(gamePanel.tileSize * 0.81);
     }
 
+    /**
+     * This function sets the run and fly images.
+     */
     public void getPlayerImage() {
         try {
             runImages = new BufferedImage[]{
@@ -81,6 +134,10 @@ public class Player extends Entity {
         }
     }
 
+    /**
+     * This is the {@code update()} function. It changes the {@code speed} variable, <br>
+     * the current fly image, the current run image and the hitBox of the player.
+     */
     public void update() {
         //old function
         /*if (keyHandler.isSpacePressed()) {
@@ -94,20 +151,20 @@ public class Player extends Entity {
         }*/
 
         if (keyHandler.isSpacePressed()) {
-            if(speed > 5){
-                speed = 5;
+            if(speed > maxDownWhenUpSpeed){
+                speed = maxDownWhenUpSpeed;
             }
 
             //speed = 15;
-            speed -= 1.3;
-            if (speed < -17.0) {
-                speed = -20;
+            speed += flyUpSpeed;
+            if (speed < maxUpSpeed) {
+                speed = maxUpSpeed;
             }
         } else {
             //speed = -10;
-            speed += 0.7;
-            if (speed > 15.0) {
-                speed = 15;
+            speed += flyDownSpeed;
+            if (speed > maxDownSpeed) {
+                speed = maxDownSpeed;
             }
         }
         y += speed;
@@ -115,7 +172,7 @@ public class Player extends Entity {
         if (y < 0) {
             y = 0;
             //scuffed wiggle animation
-            speed = 5;
+            speed = maxDownWhenUpSpeed;
         }
         if (y > gamePanel.getScreenHeight() - gamePanel.tileSize * 1.8) {
             y = (int) (gamePanel.getScreenHeight() - gamePanel.tileSize * 1.8);
@@ -150,6 +207,10 @@ public class Player extends Entity {
         hitBox.y = (int) Math.round(gamePanel.tileSize * 0.19) + y;
     }
 
+    /**
+     * This function draws the {@code Player} object and adds the walk-sound.
+     * @param g2 - the {@code Graphics2D} object for printing
+     */
     public void draw(Graphics2D g2) {
         gamePanel.getObstacleManager().checkCollision(this, g2);
         if (keyHandler.isSpacePressed()) {
