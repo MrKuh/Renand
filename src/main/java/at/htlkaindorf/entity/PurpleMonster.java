@@ -116,13 +116,13 @@ public class PurpleMonster extends Entity {
         //Random
         intiRandom();
 
-        speed = 10.0;
+
 
         flyIMG = 0;
         up = rand.nextBoolean();
     }
     public void update() {
-
+        speed = gamePanel.getGameSpeed() *2;
         //tunnel(rand);
         randomUpDown();
         //Movement

@@ -49,6 +49,7 @@ public abstract class Gift {
 
     }
     public void update() {
+        speed = gamePanel.getGameSpeed();
         //System.out.println(spawned);
         if(spawned){
             x -= speed;

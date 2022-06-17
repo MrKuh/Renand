@@ -18,13 +18,14 @@ public class TileManager {
     private int lastCloud = 1;
     private ArrayList<Cloud> clouds;
 
-    private GamePanel gp;
+    private GamePanel gamePanel;
     private Tile[] tiles;
     private int x = 0;
+    private int speed = 0;
 
 
-    public TileManager(GamePanel gp) {
-        this.gp = gp;
+    public TileManager(GamePanel gamePanel) {
+        this.gamePanel = gamePanel;
 
         tiles = new Tile[10];
         clouds = new ArrayList<>();
@@ -35,16 +36,16 @@ public class TileManager {
     }
 
     public void setCloudContent() {
-        int amount = (gp.getScreenWidth() + gp.tileSize) / widthClouds;
+        int amount = (gamePanel.getScreenWidth() + gamePanel.tileSize) / widthClouds;
         double xCord = 0.0;
 
         for (int i = 0; i < amount; i++) {
             if (i != 0) {
-                xCord = (clouds.get(i - 1).getXPosition() * gp.getScreenWidth() + widthClouds) / gp.getScreenWidth();
+                xCord = (clouds.get(i - 1).getXPosition() * gamePanel.getScreenWidth() + widthClouds) / gamePanel.getScreenWidth();
             }
             clouds.add(new Cloud(
                     getRandomCloudImage(),
-                    rand.nextDouble((gp.getScreenHeight() - gp.tileSize) / 5.0) / (gp.getScreenHeight() - gp.tileSize),
+                    rand.nextDouble((gamePanel.getScreenHeight() - gamePanel.tileSize) / 5.0) / (gamePanel.getScreenHeight() - gamePanel.tileSize),
                     xCord,
                     false)
             );
@@ -98,28 +99,28 @@ public class TileManager {
     }
 
     public void draw(Graphics2D g2) {
-
+        speed = (int) gamePanel.getGameSpeed();
         //ground
-        if (x < -gp.tileSize) {
-            x += gp.tileSize;
+        if (x < -gamePanel.tileSize) {
+            x += gamePanel.tileSize;
         }
         int i = x;
-        while (i <= gp.getScreenWidth() + gp.tileSize) {
-            g2.drawImage(tiles[0].getImage(), i, gp.getScreenHeight() - gp.tileSize, gp.tileSize, gp.tileSize, null);
-            i += gp.tileSize;
+        while (i <= gamePanel.getScreenWidth() + gamePanel.tileSize) {
+            g2.drawImage(tiles[0].getImage(), i, gamePanel.getScreenHeight() - gamePanel.tileSize, gamePanel.tileSize, gamePanel.tileSize, null);
+            i += gamePanel.tileSize;
         }
-        x -= gp.xspeed;
+        x -= speed;
 
         //System.out.println(clouds.size());
         for (int k = 0; k < clouds.size(); k++) {
-            if ((clouds.get(k).getXPosition() * gp.getScreenWidth()) < (gp.tileSize * (-1) * cloudScale)) {
+            if ((clouds.get(k).getXPosition() * gamePanel.getScreenWidth()) < (gamePanel.tileSize * (-1) * cloudScale)) {
                 clouds.add(clouds.remove(0));
-                clouds.get(clouds.size() - 1).setXPosition((gp.getScreenWidth() + gp.tileSize) / gp.getScreenWidth());
-                clouds.get(clouds.size() - 1).setHeight(rand.nextDouble((gp.getScreenHeight() - gp.tileSize) / 5.0) / (gp.getScreenHeight() - gp.tileSize));
+                clouds.get(clouds.size() - 1).setXPosition((gamePanel.getScreenWidth() + gamePanel.tileSize) / gamePanel.getScreenWidth());
+                clouds.get(clouds.size() - 1).setHeight(rand.nextDouble((gamePanel.getScreenHeight() - gamePanel.tileSize) / 5.0) / (gamePanel.getScreenHeight() - gamePanel.tileSize));
                 clouds.get(clouds.size() - 1).setImage(getRandomCloudImage());
             }
-            g2.drawImage(clouds.get(k).getImage(), (int) (clouds.get(k).getXPosition() * gp.getScreenWidth()), (int) (clouds.get(k).getHeight() * (gp.getScreenHeight() - gp.tileSize)), gp.tileSize * cloudScale, gp.tileSize * cloudScale, null);
-            clouds.get(k).setXPosition((clouds.get(k).getXPosition() * gp.getScreenWidth() - gp.xspeed) / gp.getScreenWidth());
+            g2.drawImage(clouds.get(k).getImage(), (int) (clouds.get(k).getXPosition() * gamePanel.getScreenWidth()), (int) (clouds.get(k).getHeight() * (gamePanel.getScreenHeight() - gamePanel.tileSize)), gamePanel.tileSize * cloudScale, gamePanel.tileSize * cloudScale, null);
+            clouds.get(k).setXPosition((clouds.get(k).getXPosition() * gamePanel.getScreenWidth() - speed) / gamePanel.getScreenWidth());
         }
     }
 

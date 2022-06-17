@@ -13,8 +13,12 @@ public class AdditoinalHeart implements Action {
 
     @Override
     public Animation use() {
-        gamePanel.getPlayer().setAdditionalHeart(true);
-        return new AdditionalHeartAnimation(gamePanel);
+        if(gamePanel.getPlayer().isAdditionalHeart()){
+            return new ScorePlus100(gamePanel).use();
+        }else{
+            gamePanel.getPlayer().setAdditionalHeart(true);
+            return new AdditionalHeartAnimation(gamePanel);
+        }
     }
 
 }

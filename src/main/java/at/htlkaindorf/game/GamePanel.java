@@ -1,9 +1,9 @@
 package at.htlkaindorf.game;
 
 import at.htlkaindorf.controller.KeyHandler;
-import at.htlkaindorf.strategy.GiftManager;
 import at.htlkaindorf.entity.ObstacleManager;
 import at.htlkaindorf.entity.Player;
+import at.htlkaindorf.strategy.GiftManager;
 import at.htlkaindorf.tile.TileManager;
 import lombok.Data;
 
@@ -71,7 +71,8 @@ public class GamePanel extends JPanel implements Runnable {
     private Player player = new Player(this, keyHandler);
 
     //World Speed
-    public static double xspeed = 5.0;
+    private int addedGameSpeed = 0;
+    private double gameSpeed = 5.0;
 
     //Tile
     private TileManager tileManager = new TileManager(this);
@@ -83,6 +84,8 @@ public class GamePanel extends JPanel implements Runnable {
     private boolean runWithEnemies = false;
 
     public void resetTheGame() {
+        addedGameSpeed = 0;
+        gameSpeed = 5.0;
         obstacleManager = new ObstacleManager(this);
         player = new Player(this, keyHandler);
         tileManager = new TileManager(this);
@@ -209,7 +212,6 @@ public class GamePanel extends JPanel implements Runnable {
                 //System.out.println("FPS " + drawCount);
                 //System.out.println(paused);
                 //System.out.println(running);
-
                 drawCount = 0;
                 timer = 0;
             }
@@ -218,6 +220,11 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void update() {
+        if(score / 100 - addedGameSpeed > 1 && addedGameSpeed < 10){
+            addedGameSpeed++;
+            gameSpeed++;
+        }
+
         player.update();
         if (runWithEnemies) {
             obstacleManager.update();
