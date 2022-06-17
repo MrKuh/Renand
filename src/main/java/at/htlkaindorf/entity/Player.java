@@ -13,6 +13,7 @@ import java.io.IOException;
 /**
  * This class includes everything for the {@code Player} object.<br>
  * It contains the animation, handles the key inputs and moves the player up and down.
+ *
  * @author Mrkuh
  * @author Bensi
  * @version 1.53
@@ -156,7 +157,7 @@ public class Player extends Entity {
         }*/
 
         if (keyHandler.isSpacePressed()) {
-            if(speed > maxDownWhenUpSpeed){
+            if (speed > maxDownWhenUpSpeed) {
                 speed = maxDownWhenUpSpeed;
             }
 
@@ -196,7 +197,7 @@ public class Player extends Entity {
                 }
                 spriteCounter = 0;
             }
-        }else if(y == (int) (gamePanel.getScreenHeight() - gamePanel.tileSize * 1.8)){
+        } else if (y == (int) (gamePanel.getScreenHeight() - gamePanel.tileSize * 1.8)) {
             flyIMG = 0;
             //Run
             if (spriteCounter > gamePanel.FPS / runImages.length / 4) {
@@ -214,6 +215,7 @@ public class Player extends Entity {
 
     /**
      * This function draws the {@code Player} object and adds the walk-sound.
+     *
      * @param g2 - the {@code Graphics2D} object for printing
      */
     public void draw(Graphics2D g2) {
@@ -225,18 +227,18 @@ public class Player extends Entity {
             g2.drawImage(runImages[runIMG], x, y, gamePanel.tileSize, gamePanel.tileSize, null);
         }
 
-        if(y == (int) (gamePanel.getScreenHeight() - gamePanel.tileSize * 1.8)
+        if (y == (int) (gamePanel.getScreenHeight() - gamePanel.tileSize * 1.8)
                 && !gamePanel.getWalkSound().isActive()
                 && gamePanel.isRunning()) {
             gamePanel.getWalkSound().loop(Clip.LOOP_CONTINUOUSLY);
         }
-        if(y != (int) (gamePanel.getScreenHeight() - gamePanel.tileSize * 1.8) && gamePanel.getWalkSound().isActive()){
+        if (y != (int) (gamePanel.getScreenHeight() - gamePanel.tileSize * 1.8) && gamePanel.getWalkSound().isActive()) {
             gamePanel.getWalkSound().stop();
         }
-        if(isAdditionalHeart()){
-            g2.drawImage(collectable[1], 20, 20, gamePanel.tileSize/3, gamePanel.tileSize/3, null);
-        }else{
-            g2.drawImage(collectable[0], 20, 20, gamePanel.tileSize/3, gamePanel.tileSize/3, null);
+        if (isAdditionalHeart()) {
+            g2.drawImage(collectable[1], 20, 20, gamePanel.tileSize / 3, gamePanel.tileSize / 3, null);
+        } else {
+            g2.drawImage(collectable[0], 20, 20, gamePanel.tileSize / 3, gamePanel.tileSize / 3, null);
         }
 
 

@@ -9,6 +9,7 @@ import java.util.List;
 /**
  * This class {@code ObstacleManager} is used to manage everything of the purple monsters.<br>
  * It recognises when the {@code Player} hits a monster, draws the monsters and updates the monsters.
+ *
  * @author MrKuh
  * @author Bensi
  * @version 1.21
@@ -38,7 +39,7 @@ public class ObstacleManager {
         this.gamePanel = gamePanel;
         this.purpleMonsters = new ArrayList<PurpleMonster>();
 
-        for (int i = 0; i < purpleMonsterAmount ; i++) {
+        for (int i = 0; i < purpleMonsterAmount; i++) {
             purpleMonsters.add(new PurpleMonster(gamePanel));
         }
 
@@ -46,19 +47,20 @@ public class ObstacleManager {
 
     /**
      * This function checks if a {@code PurpleMonster} has hit the {@code Player}.
+     *
      * @param player - the {@code Player} object to check if it is hit
-     * @param g2 - the {@code Graphics2D} object
+     * @param g2     - the {@code Graphics2D} object
      * @return boolean hit -> if it is hit or not
      */
-    public boolean checkCollision(Player player, Graphics2D g2){
+    public boolean checkCollision(Player player, Graphics2D g2) {
         boolean hit = false;
-        for (PurpleMonster purpleMonster : purpleMonsters){
-            if(g2.hit(player.getHitBox(), purpleMonster.getHitBox(), true)){
-                if(player.isAdditionalHeart()){
+        for (PurpleMonster purpleMonster : purpleMonsters) {
+            if (g2.hit(player.getHitBox(), purpleMonster.getHitBox(), true)) {
+                if (player.isAdditionalHeart()) {
                     purpleMonster.intiRandom();
                     player.setAdditionalHeart(false);
                     break;
-                }else{
+                } else {
                     hit = true;
                     gamePanel.collision();
                     break;
@@ -72,15 +74,16 @@ public class ObstacleManager {
     /**
      * This function checks if two {@code PurpleMonster}s hit and changes the directory of one of them, <br>
      * so they cannot cross each other.
+     *
      * @param purpleMonster - one specific {@code PurpleMonster} to check if it is hit
-     * @param g2 - the {@code Graphics2D} object
+     * @param g2            - the {@code Graphics2D} object
      * @return boolean hit -> if two hit each other or not
      */
-    public boolean checkPurpleMonsterCollision(PurpleMonster purpleMonster, Graphics2D g2){
+    public boolean checkPurpleMonsterCollision(PurpleMonster purpleMonster, Graphics2D g2) {
         boolean hit = false;
-        for (Entity obstacle : purpleMonsters){
-            if(obstacle != purpleMonster){
-                if(g2.hit(purpleMonster.getHitBox(), obstacle.getHitBox(), true)){
+        for (Entity obstacle : purpleMonsters) {
+            if (obstacle != purpleMonster) {
+                if (g2.hit(purpleMonster.getHitBox(), obstacle.getHitBox(), true)) {
                     hit = true;
                     purpleMonster.changeDirection(obstacle.getHitBox());
                     break;
@@ -92,10 +95,11 @@ public class ObstacleManager {
 
     /**
      * This function draws the {@code PurpleMonster}s.
+     *
      * @param g2 - the {@code Graphics2D} object
      */
     public void draw(Graphics2D g2) {
-         for (PurpleMonster obstacle : purpleMonsters){
+        for (PurpleMonster obstacle : purpleMonsters) {
             obstacle.draw(g2);
         }
 
@@ -105,12 +109,12 @@ public class ObstacleManager {
      * This function updates the {@code PurpleMonster}s by calling the {@code update()} function of {@code PurpleMonster} <br>
      * and adds something to the score of {@code GamePanel} if a {@code PurpleMonster} moves out of the field of view.
      */
-    public void updatePurpleMonster(){
-        for (PurpleMonster purpleMonster : purpleMonsters){
+    public void updatePurpleMonster() {
+        for (PurpleMonster purpleMonster : purpleMonsters) {
             purpleMonster.update();
-            if(purpleMonster.getX() <= -100){
+            if (purpleMonster.getX() <= -100) {
                 purpleMonster.intiRandom();
-                gamePanel.setScore(gamePanel.getScore()+1);
+                gamePanel.setScore(gamePanel.getScore() + 1);
             }
         }
 
@@ -130,7 +134,7 @@ public class ObstacleManager {
      * This function adds new {@code PurpleMonster}s, so it becomes more difficult.
      */
     private void updatePurpleMonsterAmount() {
-        if(gamePanel.getScore() / 100 - added > 1 && purpleMonsters.size() < 10){
+        if (gamePanel.getScore() / 100 - added > 1 && purpleMonsters.size() < 10) {
             System.out.println("ADD");
             added++;
             purpleMonsters.add(new PurpleMonster(gamePanel));

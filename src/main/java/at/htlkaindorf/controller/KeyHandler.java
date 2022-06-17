@@ -10,6 +10,7 @@ import java.awt.event.KeyListener;
 /**
  * This class is needed for recognising the key inputs.<br>
  * If a key has been hit, it calls a function of {@code GamePanel}.
+ *
  * @author MrKuh
  * @author Bensi
  * @version 1.17
@@ -31,6 +32,7 @@ public class KeyHandler implements KeyListener {
 
     /**
      * It is needed for the implemented {@code KeyListener} but it is not needed for our program.
+     *
      * @param e the event to be processed
      */
     @Override
@@ -40,6 +42,7 @@ public class KeyHandler implements KeyListener {
     /**
      * This function does recognise the currently pressed keys.<br>
      * For every key a different action will be triggered and executed.
+     *
      * @param e the event to be processed
      */
     @Override
@@ -65,11 +68,11 @@ public class KeyHandler implements KeyListener {
                 break;
             case KeyEvent.VK_ESCAPE:
                 //Launcher.changeScreen(gp.getScreenWidth(), gp.getScreenHeight());
-                if(gp.isRunWithEnemies()){
-                    if(gp.isPaused() && !gp.isRunning()){
+                if (gp.isRunWithEnemies()) {
+                    if (gp.isPaused() && !gp.isRunning()) {
                         gp.setPaused(false);
                         gp.setRunning(true);
-                    }else if(!gp.isPaused() && gp.isRunning()){
+                    } else if (!gp.isPaused() && gp.isRunning()) {
                         gp.setPaused(true);
                         gp.setRunning(false);
                     }
@@ -77,7 +80,7 @@ public class KeyHandler implements KeyListener {
 
                 break;
             case KeyEvent.VK_SPACE:
-                if(!spacePressed) {
+                if (!spacePressed) {
                     gp.getFlySound().setFramePosition(0);
                     gp.getFlySound().start();
                 }
@@ -119,6 +122,7 @@ public class KeyHandler implements KeyListener {
     /**
      * This function does recognise the currently released keys.<br>
      * It is used to set the {@code spacePressed} Boolean to false if the Space Bar is not being pressed anymore.
+     *
      * @param e the event to be processed
      */
     @Override

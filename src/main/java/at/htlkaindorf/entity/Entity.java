@@ -10,6 +10,7 @@ import java.awt.image.BufferedImage;
 
 /**
  * This {@code Entity} class is used to give {@code PurpleMonster} it's required instances through inheritance.
+ *
  * @author MrKuh
  * @author Bensi
  * @version 1.1
