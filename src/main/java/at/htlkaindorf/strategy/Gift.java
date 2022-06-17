@@ -40,11 +40,11 @@ public abstract class Gift {
      */
     protected int x, y;
     /**
-     * This variable is used to define the speed of the Gift
+     * This variable is used to define the speed of the Gift.
      */
     protected double speed = 5;
     /**
-     * This variable is used to define the hitbox of the Gift
+     * This variable is used to define the hitbox of the Gift.
      */
     protected Rectangle hitBox = new Rectangle();
 
@@ -117,7 +117,6 @@ public abstract class Gift {
             activate();
         }
     }
-
 
     public void setAction(Action action) {
         this.action = action;

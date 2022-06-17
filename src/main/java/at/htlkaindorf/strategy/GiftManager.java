@@ -9,7 +9,14 @@ import lombok.RequiredArgsConstructor;
 
 import java.awt.*;
 import java.util.Random;
-
+/**
+ * This class {@code ObstacleManager} is used to manage the Gifts.<br>
+ * It spawns, updates and draws a rare and a common gift.
+ *
+ * @author MrKuh
+ * @author Bensi
+ * @version 1.21
+ */
 @Data
 @RequiredArgsConstructor
 @AllArgsConstructor

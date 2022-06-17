@@ -8,7 +8,14 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
-
+/**
+ * This class {@code TileManager} is used to manage the Background.<br>
+ * It draws clouds and ground tiles and moves them.
+ *
+ * @author MrKuh
+ * @author Bensi
+ * @version 1.21
+ */
 public class TileManager {
 
     private static final Random rand = new Random();
@@ -34,7 +41,10 @@ public class TileManager {
 
         getObstacleImage();
     }
-
+    /**
+     * This class {@code TileManager} is used to manage the Background.<br>
+     * It draws clouds and ground tiles and moves them.
+     */
     public void setCloudContent() {
         int amount = (gamePanel.getScreenWidth() + gamePanel.tileSize) / widthClouds;
         double xCord = 0.0;
@@ -52,7 +62,9 @@ public class TileManager {
             //xCord += widthClouds;
         }
     }
-
+    /**
+     * function to choose a random cloud image
+     */
     private BufferedImage getRandomCloudImage() {
         try {
             //return ImageIO.read(getClass().getResourceAsStream("/clouds/sprite_0.png"));
@@ -88,7 +100,9 @@ public class TileManager {
         }
         return null;
     }
-
+    /**
+     * function to get the image of the ground tile
+     */
     public void getObstacleImage() {
         try {
             tiles[0] = new Tile();
@@ -97,7 +111,9 @@ public class TileManager {
             e.printStackTrace();
         }
     }
-
+    /**
+     * function to move and draw the cloud and tiles
+     */
     public void draw(Graphics2D g2) {
         speed = (int) gamePanel.getGameSpeed();
         //ground
@@ -123,7 +139,9 @@ public class TileManager {
             clouds.get(k).setXPosition((clouds.get(k).getXPosition() * gamePanel.getScreenWidth() - speed) / gamePanel.getScreenWidth());
         }
     }
-
+    /**
+     * function to update after fullscreen
+     */
     public synchronized void setCloudsAfterResize() {
         clouds.clear();
         setCloudContent();
