@@ -6,7 +6,6 @@ import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
 
 /**
  * This {@code Entity} class is used to give {@code PurpleMonster} it's required instances through inheritance.
@@ -32,7 +31,6 @@ public class Entity {
      * It is needed if u want to call a function of {@code GamePanel}.
      */
     protected GamePanel gamePanel;
-
     /**
      * This variable is used to control the animation speed of an {@code Entity}.
      */

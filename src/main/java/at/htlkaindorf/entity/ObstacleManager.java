@@ -33,7 +33,6 @@ public class ObstacleManager {
      */
     private int added = 0;
 
-
     public ObstacleManager(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
         this.purpleMonsters = new ArrayList<PurpleMonster>();

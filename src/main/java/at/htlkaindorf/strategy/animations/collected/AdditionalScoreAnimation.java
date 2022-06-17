@@ -10,13 +10,39 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The {@code AdditionalScoreAnimation} class is used for the implementation of the {@code Gift} with the Strategy Pattern.<br>
+ * The {@code AdditionalScoreAnimation} class is used for the animation of the additional Score action of a {@code Gift}.
+ *
+ * @author MrKuh
+ * @author Bensi
+ * @version 1.40
+ */
 public class AdditionalScoreAnimation implements Animation {
-
+    /**
+     * Just an object of {@code GamePanel}. <br>
+     * It is needed if u want to call a function of {@code GamePanel}.
+     */
     private GamePanel gamePanel;
+    /**
+     * This variable is used to control the animation speed.
+     */
     private int spriteCounter = 0;
+    /**
+     * This variable defines the index currently displayed image.
+     */
     private int image = 0;
+    /**
+     * This variable defines the number of loops the animation should be displayed
+     */
     private int loops = 3;
+    /**
+     * This stores the amount that should be added to the score
+     */
     private int scoreAmount;
+    /**
+     * This variable contains all images of the animation
+     */
     private List<BufferedImage> images = new ArrayList<BufferedImage>();
 
     public AdditionalScoreAnimation(GamePanel gamePanel, int scoreAmount) {

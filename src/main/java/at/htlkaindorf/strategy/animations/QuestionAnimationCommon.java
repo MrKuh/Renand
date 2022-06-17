@@ -11,10 +11,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class QuestionAnimationCommon implements Animation {
-
+    /**
+     * This {@code Rectangle} object is used to define the HitBox of the {@code Entity}
+     */
     private GamePanel gamePanel;
+    /**
+     * This variable is used to control the animation speed.
+     */
     private int spriteCounter = 0;
+
+    /**
+     * This variable defines the index currently displayed image.
+     */
     private int image = 0;
+    /**
+     * This variable contains all images of the animation
+     */
     private List<BufferedImage> images = new ArrayList<BufferedImage>();
 
     public QuestionAnimationCommon(GamePanel gamePanel) {
@@ -29,11 +41,12 @@ public class QuestionAnimationCommon implements Animation {
             e.printStackTrace();
         }
     }
+
     @Override
-    public void draw(Graphics2D g2 , int x, int y) {
+    public void draw(Graphics2D g2, int x, int y) {
         //animation
         spriteCounter++;
-        if (spriteCounter > gamePanel.FPS / images.size()/ 1.5) {
+        if (spriteCounter > gamePanel.FPS / images.size() / 1.5) {
             if (image < images.size() - 1) {
                 image++;
             } else {
@@ -41,6 +54,6 @@ public class QuestionAnimationCommon implements Animation {
             }
             spriteCounter = 0;
         }
-        g2.drawImage(images.get(image), x, y, gamePanel.tileSize , gamePanel.tileSize , null);
+        g2.drawImage(images.get(image), x, y, gamePanel.tileSize, gamePanel.tileSize, null);
     }
 }
