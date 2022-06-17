@@ -10,7 +10,6 @@ import java.io.IOException;
 import java.util.Random;
 
 
-
 @Data
 public class PurpleMonster extends Entity {
     private int flyIMG;
