@@ -220,7 +220,7 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void update() {
-        if(score / 100 - addedGameSpeed > 1 && addedGameSpeed < 10){
+        if(score / 100 - addedGameSpeed > 1 && gameSpeed< 10){
             addedGameSpeed++;
             gameSpeed++;
         }
