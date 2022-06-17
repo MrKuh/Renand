@@ -86,6 +86,7 @@ public class GamePanel extends JPanel implements Runnable {
         obstacleManager = new ObstacleManager(this);
         player = new Player(this, keyHandler);
         tileManager = new TileManager(this);
+        giftManager = new GiftManager(this);
         collisionSound.stop();
         collisionSound.setFramePosition(0);
         mainSound.loop(Clip.LOOP_CONTINUOUSLY);
@@ -121,7 +122,7 @@ public class GamePanel extends JPanel implements Runnable {
                 @Override
                 public void update(LineEvent event) {
                     if(keyHandler.isSpacePressed() && event.getFramePosition() > 140000){
-                        System.out.println(event.getFramePosition());
+                        //System.out.println(event.getFramePosition());
                         flyLoopSound.loop(Clip.LOOP_CONTINUOUSLY);
                     }else{
                         flyLoopSound.stop();

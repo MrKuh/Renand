@@ -10,18 +10,21 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class QuestionAnimation implements Animation {
-
+public class QuestionAnimationRare implements Animation {
 
     private GamePanel gamePanel;
     private int spriteCounter = 0;
     private int image = 0;
     private List<BufferedImage> images = new ArrayList<BufferedImage>();
 
-    public QuestionAnimation(GamePanel gamePanel) {
+    public QuestionAnimationRare(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
         try {
-            images.add(ImageIO.read(getClass().getResourceAsStream("/collectable/collectable_item.png")));
+            images.add(ImageIO.read(getClass().getResourceAsStream("/collectable/questionBlock/rare/rareQuestionBlock0.png")));
+            images.add(ImageIO.read(getClass().getResourceAsStream("/collectable/questionBlock/rare/rareQuestionBlock1.png")));
+            images.add(ImageIO.read(getClass().getResourceAsStream("/collectable/questionBlock/rare/rareQuestionBlock2.png")));
+            images.add(ImageIO.read(getClass().getResourceAsStream("/collectable/questionBlock/rare/rareQuestionBlock3.png")));
+            images.add(ImageIO.read(getClass().getResourceAsStream("/collectable/questionBlock/rare/rareQuestionBlock4.png")));
         } catch (IOException e) {
             e.printStackTrace();
         }

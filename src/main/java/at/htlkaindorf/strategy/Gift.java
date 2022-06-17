@@ -20,16 +20,24 @@ public abstract class Gift {
     protected double speed = 5;
 
     protected Rectangle hitBox = new Rectangle();
+    public void despawn() {
+        spawned = false;
+        x = -2000;
+        y = -2000;
 
+        hitBox.x = (int) Math.round(gamePanel.tileSize  * 0.05) + x;
+        hitBox.y = (int) Math.round(gamePanel.tileSize  * 0.05) + y;
+
+    }
 
 
     public void spawn() {
         spawned = true;
         Random rand = new Random();
-        x = gamePanel.getScreenWidth() + rand.nextInt(gamePanel.getScreenWidth());
+        x = gamePanel.getScreenWidth();
 
         int high = (int) (gamePanel.getScreenHeight() - gamePanel.tileSize  * 1.8);
-        System.out.println("HEight " +gamePanel.getScreenHeight());
+        //System.out.println("HEight " +gamePanel.getScreenHeight());
         int low = 100;
         y = rand.nextInt(high - low + 1) + low;
 
@@ -41,11 +49,11 @@ public abstract class Gift {
 
     }
     public void update() {
-        System.out.println(spawned);
+        //System.out.println(spawned);
         if(spawned){
             x -= speed;
-            System.out.println(x);
-            System.out.println(y);
+            //System.out.println(x);
+            //System.out.println(y);
 
 
         hitBox.x = (int) Math.round(gamePanel.tileSize  * 0.05) + x;
@@ -55,8 +63,17 @@ public abstract class Gift {
 
     public void draw(Graphics2D g2){
         if(spawned) {
-            System.out.println("draw");
-            animation.draw(g2, x, y);
+            //System.out.println("draw");
+            collision(g2);
+        }
+        animation.draw(g2, x, y);
+
+    }
+
+    public void collision(Graphics2D g2){
+        if(g2.hit(hitBox, gamePanel.getPlayer().getHitBox(), true)){
+            despawn();
+            activate();
         }
     }
 
@@ -74,7 +91,7 @@ public abstract class Gift {
     }
 
     public void activate(){
-        action.use();
+        setAnimation(action.use());
     }
 
 }

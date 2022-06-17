@@ -1,5 +1,5 @@
 package at.htlkaindorf.strategy;
 
 public interface Action {
-    public void use();
+    public Animation use();
 }
