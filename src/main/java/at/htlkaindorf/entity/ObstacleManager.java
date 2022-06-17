@@ -51,11 +51,18 @@ public class ObstacleManager {
      */
     public boolean checkCollision(Player player, Graphics2D g2){
         boolean hit = false;
-        for (Entity obstacle : purpleMonsters){
-            if(g2.hit(player.getHitBox(), obstacle.getHitBox(), true)){
-                hit = true;
-                gamePanel.collision();
-                break;
+        for (PurpleMonster purpleMonster : purpleMonsters){
+            if(g2.hit(player.getHitBox(), purpleMonster.getHitBox(), true)){
+                if(player.isAdditionalHeart()){
+                    purpleMonster.intiRandom();
+                    player.setAdditionalHeart(false);
+                    break;
+                }else{
+                    hit = true;
+                    gamePanel.collision();
+                    break;
+                }
+
             }
         }
         return hit;
@@ -122,7 +129,7 @@ public class ObstacleManager {
      * This function adds new {@code PurpleMonster}s, so it becomes more difficult.
      */
     private void updatePurpleMonsterAmount() {
-        if(gamePanel.getScore() / 10 - added > 1 && purpleMonsters.size() < 15){
+        if(gamePanel.getScore() / 50 - added > 1 && purpleMonsters.size() < 15){
             System.out.println("ADD");
             added++;
             purpleMonsters.add(new PurpleMonster(gamePanel));

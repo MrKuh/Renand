@@ -39,6 +39,7 @@ public class Player extends Entity {
      * This variable contains all flying images
      */
     private BufferedImage[] flyImages;
+    private BufferedImage[] collectable;
 
     //player speed related variables
     /**
@@ -113,6 +114,10 @@ public class Player extends Entity {
                     ImageIO.read(getClass().getResourceAsStream("/character/run/sprite_2.png")),
                     ImageIO.read(getClass().getResourceAsStream("/character/run/sprite_3.png")),
                     ImageIO.read(getClass().getResourceAsStream("/character/fly/sprite_00.png"))
+            };
+            collectable = new BufferedImage[]{
+                    ImageIO.read(getClass().getResourceAsStream("/collectable/additional_heart/aditional_heart_empty.png")),
+                    ImageIO.read(getClass().getResourceAsStream("/collectable/additional_heart/aditional_heart1.png"))
             };
             flyImages = new BufferedImage[]{
                     ImageIO.read(getClass().getResourceAsStream("/character/fly/sprite_00.png")),
@@ -228,6 +233,12 @@ public class Player extends Entity {
         if(y != (int) (gamePanel.getScreenHeight() - gamePanel.tileSize * 1.8) && gamePanel.getWalkSound().isActive()){
             gamePanel.getWalkSound().stop();
         }
+        if(isAdditionalHeart()){
+            g2.drawImage(collectable[1], 20, 20, gamePanel.tileSize/3, gamePanel.tileSize/3, null);
+        }else{
+            g2.drawImage(collectable[0], 20, 20, gamePanel.tileSize/3, gamePanel.tileSize/3, null);
+        }
+
 
         //g2.draw(hitBox);
         //Collision
