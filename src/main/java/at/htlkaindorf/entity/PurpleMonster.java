@@ -13,6 +13,7 @@ import java.util.Random;
 /**
  * This class {@code PurpleMonster} contains every feature of an enemy (purple Monster). <br>
  * It contains the animation and the movement behavior of a monster.
+ *
  * @author MrKuh
  * @author Bensi
  * @version 1.11
@@ -28,9 +29,12 @@ public class PurpleMonster extends Entity {
      */
     private Random rand = new Random();
     /**
-     * This variable contains all
+     * This variable contains all images of the {@code PurpleMonster}'s animation.
      */
     private BufferedImage[] flyImages;
+    /**
+     * This {@link Boolean} defines if the purple Monster is currently moving up/down.
+     */
     private boolean up = false;
 
     public PurpleMonster(GamePanel gamePanel) {
@@ -39,7 +43,10 @@ public class PurpleMonster extends Entity {
         getImage();
     }
 
-    public void getImage(){
+    /**
+     * This function sets the images in the {@code flyImages} string.
+     */
+    public void getImage() {
         try {
             flyImages = new BufferedImage[]{
                     ImageIO.read(getClass().getResourceAsStream("/obstacle/purbleMonster1.png")),
@@ -51,6 +58,8 @@ public class PurpleMonster extends Entity {
             e.printStackTrace();
         }
     }
+
+    /*These functions are no longer in use. They were responsible for another movement behavior.
     public void tunnel(Random rand){
         Player player = gamePanel.getPlayer();
 
@@ -81,62 +90,71 @@ public class PurpleMonster extends Entity {
             y = gamePanel.getScreenHeight() -  gamePanel.tileSize;
         }
         x = gamePanel.getScreenWidth() + rand.nextInt(gamePanel.getScreenWidth());
-    }
-    public void intiRandom(){
+    }*/
+
+    /**
+     * This function sets random values for the position of the {@code PurpleMonster}.
+     */
+    public void intiRandom() {
         x = gamePanel.getScreenWidth() + rand.nextInt(gamePanel.getScreenWidth());
 
-        int high = (int) (gamePanel.getScreenHeight() - gamePanel.tileSize  * 1.8);
+        int high = (int) (gamePanel.getScreenHeight() - gamePanel.tileSize * 1.8);
         int low = 100;
         y = rand.nextInt(high - low + 1) + low;
 
-        hitBox.x = (int) Math.round(gamePanel.tileSize  * 0.05) + x;
-        hitBox.y = (int) Math.round(gamePanel.tileSize  * 0.05) + y;
+        hitBox.x = (int) Math.round(gamePanel.tileSize * 0.05) + x;
+        hitBox.y = (int) Math.round(gamePanel.tileSize * 0.05) + y;
 
     }
-    public void random(){
 
+    /**
+     * This function is responsible for the {@code PurpleMonster}'s movement to the left side and up/down.
+     * After hitting the ceiling or the floor it switches the direction.
+     */
+    public void randomUpDown() {
         x -= speed;
-        y -= rand.nextInt(5 - (-5) + 1) + (-5);
-    }
-    public void randomUpDown(){
-        x -= speed;
-        if(y < 0){
+        if (y < 0) {
             up = true;
         }
-        if(y > gamePanel.getScreenHeight()- gamePanel.tileSize * 1.8 ){
+        if (y > gamePanel.getScreenHeight() - gamePanel.tileSize * 1.8) {
             up = false;
         }
 
-        if(y >= 0 && !up){
+        if (y >= 0 && !up) {
             y -= 2;
         }
-        if(y <= gamePanel.getScreenHeight()- gamePanel.tileSize * 1.8  && up){
+        if (y <= gamePanel.getScreenHeight() - gamePanel.tileSize * 1.8 && up) {
             y += 2;
         }
-        hitBox.x = (int) Math.round(gamePanel.tileSize  * 0.05) + x;
-        hitBox.y = (int) Math.round(gamePanel.tileSize  * 0.05) + y;
+        hitBox.x = (int) Math.round(gamePanel.tileSize * 0.05) + x;
+        hitBox.y = (int) Math.round(gamePanel.tileSize * 0.05) + y;
     }
 
-
+    /**
+     * This functions sets the instances to their default value.
+     */
     public void setDefaultValues() {
         //Tunnel
         //intiTunnel(rand);
 
         hitBox = new Rectangle();
-        hitBox.width = (int) Math.round(gamePanel.tileSize  * 0.9);
-        hitBox.height = (int) Math.round(gamePanel.tileSize  * 0.9);
+        hitBox.width = (int) Math.round(gamePanel.tileSize * 0.9);
+        hitBox.height = (int) Math.round(gamePanel.tileSize * 0.9);
         hitBox.x = (int) Math.round(gamePanel.tileSize * 0.05) + x;
-        hitBox.y = (int) Math.round(gamePanel.tileSize  * 0.05) + y;
+        hitBox.y = (int) Math.round(gamePanel.tileSize * 0.05) + y;
         //Random
         intiRandom();
-
 
 
         flyIMG = 0;
         up = rand.nextBoolean();
     }
+
+    /**
+     * This {@code update()} function calls {@code randomUpDown()} and sets the animation picture of the current frame.
+     */
     public void update() {
-        speed = gamePanel.getGameSpeed() *2;
+        speed = gamePanel.getGameSpeed() * 2;
         //tunnel(rand);
         randomUpDown();
         //Movement
@@ -165,7 +183,7 @@ public class PurpleMonster extends Entity {
 
         //animation
         spriteCounter++;
-        if (spriteCounter > gamePanel.FPS / flyImages.length/ 1.5) {
+        if (spriteCounter > gamePanel.FPS / flyImages.length / 1.5) {
             if (flyIMG < flyImages.length - 1) {
                 flyIMG++;
             } else {
@@ -176,16 +194,27 @@ public class PurpleMonster extends Entity {
 
     }
 
+    /**
+     * This function draws the {@code PurpleMonster}.
+     *
+     * @param g2 - the {@code Graphics2D} object for printing
+     */
     public void draw(Graphics2D g2) {
-            gamePanel.getObstacleManager().checkPurpleMonsterCollision(this, g2);
-            g2.drawImage(flyImages[flyIMG], x, y, gamePanel.tileSize , gamePanel.tileSize , null);
-            //g2.draw(hitBox);
+        gamePanel.getObstacleManager().checkPurpleMonsterCollision(this, g2);
+        g2.drawImage(flyImages[flyIMG], x, y, gamePanel.tileSize, gamePanel.tileSize, null);
+        //g2.draw(hitBox);
     }
 
+    /**
+     * This function is responsible for changing the direction of the {@code PurpleMonster} <br>
+     * if it hits another {@code PurpleMonster}.
+     *
+     * @param hit - defines the hitBox of another {@code PurpleMonster}
+     */
     public void changeDirection(Rectangle hit) {
-        if(hit.y < hitBox.y){
+        if (hit.y < hitBox.y) {
             up = true;
-        }else{
+        } else {
             up = false;
         }
     }
