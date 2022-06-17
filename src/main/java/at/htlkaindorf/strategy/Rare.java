@@ -26,7 +26,7 @@ public class Rare extends Gift {
                 setAction(new ScorePlus100(gamePanel));
                 break;
             case 2:
-                setAction(new AdditoinalHeart(gamePanel));
+                setAction(new AdditionalHeart(gamePanel));
                 break;
         }
         super.spawn();
