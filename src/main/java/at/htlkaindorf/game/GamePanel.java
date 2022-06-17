@@ -1,9 +1,9 @@
 package at.htlkaindorf.game;
 
 import at.htlkaindorf.controller.KeyHandler;
-import at.htlkaindorf.strategy.GiftManager;
 import at.htlkaindorf.entity.ObstacleManager;
 import at.htlkaindorf.entity.Player;
+import at.htlkaindorf.strategy.GiftManager;
 import at.htlkaindorf.tile.TileManager;
 import lombok.Data;
 
@@ -71,7 +71,8 @@ public class GamePanel extends JPanel implements Runnable {
     private Player player = new Player(this, keyHandler);
 
     //World Speed
-    public static double xspeed = 5.0;
+    private int addedGameSpeed = 0;
+    private double gameSpeed = 5.0;
 
     //Tile
     private TileManager tileManager = new TileManager(this);
@@ -83,6 +84,8 @@ public class GamePanel extends JPanel implements Runnable {
     private boolean runWithEnemies = false;
 
     public void resetTheGame() {
+        addedGameSpeed = 0;
+        gameSpeed = 5.0;
         obstacleManager = new ObstacleManager(this);
         player = new Player(this, keyHandler);
         tileManager = new TileManager(this);
@@ -107,13 +110,13 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void initSounds(){
         try {
-            File file = new File("res/audio/Clash of Clans - Main Theme.wav");
+            File file = new File("res/audio/main.wav");
             AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(file);
             mainSound = AudioSystem.getClip();
             mainSound.open(audioInputStream);
             mainSound.loop(Clip.LOOP_CONTINUOUSLY);
 
-            file = new File("res/audio/JetpackCut4.wav");
+            file = new File("res/audio/fly.wav");
             AudioInputStream audioInputStream2 = AudioSystem.getAudioInputStream(file);
             flySound = AudioSystem.getClip();
             flySound.open(audioInputStream2);
@@ -130,7 +133,7 @@ public class GamePanel extends JPanel implements Runnable {
                 }
             });
 
-            file = new File("res/audio/JetpackLoopFade.wav");
+            file = new File("res/audio/loop.wav");
             AudioInputStream audioInputStream4 = AudioSystem.getAudioInputStream(file);
             flyLoopSound = AudioSystem.getClip();
             flyLoopSound.open(audioInputStream4);
@@ -138,13 +141,13 @@ public class GamePanel extends JPanel implements Runnable {
 
 
 
-            file = new File("res/audio/Walking and Running on Grass Sound Effect [Minecraft].wav");
+            file = new File("res/audio/walk.wav");
             AudioInputStream audioInputStream5 = AudioSystem.getAudioInputStream(file);
             walkSound = AudioSystem.getClip();
             walkSound.open(audioInputStream5);
 
 
-            file = new File("res/audio/Saul goodman 3d.wav");
+            file = new File("res/audio/collision.wav");
             AudioInputStream audioInputStream3 = AudioSystem.getAudioInputStream(file);
             collisionSound = AudioSystem.getClip();
             collisionSound.open(audioInputStream3);
@@ -209,7 +212,6 @@ public class GamePanel extends JPanel implements Runnable {
                 //System.out.println("FPS " + drawCount);
                 //System.out.println(paused);
                 //System.out.println(running);
-
                 drawCount = 0;
                 timer = 0;
             }
@@ -218,6 +220,11 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void update() {
+        if(score / 100 - addedGameSpeed > 1 && gameSpeed< 10){
+            addedGameSpeed++;
+            gameSpeed++;
+        }
+
         player.update();
         if (runWithEnemies) {
             obstacleManager.update();

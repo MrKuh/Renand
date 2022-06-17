@@ -44,10 +44,10 @@ public class GiftManager {
             nextSpawn += rand.nextInt(20,51);
             //System.out.println(nextSpawn);
 
-            int random = rand.nextInt(20);
+            int random = rand.nextInt(21);
             //System.out.println(random);
 
-            if(random> 15){
+            if(random > 15){
                 rare.setAnimation(new QuestionAnimationRare(gamePanel));
                 rare.spawn();
             }else{

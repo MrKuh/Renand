@@ -33,6 +33,7 @@ public class ObstacleManager {
      */
     private int added = 0;
 
+
     public ObstacleManager(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
         this.purpleMonsters = new ArrayList<PurpleMonster>();
@@ -129,7 +130,7 @@ public class ObstacleManager {
      * This function adds new {@code PurpleMonster}s, so it becomes more difficult.
      */
     private void updatePurpleMonsterAmount() {
-        if(gamePanel.getScore() / 50 - added > 1 && purpleMonsters.size() < 15){
+        if(gamePanel.getScore() / 100 - added > 1 && purpleMonsters.size() < 10){
             System.out.println("ADD");
             added++;
             purpleMonsters.add(new PurpleMonster(gamePanel));
