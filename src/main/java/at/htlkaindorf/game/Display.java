@@ -4,28 +4,48 @@ import lombok.Data;
 
 import javax.swing.*;
 
+/**
+ * This class {@code Display} contains a JFrame with the GamePanel.<br>
+ * When the constructor is called, our game window opens and the game loop gets started.
+ *
+ * @author MrKuh
+ * @author Bensi
+ * @version 1.30
+ */
 @Data
 public class Display {
-    private static final int KEY_F11 = 122;
-
+    /**
+     * This {@code JFrame} is the JFrame where the {@code GamePanel} opens.
+     */
     private JFrame window;
+    /**
+     * This {@code String} defines the Title of the {@code JFrame} window.
+     */
     private String title;
-    private GamePanel gp;
+    /**
+     * Just an object of {@code GamePanel}. <br>
+     * It is needed if u want to call a function of {@code GamePanel}.
+     */
+    private GamePanel gamePanel;
 
     public Display(String title, GamePanel gamePanel) {
         this.title = title;
-        this.gp = gamePanel;
-        this.gp.setDisplay(this);
+        this.gamePanel = gamePanel;
+        this.gamePanel.setDisplay(this);
         createDisplay();
-        this.gp.startGameThread();
+        this.gamePanel.startGameThread();
     }
 
+    /**
+     * This function creates the window {@code JFrame}. <br>
+     * It adds the {@code GamePanel} to the window and sets basic settings of our JFrame.
+     */
     private void createDisplay() {
         window = new JFrame(title);
-        window.add(gp);
+        window.add(gamePanel);
         window.setResizable(false);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        window.setSize(gp.getScreenWidth(), gp.getScreenHeight());
+        window.setSize(gamePanel.getScreenWidth(), gamePanel.getScreenHeight());
         window.setUndecorated(false);
         window.pack();
         window.setVisible(true);

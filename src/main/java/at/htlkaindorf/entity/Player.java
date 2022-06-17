@@ -29,7 +29,7 @@ public class Player extends Entity {
      */
     private int runIMG;
     /**
-     * This variable defines which the current flying Picture is.
+     * This variable defines the index current flying Picture.
      */
     private int flyIMG;
     /**
@@ -40,6 +40,9 @@ public class Player extends Entity {
      * This variable contains all flying images
      */
     private BufferedImage[] flyImages;
+    /**
+     * This variable contains all collectable images
+     */
     private BufferedImage[] collectable;
 
     //player speed related variables
