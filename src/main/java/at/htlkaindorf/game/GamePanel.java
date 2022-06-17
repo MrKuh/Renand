@@ -367,7 +367,7 @@ public class GamePanel extends JPanel implements Runnable {
 
         try {
             BufferedImage[] deathScreen = new BufferedImage[]{
-                    ImageIO.read(getClass().getResourceAsStream("/gameover/GameOverJetpack.png"))
+                    ImageIO.read(getClass().getResourceAsStream("/game/GameOverJetpack.png"))
             };
             //(screenHeight/2) - (deathScreen[0].getHeight()/2)
             g2.drawImage(deathScreen[0], (screenWidth / 2) - (deathScreen[0].getWidth()), deathScreen[0].getHeight(), deathScreen[0].getWidth() * 2, deathScreen[0].getHeight() * 2, null);
@@ -414,13 +414,17 @@ public class GamePanel extends JPanel implements Runnable {
 
         try {
             BufferedImage[] startScreen = new BufferedImage[]{
-                    ImageIO.read(getClass().getResourceAsStream("/gameover/startSmall.png"))
+                    ImageIO.read(getClass().getResourceAsStream("/game/renand.png")),
+                    ImageIO.read(getClass().getResourceAsStream("/game/startSmall.png"))
             };
 
-            int width = startScreen[0].getWidth() * 8;
-            int height = startScreen[0].getHeight() * 8;
+            int width = startScreen[0].getWidth() * 9;
+            int height = startScreen[0].getHeight() * 9;
             g2.drawImage(startScreen[0], screenWidth / 2 - width / 2, (int) (height * 1.5), width, height, null);
 
+            int width1 = startScreen[1].getWidth() * 3;
+            int height1 = startScreen[1].getHeight() * 3;
+            g2.drawImage(startScreen[1], screenWidth / 2 - width1 / 2, screenHeight/2 - (height1/2), width1, height1, null);
 
             g2.setFont(myFont40);
             g2.setColor(fontColor);

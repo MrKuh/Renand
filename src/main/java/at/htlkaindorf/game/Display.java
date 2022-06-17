@@ -52,4 +52,9 @@ public class Display {
 
         //window.setAlwaysOnTop(true);
     }
+
+
+    public static void main(String[] args) {
+        Display window = new Display("Renand", new GamePanel());
+    }
 }
