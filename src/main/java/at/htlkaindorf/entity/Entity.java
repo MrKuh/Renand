@@ -34,7 +34,7 @@ public class Entity {
     protected GamePanel gamePanel;
 
     /**
-     * This variable is used...
+     * This variable is used to control the animation speed of an {@code Entity}.
      */
     protected int spriteCounter = 0;
     /**
